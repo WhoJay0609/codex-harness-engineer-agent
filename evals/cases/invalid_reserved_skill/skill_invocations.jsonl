@@ -1,0 +1,1 @@
+{"agent_id":"verifier-1","skill":"multi-agent","reason":"reserved skill should not be allowed automatically","allowed":true,"used":true,"output_artifact":"summary.md","blocked_reason":null}

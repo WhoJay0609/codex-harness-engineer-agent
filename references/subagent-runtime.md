@@ -36,7 +36,7 @@ The main agent is the orchestrator. It owns final judgment, context selection, a
 
 For non-trivial harness work, proactively form a small internal team at the start. Use internal subagents for context isolation, parallel evidence, independent verification, or specialized failure analysis. Do not create subagents just to make simple work look sophisticated, but do not wait until failure to add basic context and verification roles.
 
-The usual minimum team is `Context Curator` plus `Verifier / Evidence Auditor`. Add `Harness Architect`, `Runner Coordinator`, `Failure Analyst`, or `Mechanical Gatekeeper` as soon as the task involves design, execution, repair, or enforceable rules. Expert roles must come from `references/expert-capability-library.md`.
+The usual minimum team is `Context Curator` plus `Verifier / Evidence Auditor`. Add `Harness Architect`, `Runner Coordinator`, `Failure Analyst`, or `Mechanical Gatekeeper` as soon as the task involves design, execution, repair, or enforceable rules. Expert roles must come from the generated `references/expert-capability-library.json`, with the readable view in `references/expert-capability-library.md`.
 
 ## Task Card
 

@@ -21,8 +21,9 @@ Do not use vague states such as `done` or `probably_fixed`.
 2. State the hypothesis for this run.
 3. Execute the smallest useful change or experiment.
 4. Collect tool output, logs, metrics, screenshots, tests, and review feedback.
-5. Verify against success criteria.
-6. If verification fails, classify the gap:
+5. Record Trace v2 events for material actions: tool call, observation, skill decision, failure, checkpoint, metric, and termination.
+6. Verify against success criteria.
+7. If verification fails, classify the gap:
    - missing_context
    - missing_tool
    - missing_constraint
@@ -33,8 +34,8 @@ Do not use vague states such as `done` or `probably_fixed`.
    - flaky_environment
    - skill_allowlist_gap
    - subagent_scope_gap
-7. Improve the harness before retrying when the gap is harness-level.
-8. Record the next hypothesis or stop reason.
+8. Improve the harness before retrying when the gap is harness-level.
+9. Record the next hypothesis or stop reason.
 
 ## Failure Record
 

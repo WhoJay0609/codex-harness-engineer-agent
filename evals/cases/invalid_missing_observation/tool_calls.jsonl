@@ -1,0 +1,1 @@
+{"event_version":2,"tool_call_id":"tool-missing","agent_id":"verifier-1","tool":"shell","action":"python -m pytest --version","status":"completed","command_hash":"sha256:missing"}

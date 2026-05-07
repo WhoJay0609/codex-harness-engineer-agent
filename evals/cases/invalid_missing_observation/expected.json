@@ -1,0 +1,4 @@
+{
+  "expect": "fail",
+  "contains": "has no matching observation"
+}

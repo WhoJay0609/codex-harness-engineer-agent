@@ -1,0 +1,1293 @@
+{
+  "coverage": {
+    "covered_external_skill_count": 184,
+    "external_skill_count": 184,
+    "fallback_skill_count": 0,
+    "missing_external_skills": []
+  },
+  "expert_library_version": "harness-experts.v3",
+  "generated_by": "scripts/update_expert_library.py",
+  "reserved_orchestration_skills": [
+    "codex-autoresearch",
+    "expert-debate",
+    "multi-agent"
+  ],
+  "roles": [
+    {
+      "allowed_skills": [
+        "harness-engineer",
+        "planner",
+        "deep-interview",
+        "software-engineer",
+        "project-phase-report"
+      ],
+      "capability": "Owns final judgment, pipeline choice, expert creation/stop/replacement, approval gates, and execution closeout.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "orchestrator_decision",
+      "required_skill_check": true,
+      "role": "Professor Orchestrator",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "deep-interview",
+        "planner",
+        "research-refine",
+        "research-survey",
+        "doc"
+      ],
+      "capability": "Classifies user intent, task class, success criteria, required domain specialists, and whether execution needs approval first.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "intent_route",
+      "required_skill_check": true,
+      "role": "Intent Router",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "software-engineer",
+        "research-survey",
+        "doc",
+        "pdf",
+        "spreadsheet",
+        "jupyter-notebook"
+      ],
+      "capability": "Builds repo, paper, material, data, and artifact context packets for downstream experts.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "context_packet",
+      "required_skill_check": true,
+      "role": "Context Curator",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "planner",
+        "waterfall-delivery",
+        "software-engineer",
+        "project-phase-report"
+      ],
+      "capability": "Converts goals into task cards, dependencies, budgets, stop conditions, and acceptance checks.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "task_card_set",
+      "required_skill_check": true,
+      "role": "Task Decomposer",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "research-review",
+        "analyze-results",
+        "planner",
+        "deep-interview"
+      ],
+      "capability": "Runs internal deliberation: independent positions, rebuttals, revisions, and moderator synthesis.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "deliberation_summary",
+      "required_skill_check": true,
+      "role": "Debate Moderator",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "research-review",
+        "security-threat-model",
+        "repo-refactor-governance",
+        "analyze-results"
+      ],
+      "capability": "Challenges assumptions, hidden risks, overclaiming, missing baselines, irreversible actions, and simpler alternatives.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "red_team_report",
+      "required_skill_check": true,
+      "role": "Red Team Critic",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "skill-creator",
+        "plugin-creator",
+        "software-engineer",
+        "repo-refactor-governance",
+        "waterfall-delivery"
+      ],
+      "capability": "Designs artifact contracts, state schema, run layout, subagent protocols, and mechanical gates.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "harness_design",
+      "required_skill_check": true,
+      "role": "Harness Architect",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "run-experiment",
+        "monitor-experiment",
+        "experiment-bridge",
+        "software-engineer"
+      ],
+      "capability": "Coordinates baseline, candidate execution, auto-loop iterations, worktree isolation, and command evidence.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "run_coordination_report",
+      "required_skill_check": true,
+      "role": "Runner Coordinator",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "analyze-results",
+        "playwright",
+        "paper-compile",
+        "pdf",
+        "spreadsheet",
+        "software-engineer"
+      ],
+      "capability": "Checks acceptance criteria, metrics, logs, tests, paper evidence, document evidence, and source freshness.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "verification_report",
+      "required_skill_check": true,
+      "role": "Verifier / Evidence Auditor",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "analyze-results",
+        "monitor-experiment",
+        "sentry",
+        "software-engineer",
+        "gh-fix-ci"
+      ],
+      "capability": "Classifies failures as code, context, tool, constraint, metric, environment, team, or policy gaps.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "failure_report",
+      "required_skill_check": true,
+      "role": "Failure Analyst",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "software-engineer",
+        "repo-refactor-governance",
+        "gh-fix-ci",
+        "security-best-practices"
+      ],
+      "capability": "Converts repeated guidance into scripts, schemas, validators, lint checks, CI checks, and artifact gates.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "gate_proposal",
+      "required_skill_check": true,
+      "role": "Mechanical Gatekeeper",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "software-engineer",
+        "analyze-results",
+        "repo-refactor-governance"
+      ],
+      "capability": "Checks trace completeness, task-card closure, skill invocation records, escalation records, and replayability.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "trace_audit",
+      "required_skill_check": true,
+      "role": "Trace Auditor",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "repo-refactor-governance",
+        "software-engineer",
+        "doc",
+        "project-phase-report"
+      ],
+      "capability": "Finds stale docs, duplicate helpers, invalid fallbacks, bloated files, drifted skill allowlists, and repo hygiene gaps.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "core_role_template",
+      "output_schema": "entropy_report",
+      "required_skill_check": true,
+      "role": "Entropy Gardener",
+      "selection_keywords": [],
+      "type": "core_council"
+    },
+    {
+      "allowed_skills": [
+        "brainstorming-research-ideas",
+        "creative-thinking-for-research",
+        "idea-creator",
+        "idea-discovery",
+        "research-refine-pipeline"
+      ],
+      "capability": "Generates and refines research ideas with creativity, novelty pressure, and implementation awareness.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "idea_set",
+      "required_skill_check": true,
+      "role": "Research Ideation Expert",
+      "selection_keywords": [
+        "idea",
+        "creative",
+        "brainstorm",
+        "research-refine"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "arxiv",
+        "comm-lit-review",
+        "novelty-check",
+        "research-lit",
+        "research-review",
+        "research-survey"
+      ],
+      "capability": "Searches related work, closest prior art, novelty gaps, and claim boundaries.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "novelty_report",
+      "required_skill_check": true,
+      "role": "Literature / Novelty Expert",
+      "selection_keywords": [
+        "arxiv",
+        "literature",
+        "lit",
+        "survey",
+        "novelty",
+        "review",
+        "prior art",
+        "comm-lit"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "0-autoresearch-skill",
+        "auto-review-loop",
+        "auto-review-loop-llm",
+        "auto-review-loop-minimax",
+        "experiment-bridge",
+        "experiment-plan",
+        "research-pipeline"
+      ],
+      "capability": "Plans research ideation, experiment bridging, autonomous review loops, and research workflow handoffs.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "research_pipeline_plan",
+      "required_skill_check": true,
+      "role": "Research Pipeline Expert",
+      "selection_keywords": [
+        "research-pipeline",
+        "autoresearch",
+        "auto-review",
+        "experiment-bridge",
+        "pipeline"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "formula-derivation",
+        "proof-writer",
+        "research-refine"
+      ],
+      "capability": "Formalizes assumptions, formulas, proofs, lemmas, theorem wording, and rigor boundaries.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "theory_report",
+      "required_skill_check": true,
+      "role": "Theory Expert",
+      "selection_keywords": [
+        "formula",
+        "proof",
+        "theory",
+        "derivation",
+        "mathematical"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "analyze-results",
+        "experiment-plan",
+        "notion-spec-to-implementation",
+        "research-lit",
+        "run-experiment",
+        "software-engineer"
+      ],
+      "capability": "Converts a paper method into implementable modules, pseudocode, configs, minimal trials, and tests.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "implementation_bridge",
+      "required_skill_check": true,
+      "role": "Paper-to-Code Expert",
+      "selection_keywords": [
+        "paper-to-code",
+        "implementation",
+        "bridge",
+        "method"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "auto-paper-improvement-loop",
+        "ml-paper-writing",
+        "paper-compile",
+        "paper-plan",
+        "paper-write",
+        "paper-writing",
+        "systems-paper-writing"
+      ],
+      "capability": "Structures papers, writes sections, compiles LaTeX, and improves submission narratives.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "writing_plan",
+      "required_skill_check": true,
+      "role": "Paper Writing Expert",
+      "selection_keywords": [
+        "paper",
+        "latex",
+        "writing",
+        "compile",
+        "ml-paper",
+        "systems-paper"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "academic-plotting",
+        "paper-figure",
+        "paper-illustration",
+        "paper-poster",
+        "paper-slides",
+        "presenting-conference-talks",
+        "slides"
+      ],
+      "capability": "Creates paper figures, tables, posters, slides, captions, and conference talk material.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "presentation_plan",
+      "required_skill_check": true,
+      "role": "Paper Figures / Talks Expert",
+      "selection_keywords": [
+        "figure",
+        "plot",
+        "illustration",
+        "poster",
+        "slides",
+        "presentation",
+        "talk",
+        "academic-plotting"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "analyze-results",
+        "experiment-plan",
+        "jupyter-notebook",
+        "monitor-experiment",
+        "repo-refactor-governance",
+        "run-experiment",
+        "spreadsheet",
+        "swanlab"
+      ],
+      "capability": "Designs experiments, ablations, metrics, analysis tables, and reproducibility checks.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "experiment_matrix",
+      "required_skill_check": true,
+      "role": "Experiment / Metrics Expert",
+      "selection_keywords": [
+        "experiment",
+        "metric",
+        "monitor",
+        "analyze",
+        "jupyter",
+        "spreadsheet",
+        "swanlab"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "algorithm-improvement-loop",
+        "analyze-results",
+        "dse-loop",
+        "formula-derivation",
+        "proof-writer",
+        "software-engineer"
+      ],
+      "capability": "Diagnoses algorithms, proposes variants, tunes objectives, and designs benchmark-driven improvement loops.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "algorithm_plan",
+      "required_skill_check": true,
+      "role": "Algorithm Expert",
+      "selection_keywords": [
+        "algorithm",
+        "dse",
+        "optimization",
+        "objective",
+        "benchmark"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "accelerate",
+        "deep-interview",
+        "deepspeed",
+        "megatron-core",
+        "ml-training-recipes",
+        "pytorch-fsdp2",
+        "pytorch-lightning",
+        "ray-train",
+        "torchtitan"
+      ],
+      "capability": "Designs model training, distributed training, debugging, throughput optimization, and experiment tracking.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "training_plan",
+      "required_skill_check": true,
+      "role": "ML Training Expert",
+      "selection_keywords": [
+        "training",
+        "train",
+        "deepspeed",
+        "accelerate",
+        "fsdp",
+        "lightning",
+        "megatron",
+        "torchtitan",
+        "ray-train"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "axolotl",
+        "grpo-rl-training",
+        "llama-factory",
+        "miles",
+        "openrlhf",
+        "peft",
+        "simpo",
+        "slime",
+        "torchforge",
+        "trl-fine-tuning",
+        "unsloth",
+        "verl"
+      ],
+      "capability": "Designs supervised fine-tuning, preference optimization, RLHF/GRPO/PPO, LoRA/QLoRA, and post-training.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "finetuning_plan",
+      "required_skill_check": true,
+      "role": "LLM Fine-Tuning Expert",
+      "selection_keywords": [
+        "fine-tuning",
+        "finetuning",
+        "rlhf",
+        "grpo",
+        "ppo",
+        "lora",
+        "peft",
+        "trl",
+        "verl",
+        "unsloth",
+        "simpo"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "gguf",
+        "lambda-labs",
+        "llama-cpp",
+        "modal",
+        "sglang",
+        "skypilot",
+        "speculative-decoding",
+        "tensorrt-llm",
+        "vllm"
+      ],
+      "capability": "Designs inference serving, quantized deployment, throughput/latency tuning, and cloud execution.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "serving_plan",
+      "required_skill_check": true,
+      "role": "LLM Serving Expert",
+      "selection_keywords": [
+        "serving",
+        "serve",
+        "inference",
+        "vllm",
+        "sglang",
+        "tensorrt",
+        "llama-cpp",
+        "speculative",
+        "modal",
+        "skypilot",
+        "lambda"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "awq",
+        "bitsandbytes",
+        "gguf",
+        "gptq",
+        "hqq",
+        "knowledge-distillation",
+        "model-merging",
+        "model-pruning"
+      ],
+      "capability": "Designs quantization, pruning, distillation, sparsity, and model merging plans.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "compression_plan",
+      "required_skill_check": true,
+      "role": "Compression Expert",
+      "selection_keywords": [
+        "quant",
+        "pruning",
+        "distillation",
+        "spars",
+        "merging",
+        "awq",
+        "gptq",
+        "hqq",
+        "bitsandbytes",
+        "gguf"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "flash-attention",
+        "litgpt",
+        "long-context",
+        "mamba",
+        "moe-training",
+        "nanogpt",
+        "rwkv"
+      ],
+      "capability": "Designs or analyzes LLM architectures, long context, MoE, attention optimization, and model internals.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "architecture_research_plan",
+      "required_skill_check": true,
+      "role": "Model Architecture Expert",
+      "selection_keywords": [
+        "architecture",
+        "litgpt",
+        "nanogpt",
+        "mamba",
+        "rwkv",
+        "moe",
+        "long-context",
+        "attention",
+        "flash"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "nnsight",
+        "pyvene",
+        "saelens",
+        "transformer-lens"
+      ],
+      "capability": "Performs mechanistic interpretability, activation interventions, sparse autoencoder analysis, and causal tracing.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "interpretability_plan",
+      "required_skill_check": true,
+      "role": "Interpretability Expert",
+      "selection_keywords": [
+        "interpretability",
+        "intervention",
+        "activation",
+        "sae",
+        "sparse-autoencoder",
+        "nnsight",
+        "pyvene",
+        "transformer-lens"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "analyze-results",
+        "bigcode-evaluation-harness",
+        "langsmith",
+        "lm-evaluation-harness",
+        "mlflow",
+        "nemo-evaluator",
+        "phoenix",
+        "swanlab",
+        "tensorboard",
+        "weights-and-biases"
+      ],
+      "capability": "Designs benchmark harnesses, LLM evaluation, BigCode evaluation, run tracking, and result dashboards.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "benchmark_report",
+      "required_skill_check": true,
+      "role": "Evaluation / Benchmark Expert",
+      "selection_keywords": [
+        "evaluation",
+        "evaluator",
+        "benchmark",
+        "bigcode",
+        "lm-evaluation",
+        "weights",
+        "mlflow",
+        "tensorboard",
+        "langsmith",
+        "phoenix"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "a-evolve",
+        "autogpt",
+        "crewai",
+        "dspy",
+        "guidance",
+        "instructor",
+        "langchain",
+        "llamaindex",
+        "outlines"
+      ],
+      "capability": "Builds RAG, agent workflows, structured outputs, tool calling, and document retrieval pipelines.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "rag_agent_plan",
+      "required_skill_check": true,
+      "role": "RAG / Agents Expert",
+      "selection_keywords": [
+        "rag",
+        "agent",
+        "langchain",
+        "llamaindex",
+        "dspy",
+        "guidance",
+        "instructor",
+        "outlines",
+        "autogpt",
+        "crewai"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "chroma",
+        "faiss",
+        "pinecone",
+        "qdrant",
+        "sentence-transformers"
+      ],
+      "capability": "Designs vector stores, embedding, retrieval, semantic search, indexing, and production retrieval choices.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "retrieval_plan",
+      "required_skill_check": true,
+      "role": "Retrieval / Vector DB Expert",
+      "selection_keywords": [
+        "vector",
+        "retrieval",
+        "embedding",
+        "semantic",
+        "chroma",
+        "faiss",
+        "qdrant",
+        "pinecone",
+        "sentence-transformers"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "huggingface-tokenizers",
+        "nemo-curator",
+        "ray-data",
+        "sentencepiece",
+        "spreadsheet"
+      ],
+      "capability": "Designs tokenization, dataset curation, distributed data processing, and structured data preparation.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "data_plan",
+      "required_skill_check": true,
+      "role": "Tokenizer / Data Expert",
+      "selection_keywords": [
+        "token",
+        "data",
+        "dataset",
+        "curator",
+        "ray-data",
+        "sentencepiece",
+        "nemo-curator"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "blip-2",
+        "clip",
+        "imagegen",
+        "llava",
+        "pixel-art",
+        "screenshot",
+        "segment-anything",
+        "stable-diffusion"
+      ],
+      "capability": "Works on image, vision-language, segmentation, diffusion, and visual asset tasks.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "multimodal_plan",
+      "required_skill_check": true,
+      "role": "Multimodal / Vision Expert",
+      "selection_keywords": [
+        "vision",
+        "image",
+        "multimodal",
+        "clip",
+        "blip",
+        "llava",
+        "segment",
+        "diffusion",
+        "pixel",
+        "screenshot"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "cosmos-policy",
+        "idea-discovery-robot",
+        "openpi",
+        "openvla-oft"
+      ],
+      "capability": "Handles robotics idea discovery, OpenPI/OpenVLA policy tuning, embodied benchmarks, and sim-to-real constraints.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "robotics_plan",
+      "required_skill_check": true,
+      "role": "Robotics / Embodied Expert",
+      "selection_keywords": [
+        "robot",
+        "embodied",
+        "openpi",
+        "openvla",
+        "cosmos"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "audiocraft",
+        "sora",
+        "speech",
+        "transcribe",
+        "whisper"
+      ],
+      "capability": "Handles transcription, speech generation, audio generation, and video/audio prompt workflows.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "audio_plan",
+      "required_skill_check": true,
+      "role": "Audio / Speech Expert",
+      "selection_keywords": [
+        "audio",
+        "speech",
+        "transcribe",
+        "whisper",
+        "audiocraft",
+        "sora"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "constitutional-ai",
+        "llamaguard",
+        "nemo-guardrails",
+        "prompt-guard",
+        "security-threat-model"
+      ],
+      "capability": "Designs moderation, prompt-injection detection, policy enforcement, and AI guardrails.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "guardrails_plan",
+      "required_skill_check": true,
+      "role": "Safety / Guardrails Expert",
+      "selection_keywords": [
+        "guard",
+        "safety",
+        "moderation",
+        "policy",
+        "constitutional",
+        "prompt-injection",
+        "llamaguard"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "figma",
+        "figma-code-connect-components",
+        "figma-create-design-system-rules",
+        "figma-create-new-file",
+        "figma-generate-design",
+        "figma-generate-library",
+        "figma-implement-design",
+        "figma-use",
+        "frontend",
+        "playwright",
+        "playwright-interactive"
+      ],
+      "capability": "Builds frontend UI, Figma integration, design systems, responsive states, and browser verification.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "frontend_plan",
+      "required_skill_check": true,
+      "role": "Frontend / Design Expert",
+      "selection_keywords": [
+        "frontend",
+        "figma",
+        "design",
+        "ui",
+        "browser",
+        "playwright"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "aspnet-core",
+        "chatgpt-apps",
+        "cli-creator",
+        "openai-docs",
+        "plugin-creator",
+        "skill-creator",
+        "skill-installer",
+        "software-engineer"
+      ],
+      "capability": "Designs backend services, APIs, ChatGPT Apps, CLIs, OpenAI product integration, and server behavior.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "api_plan",
+      "required_skill_check": true,
+      "role": "Backend / API Expert",
+      "selection_keywords": [
+        "backend",
+        "api",
+        "aspnet",
+        "chatgpt",
+        "cli",
+        "openai",
+        "plugin",
+        "software-engineer",
+        "skill-creator",
+        "skill-installer"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "develop-web-game",
+        "playwright",
+        "software-engineer",
+        "winui-app"
+      ],
+      "capability": "Builds web games, desktop apps, and browser-verified interactive experiences.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "interactive_app_plan",
+      "required_skill_check": true,
+      "role": "Game / Desktop Expert",
+      "selection_keywords": [
+        "game",
+        "desktop",
+        "winui",
+        "interactive"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "security-best-practices",
+        "security-ownership-map",
+        "security-threat-model",
+        "sentry"
+      ],
+      "capability": "Handles threat models, best practices, ownership maps, production errors, and incident evidence.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "security_reliability_review",
+      "required_skill_check": true,
+      "role": "Security / Reliability Expert",
+      "selection_keywords": [
+        "security",
+        "reliability",
+        "threat",
+        "sentry",
+        "ownership",
+        "incident"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "gh-address-comments",
+        "gh-fix-ci",
+        "git-pr-workflow",
+        "yeet"
+      ],
+      "capability": "Handles Git/PR discipline, review comments, GitHub CI, and PR-ready delivery.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "ci_pr_plan",
+      "required_skill_check": true,
+      "role": "CI / PR Expert",
+      "selection_keywords": [
+        "git",
+        "github",
+        "pr",
+        "ci",
+        "gh-",
+        "review-comments",
+        "yeet"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "cloudflare-deploy",
+        "netlify-deploy",
+        "render-deploy",
+        "vercel-deploy"
+      ],
+      "capability": "Handles Vercel, Netlify, Cloudflare, Render, preview, production deploy, and rollback.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "deploy_plan",
+      "required_skill_check": true,
+      "role": "Deploy Expert",
+      "selection_keywords": [
+        "deploy",
+        "vercel",
+        "netlify",
+        "cloudflare",
+        "render"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "doc",
+        "grant-proposal",
+        "notion-knowledge-capture",
+        "pdf",
+        "project-phase-report",
+        "slides",
+        "spreadsheet"
+      ],
+      "capability": "Creates and edits documents, PDFs, spreadsheets, slides, grant materials, and progress reports.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "material_plan",
+      "required_skill_check": true,
+      "role": "Documents / Materials Expert",
+      "selection_keywords": [
+        "doc",
+        "pdf",
+        "spreadsheet",
+        "slides",
+        "grant",
+        "material",
+        "report"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "notion-knowledge-capture",
+        "notion-meeting-intelligence",
+        "notion-research-documentation",
+        "notion-spec-to-implementation"
+      ],
+      "capability": "Captures knowledge, researches Notion, prepares meetings, and turns Notion specs into implementation plans.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "knowledge_plan",
+      "required_skill_check": true,
+      "role": "Knowledge / Notion Expert",
+      "selection_keywords": [
+        "notion",
+        "knowledge",
+        "meeting"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "doc",
+        "planner",
+        "project-phase-report",
+        "slides",
+        "spreadsheet",
+        "waterfall-delivery"
+      ],
+      "capability": "Creates phase plans, waterfall delivery records, client-facing reports, and milestone acceptance.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "delivery_plan",
+      "required_skill_check": true,
+      "role": "Project Delivery Expert",
+      "selection_keywords": [
+        "project",
+        "planner",
+        "phase",
+        "waterfall",
+        "delivery",
+        "milestone"
+      ],
+      "type": "domain_specialist"
+    },
+    {
+      "allowed_skills": [
+        "feishu-notify",
+        "linear",
+        "project-phase-report",
+        "sentry"
+      ],
+      "capability": "Handles Feishu notifications, Linear issue workflows, Sentry summaries, and operational reporting.",
+      "forbidden_skills": [
+        "codex-autoresearch",
+        "multi-agent",
+        "expert-debate"
+      ],
+      "generated_from": "skill_inventory_taxonomy",
+      "output_schema": "ops_plan",
+      "required_skill_check": true,
+      "role": "Notification / Ops Expert",
+      "selection_keywords": [
+        "notify",
+        "notification",
+        "feishu",
+        "linear",
+        "ops",
+        "sentry"
+      ],
+      "type": "domain_specialist"
+    }
+  ],
+  "source_inventory_hash": "b7ab03c3d0eb065383691bacc789d450c48651c6782883e49ad321f67eab58be",
+  "source_inventory_version": 2,
+  "version": 3
+}

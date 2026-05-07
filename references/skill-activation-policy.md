@@ -61,6 +61,7 @@ If no skill applies, record:
 - Harness Architect: `skill-creator`, `plugin-creator`, `software-engineer`, `repo-refactor-governance`, `waterfall-delivery`
 - Runner Coordinator: `run-experiment`, `monitor-experiment`, `experiment-bridge`, `software-engineer`
 - Verifier / Evidence Auditor: `analyze-results`, `playwright`, `paper-compile`, `pdf`, `spreadsheet`
-- Domain specialists: use the role-specific allowlists in `references/expert-capability-library.md`.
+- Domain specialists: use the role-specific allowlists generated in `references/expert-capability-library.json` and rendered in `references/expert-capability-library.md`.
+- When installed skills change, run `scripts/update_skill_inventory.py` and `scripts/update_expert_library.py` before assigning new domain specialists.
 
 Use only skills that are actually available in the current session. If a listed skill is unavailable, log it as blocked.

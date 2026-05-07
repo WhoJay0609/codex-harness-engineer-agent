@@ -4,7 +4,7 @@ Use this reference at the start of a harness run.
 
 ## Default
 
-For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v2` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks.
+For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v3` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks.
 
 Use single-agent mode only for trivial inspection, tiny edits, or one-command checks. When using single-agent mode, record the reason in `manifest.json`.
 
@@ -17,7 +17,7 @@ Every run manifest must include:
   "team_policy": {
     "mode": "internal_team",
     "task_class": "standard_harness",
-    "expert_library_version": "harness-experts.v2",
+    "expert_library_version": "harness-experts.v3",
     "reason": "non-trivial harness design needs context curation and independent verification",
     "initial_roles": ["Professor Orchestrator", "Intent Router", "Context Curator", "Verifier / Evidence Auditor"],
     "single_agent_exception": false,
@@ -34,7 +34,7 @@ For a single-agent exception:
   "team_policy": {
     "mode": "single_agent",
     "task_class": "trivial",
-    "expert_library_version": "harness-experts.v2",
+    "expert_library_version": "harness-experts.v3",
     "reason": "tiny read-only artifact inspection with no design or verification branch",
     "initial_roles": [],
     "single_agent_exception": true,
@@ -133,13 +133,13 @@ Start with:
 - `Knowledge / Notion Expert`
 - `Context Curator`
 
-For high-risk or cross-domain work, use 5-7 experts. Domain specialists may call external domain skills from their allowlist. Do not call `$codex-autoresearch`, `$multi-agent`, or `$expert-debate` unless the user explicitly asks for those skills.
+For high-risk or cross-domain work, use 5-7 experts. Domain specialists may call external domain skills from their generated allowlist. Do not call `$codex-autoresearch`, `$multi-agent`, or `$expert-debate` unless the user explicitly asks for those skills.
 
 ## Formation Loop
 
 1. Classify the task as `trivial`, `standard_harness`, `execution`, `research_idea`, `paper_to_code`, `algorithm_optimization`, `full_stack_feature`, `failure_repair`, `high_risk_delivery`, or `material_organization`.
 2. Choose the smallest preset that covers the task.
-3. Add domain specialists only after the core council identifies the domain.
+3. Add domain specialists only after the core council identifies the domain, using the latest `references/expert-capability-library.json`.
 4. Create task cards before implementation begins.
 5. Record each creation event in `subagents.jsonl`.
 6. Let subagents run early context, verification, or failure-analysis passes.

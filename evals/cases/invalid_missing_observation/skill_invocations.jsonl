@@ -1,0 +1,1 @@
+{"agent_id":"verifier-1","skill":"analyze-results","reason":"inspect metrics and trace","allowed":true,"used":true,"output_artifact":"summary.md","blocked_reason":null}

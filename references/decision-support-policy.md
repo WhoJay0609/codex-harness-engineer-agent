@@ -4,7 +4,7 @@ Use this reference when the main orchestrator decides whether to use internal ex
 
 ## Default Stance
 
-The harness orchestrator should be proactive, not passive. At each major boundary, choose core council experts and domain specialists from `harness-experts.v2` to improve evidence, risk control, or strategy quality.
+The harness orchestrator should be proactive, not passive. At each major boundary, choose core council experts and domain specialists from `harness-experts.v3` to improve evidence, risk control, or strategy quality.
 
 Major boundaries include:
 

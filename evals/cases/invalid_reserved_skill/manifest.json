@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "experiment_id": "evals",
+  "run_id": "invalid_reserved_skill",
+  "mode": "standard_harness",
+  "goal": "Reject automatic reserved orchestration skill routing.",
+  "success_criteria": ["Validator rejects reserved skill use without explicit request."],
+  "team_policy": {
+    "mode": "internal_team",
+    "task_class": "standard_harness",
+    "expert_library_version": "harness-experts.v3",
+    "reason": "eval case needs a created verifier subagent",
+    "initial_roles": ["Verifier / Evidence Auditor"],
+    "single_agent_exception": false,
+    "skill_policy": "external_domain_allowed_by_allowlist",
+    "reserved_orchestration_policy": "explicit_user_request_only"
+  },
+  "startup_cleanup": {
+    "summary": "no runtime cleanup needed"
+  },
+  "termination": {
+    "status": "policy_blocked",
+    "reason": "reserved skill is intentionally present"
+  }
+}

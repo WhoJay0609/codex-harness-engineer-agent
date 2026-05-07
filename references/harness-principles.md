@@ -37,3 +37,5 @@ When should work escalate to external expert review?
 ## Source Inspiration
 
 This skill follows the practical framing from OpenAI's Harness Engineering article and the `deusyu/harness-engineering` learning archive: human direction, agent execution, repo-local knowledge, progressive disclosure, mechanical checks, and continuous garbage collection.
+
+Trace, replay, and evaluation mechanics are also informed by open-source agent harness patterns: OpenHands typed append-only events and controlled runtime boundaries, SWE-agent trajectory files, SWE-bench reproducible harness logs, LangGraph durable execution and human-in-the-loop concepts, Inspect AI log analysis, OpenAI Evals registry patterns, and local-first trace evaluation ideas from AgentOps/agentevals.

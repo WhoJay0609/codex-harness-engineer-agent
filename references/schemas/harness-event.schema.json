@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WhoJay0609/codex-harness-engineer-agent/schemas/harness-event.schema.json",
+  "title": "Harness Engineer Trace v2 Event",
+  "type": "object",
+  "required": ["event_id", "ts", "source", "event_type"],
+  "additionalProperties": true,
+  "properties": {
+    "event_version": {
+      "type": "integer",
+      "const": 2
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_id": {
+      "type": ["string", "null"]
+    },
+    "ts": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "user",
+        "orchestrator",
+        "subagent",
+        "tool",
+        "skill",
+        "runtime",
+        "environment",
+        "validator",
+        "system"
+      ]
+    },
+    "agent_id": {
+      "type": ["string", "null"]
+    },
+    "role": {
+      "type": ["string", "null"]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "message",
+        "thought",
+        "plan",
+        "action",
+        "observation",
+        "tool_call",
+        "tool_observation",
+        "skill_check",
+        "skill_invocation",
+        "subagent_created",
+        "subagent_terminal",
+        "escalation",
+        "metric",
+        "failure",
+        "checkpoint",
+        "decision",
+        "state_snapshot",
+        "termination"
+      ]
+    },
+    "action": {
+      "type": ["string", "null"]
+    },
+    "observation": {
+      "type": ["string", "null"]
+    },
+    "tool": {
+      "type": ["string", "null"]
+    },
+    "tool_call_id": {
+      "type": ["string", "null"]
+    },
+    "skill": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": ["string", "null"]
+    },
+    "error_kind": {
+      "type": ["string", "null"]
+    },
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "command_hash": {
+      "type": ["string", "null"]
+    },
+    "cost": {
+      "type": ["number", "null"]
+    },
+    "tokens": {
+      "type": ["integer", "null"]
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

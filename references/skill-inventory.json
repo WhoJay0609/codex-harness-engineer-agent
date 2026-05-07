@@ -3,6 +3,7 @@
     "harness-engineer"
   ],
   "generated_by": "scripts/update_skill_inventory.py",
+  "inventory_hash": "b7ab03c3d0eb065383691bacc789d450c48651c6782883e49ad321f67eab58be",
   "reserved_orchestration_skills": [
     "codex-autoresearch",
     "expert-debate",
@@ -10,1325 +11,3159 @@
   ],
   "skills": [
     {
+      "aliases": [
+        "0-autoresearch-skill",
+        "autoresearch"
+      ],
       "category": "external_domain_skill",
+      "description": "Orchestrates end-to-end autonomous AI research projects using a two-loop architecture. The inner loop runs rapid experiment iterations with clear optimization targets. The outer loop synthesizes results, identifies patterns, and steers research direction. Routes to domain-specific skills for execution, supports continuous agent operation via Claude Code /loop and OpenClaw heartbeat, and produces research presentations and papers. Use when starting a research project, running autonomous experiments, or managing a multi-hypothesis research effort.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/0-autoresearch-skill"
+      ],
       "id": "0-autoresearch-skill",
       "name": "autoresearch",
       "path": "/home/hujie/.codex/skills/0-autoresearch-skill",
-      "reserved": false
+      "relative_path": "0-autoresearch-skill",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/0-autoresearch-skill",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "a-evolve",
+        "evolving-ai-agents"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for automatically evolving and optimizing AI agents across any domain using LLM-driven evolution algorithms. Use when building self-improving agents, optimizing agent prompts and skills against benchmarks, or implementing automated agent evaluation loops.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/a-evolve"
+      ],
       "id": "a-evolve",
       "name": "evolving-ai-agents",
       "path": "/home/hujie/.codex/skills/a-evolve",
-      "reserved": false
+      "relative_path": "a-evolve",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/14-agents/a-evolve",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "academic-plotting"
+      ],
       "category": "external_domain_skill",
+      "description": "Generates publication-quality figures for ML papers from research context. Given a paper section or description, extracts system components and relationships to generate architecture diagrams via Gemini. Given experiment results or data, auto-selects chart type and generates data-driven figures via matplotlib/seaborn. Use when creating any figure for a conference paper.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/academic-plotting"
+      ],
       "id": "academic-plotting",
       "name": "academic-plotting",
       "path": "/home/hujie/.codex/skills/academic-plotting",
-      "reserved": false
+      "relative_path": "academic-plotting",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/20-ml-paper-writing/academic-plotting",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "accelerate",
+        "huggingface-accelerate"
+      ],
       "category": "external_domain_skill",
+      "description": "Simplest distributed training API. 4 lines to add distributed support to any PyTorch script. Unified API for DeepSpeed/FSDP/Megatron/DDP. Automatic device placement, mixed precision (FP16/BF16/FP8). Interactive config, single launch command. HuggingFace ecosystem standard.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/accelerate"
+      ],
       "id": "accelerate",
       "name": "huggingface-accelerate",
       "path": "/home/hujie/.codex/skills/accelerate",
-      "reserved": false
+      "relative_path": "accelerate",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/accelerate",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "algorithm-improvement-loop"
+      ],
       "category": "external_domain_skill",
+      "description": ">",
       "id": "algorithm-improvement-loop",
       "name": "algorithm-improvement-loop",
       "path": "/home/hujie/.codex/skills/algorithm-improvement-loop",
-      "reserved": false
+      "relative_path": "algorithm-improvement-loop",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/algorithm-improvement-loop",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "analyze-results"
+      ],
       "category": "external_domain_skill",
+      "description": "Analyze ML experiment results, compute statistics, generate comparison tables and insights. Use when user says \\\"analyze results\\\", \\\"compare\\\", or needs to interpret experimental data.",
       "id": "analyze-results",
       "name": "analyze-results",
       "path": "/home/hujie/.codex/skills/analyze-results",
-      "reserved": false
+      "relative_path": "analyze-results",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/analyze-results",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "arxiv"
+      ],
       "category": "external_domain_skill",
+      "description": "Search, download, and summarize academic papers from arXiv. Use when user says \\\"search arxiv\\\", \\\"download paper\\\", \\\"fetch arxiv\\\", \\\"arxiv search\\\", \\\"get paper pdf\\\", or wants to find and save papers from arXiv to the local paper library.",
       "id": "arxiv",
       "name": "arxiv",
       "path": "/home/hujie/.codex/skills/arxiv",
-      "reserved": false
+      "relative_path": "arxiv",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/arxiv",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "aspnet-core"
+      ],
       "category": "external_domain_skill",
+      "description": "Build, review, refactor, or architect ASP.NET Core web applications using current official guidance for .NET web development. Use when working on Blazor Web Apps, Razor Pages, MVC, Minimal APIs, controller-based Web APIs, SignalR, gRPC, middleware, dependency injection, configuration, authentication, authorization, testing, performance, deployment, or ASP.NET Core upgrades.",
       "id": "aspnet-core",
       "name": "aspnet-core",
       "path": "/home/hujie/.codex/skills/aspnet-core",
-      "reserved": false
+      "relative_path": "aspnet-core",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/aspnet-core",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "audiocraft",
+        "audiocraft-audio-generation"
+      ],
       "category": "external_domain_skill",
+      "description": "PyTorch library for audio generation including text-to-music (MusicGen) and text-to-sound (AudioGen). Use when you need to generate music from text descriptions, create sound effects, or perform melody-conditioned music generation.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/audiocraft"
+      ],
       "id": "audiocraft",
       "name": "audiocraft-audio-generation",
       "path": "/home/hujie/.codex/skills/audiocraft",
-      "reserved": false
+      "relative_path": "audiocraft",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/audiocraft",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "auto-paper-improvement-loop"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomously improve a generated paper via GPT-5.4 xhigh review \\u2192 implement fixes \\u2192 recompile, for 2 rounds. Use when user says \\\\\\\"\\u6539\\u8bba\\u6587\\\\\\\", \\\\\\\"improve paper\\\\\\\", \\\\\\\"\\u8bba\\u6587\\u6da6\\u8272\\u5faa\\u73af\\\\\\\", \\\\\\\"auto improve\\\\\\\", or wants to iteratively polish a generated paper.",
       "id": "auto-paper-improvement-loop",
       "name": "auto-paper-improvement-loop",
       "path": "/home/hujie/.codex/skills/auto-paper-improvement-loop",
-      "reserved": false
+      "relative_path": "auto-paper-improvement-loop",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/auto-paper-improvement-loop",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "auto-review-loop"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomous multi-round research review loop. Repeatedly reviews using a secondary Codex agent, implements fixes, and re-reviews until positive assessment or max rounds reached. Use when user says \\\"auto review loop\\\", \\\"review until it passes\\\", or wants autonomous iterative improvement.",
       "id": "auto-review-loop",
       "name": "auto-review-loop",
       "path": "/home/hujie/.codex/skills/auto-review-loop",
-      "reserved": false
+      "relative_path": "auto-review-loop",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/auto-review-loop",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "auto-review-loop-llm"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with \\\"auto review loop llm\\\" or \\\"llm review\\\".",
       "id": "auto-review-loop-llm",
       "name": "auto-review-loop-llm",
       "path": "/home/hujie/.codex/skills/auto-review-loop-llm",
-      "reserved": false
+      "relative_path": "auto-review-loop-llm",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/auto-review-loop-llm",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "auto-review-loop-minimax"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomous multi-round research review loop using MiniMax API. Use when you want to use MiniMax instead of Codex MCP for external review. Trigger with \\\"auto review loop minimax\\\" or \\\"minimax review\\\".",
       "id": "auto-review-loop-minimax",
       "name": "auto-review-loop-minimax",
       "path": "/home/hujie/.codex/skills/auto-review-loop-minimax",
-      "reserved": false
+      "relative_path": "auto-review-loop-minimax",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/auto-review-loop-minimax",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "autogpt",
+        "autogpt-agents"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomous AI agent platform for building and deploying continuous agents. Use when creating visual workflow agents, deploying persistent autonomous agents, or building complex multi-step AI automation systems.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/autogpt"
+      ],
       "id": "autogpt",
       "name": "autogpt-agents",
       "path": "/home/hujie/.codex/skills/autogpt",
-      "reserved": false
+      "relative_path": "autogpt",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/14-agents/autogpt",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "awq",
+        "awq-quantization"
+      ],
       "category": "external_domain_skill",
+      "description": "Activation-aware weight quantization for 4-bit LLM compression with 3x speedup and minimal accuracy loss. Use when deploying large models (7B-70B) on limited GPU memory, when you need faster inference than GPTQ with better accuracy preservation, or for instruction-tuned and multimodal models. MLSys 2024 Best Paper Award winner.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/awq"
+      ],
       "id": "awq",
       "name": "awq-quantization",
       "path": "/home/hujie/.codex/skills/awq",
-      "reserved": false
+      "relative_path": "awq",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/awq",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "axolotl"
+      ],
       "category": "external_domain_skill",
+      "description": "Expert guidance for fine-tuning LLMs with Axolotl - YAML configs, 100+ models, LoRA/QLoRA, DPO/KTO/ORPO/GRPO, multimodal support",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/axolotl"
+      ],
       "id": "axolotl",
       "name": "axolotl",
       "path": "/home/hujie/.codex/skills/axolotl",
-      "reserved": false
+      "relative_path": "axolotl",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/03-fine-tuning/axolotl",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "bigcode-evaluation-harness",
+        "evaluating-code-models"
+      ],
       "category": "external_domain_skill",
+      "description": "Evaluates code generation models across HumanEval, MBPP, MultiPL-E, and 15+ benchmarks with pass@k metrics. Use when benchmarking code models, comparing coding abilities, testing multi-language support, or measuring code generation quality. Industry standard from BigCode Project used by HuggingFace leaderboards.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/bigcode-evaluation-harness"
+      ],
       "id": "bigcode-evaluation-harness",
       "name": "evaluating-code-models",
       "path": "/home/hujie/.codex/skills/bigcode-evaluation-harness",
-      "reserved": false
+      "relative_path": "bigcode-evaluation-harness",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/11-evaluation/bigcode-evaluation-harness",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "bitsandbytes",
+        "quantizing-models-bitsandbytes"
+      ],
       "category": "external_domain_skill",
+      "description": "Quantizes LLMs to 8-bit or 4-bit for 50-75% memory reduction with minimal accuracy loss. Use when GPU memory is limited, need to fit larger models, or want faster inference. Supports INT8, NF4, FP4 formats, QLoRA training, and 8-bit optimizers. Works with HuggingFace Transformers.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/bitsandbytes"
+      ],
       "id": "bitsandbytes",
       "name": "quantizing-models-bitsandbytes",
       "path": "/home/hujie/.codex/skills/bitsandbytes",
-      "reserved": false
+      "relative_path": "bitsandbytes",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/bitsandbytes",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "blip-2",
+        "blip-2-vision-language"
+      ],
       "category": "external_domain_skill",
+      "description": "Vision-language pre-training framework bridging frozen image encoders and LLMs. Use when you need image captioning, visual question answering, image-text retrieval, or multimodal chat with state-of-the-art zero-shot performance.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/blip-2"
+      ],
       "id": "blip-2",
       "name": "blip-2-vision-language",
       "path": "/home/hujie/.codex/skills/blip-2",
-      "reserved": false
+      "relative_path": "blip-2",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/blip-2",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "brainstorming-research-ideas"
+      ],
       "category": "external_domain_skill",
+      "description": "Guides researchers through structured ideation frameworks to discover high-impact research directions. Use when exploring new problem spaces, pivoting between projects, or seeking novel angles on existing work.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/brainstorming-research-ideas"
+      ],
       "id": "brainstorming-research-ideas",
       "name": "brainstorming-research-ideas",
       "path": "/home/hujie/.codex/skills/brainstorming-research-ideas",
-      "reserved": false
+      "relative_path": "brainstorming-research-ideas",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/21-research-ideation/brainstorming-research-ideas",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "chatgpt-apps"
+      ],
       "category": "external_domain_skill",
+      "description": "Build, scaffold, refactor, and troubleshoot ChatGPT Apps SDK applications that combine an MCP server and widget UI. Use when Codex needs to design tools, register UI resources, wire the MCP Apps bridge or ChatGPT compatibility APIs, apply Apps SDK metadata or CSP or domain settings, or produce a docs-aligned project scaffold. Prefer a docs-first workflow by invoking the openai-docs skill or OpenAI developer docs MCP tools before generating code.",
       "id": "chatgpt-apps",
       "name": "chatgpt-apps",
       "path": "/home/hujie/.codex/skills/chatgpt-apps",
-      "reserved": false
+      "relative_path": "chatgpt-apps",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/chatgpt-apps",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "chroma"
+      ],
       "category": "external_domain_skill",
+      "description": "Open-source embedding database for AI applications. Store embeddings and metadata, perform vector and full-text search, filter by metadata. Simple 4-function API. Scales from notebooks to production clusters. Use for semantic search, RAG applications, or document retrieval. Best for local development and open-source projects.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/chroma"
+      ],
       "id": "chroma",
       "name": "chroma",
       "path": "/home/hujie/.codex/skills/chroma",
-      "reserved": false
+      "relative_path": "chroma",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/15-rag/chroma",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "cli-creator"
+      ],
       "category": "external_domain_skill",
+      "description": "Build a composable CLI for Codex from API docs, an OpenAPI spec, existing curl examples, an SDK, a web app, an admin tool, or a local script. Use when the user wants Codex to create a command-line tool that can run from any repo, expose composable read/write commands, return stable JSON, manage auth, and pair with a companion skill.",
       "id": "cli-creator",
       "name": "cli-creator",
       "path": "/home/hujie/.codex/skills/cli-creator",
-      "reserved": false
+      "relative_path": "cli-creator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/cli-creator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "clip"
+      ],
       "category": "external_domain_skill",
+      "description": "OpenAI's model connecting vision and language. Enables zero-shot image classification, image-text matching, and cross-modal retrieval. Trained on 400M image-text pairs. Use for image search, content moderation, or vision-language tasks without fine-tuning. Best for general-purpose image understanding.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/clip"
+      ],
       "id": "clip",
       "name": "clip",
       "path": "/home/hujie/.codex/skills/clip",
-      "reserved": false
+      "relative_path": "clip",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/clip",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "cloudflare-deploy"
+      ],
       "category": "external_domain_skill",
+      "description": "Deploy applications and infrastructure to Cloudflare using Workers, Pages, and related platform services. Use when the user asks to deploy, host, publish, or set up a project on Cloudflare.",
       "id": "cloudflare-deploy",
       "name": "cloudflare-deploy",
       "path": "/home/hujie/.codex/skills/cloudflare-deploy",
-      "reserved": false
+      "relative_path": "cloudflare-deploy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/cloudflare-deploy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "codex-autoresearch"
+      ],
       "category": "reserved_orchestration_skill",
+      "description": "Autonomous long-running iteration for Codex CLI. Use when the user wants Codex to plan or run an unattended improve-verify loop toward a measurable or verifiable outcome, especially for overnight runs; it also covers repeated debugging, fixing, security auditing, and ship-readiness workflows. Do not use for ordinary one-shot coding help or casual Q&A.",
       "id": "codex-autoresearch",
       "name": "codex-autoresearch",
       "path": "/home/hujie/.codex/skills/codex-autoresearch",
-      "reserved": true
+      "relative_path": "codex-autoresearch",
+      "reserved": true,
+      "resolved_path": "/home/hujie/.codex/skills/codex-autoresearch",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "comm-lit-review"
+      ],
       "category": "external_domain_skill",
+      "description": "Communications-domain literature review and related-work search with database-aware source control. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, prior art, a survey, related work, or a landscape summary. Prioritize IEEE Xplore and ScienceDirect, prefer formal publications over preprints, and separate foundational work from recent progress.",
       "id": "comm-lit-review",
       "name": "comm-lit-review",
       "path": "/home/hujie/.codex/skills/comm-lit-review",
-      "reserved": false
+      "relative_path": "comm-lit-review",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/comm-lit-review",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "constitutional-ai"
+      ],
       "category": "external_domain_skill",
+      "description": "Anthropic's method for training harmless AI through self-improvement. Two-phase approach - supervised learning with self-critique/revision, then RLAIF (RL from AI Feedback). Use for safety alignment, reducing harmful outputs without human labels. Powers Claude's safety system.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/constitutional-ai"
+      ],
       "id": "constitutional-ai",
       "name": "constitutional-ai",
       "path": "/home/hujie/.codex/skills/constitutional-ai",
-      "reserved": false
+      "relative_path": "constitutional-ai",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/07-safety-alignment/constitutional-ai",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "cosmos-policy",
+        "evaluating-cosmos-policy"
+      ],
       "category": "external_domain_skill",
+      "description": "Evaluates NVIDIA Cosmos Policy on LIBERO and RoboCasa simulation environments. Use when setting up cosmos-policy for robot manipulation evaluation, running headless GPU evaluations with EGL rendering, or profiling inference latency on cluster or local GPU machines.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/cosmos-policy"
+      ],
       "id": "cosmos-policy",
       "name": "evaluating-cosmos-policy",
       "path": "/home/hujie/.codex/skills/cosmos-policy",
-      "reserved": false
+      "relative_path": "cosmos-policy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/cosmos-policy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "creative-thinking-for-research"
+      ],
       "category": "external_domain_skill",
+      "description": "Applies cognitive science frameworks for creative thinking to CS and AI research ideation. Use when seeking genuinely novel research directions by leveraging combinatorial creativity, analogical reasoning, constraint manipulation, and other empirically grounded creative strategies.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/creative-thinking-for-research"
+      ],
       "id": "creative-thinking-for-research",
       "name": "creative-thinking-for-research",
       "path": "/home/hujie/.codex/skills/creative-thinking-for-research",
-      "reserved": false
+      "relative_path": "creative-thinking-for-research",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/21-research-ideation/creative-thinking-for-research",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "crewai",
+        "crewai-multi-agent"
+      ],
       "category": "external_domain_skill",
+      "description": "Multi-agent orchestration framework for autonomous AI collaboration. Use when building teams of specialized agents working together on complex tasks, when you need role-based agent collaboration with memory, or for production workflows requiring sequential/hierarchical execution. Built without LangChain dependencies for lean, fast execution.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/crewai"
+      ],
       "id": "crewai",
       "name": "crewai-multi-agent",
       "path": "/home/hujie/.codex/skills/crewai",
-      "reserved": false
+      "relative_path": "crewai",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/14-agents/crewai",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "deep-interview"
+      ],
       "category": "external_domain_skill",
+      "description": "Conduct a structured requirement interview to clarify user intent, goals, constraints, assumptions, and problem boundaries, then output a polished, reusable prompt. Use when the user says they are not sure what they really want, asks to clarify\u9700\u6c42/\u610f\u56fe/\u8303\u56f4, asks to define problem scope before execution, or requests prompt polishing after requirement clarification.",
       "id": "deep-interview",
       "name": "deep-interview",
       "path": "/home/hujie/.codex/skills/deep-interview",
-      "reserved": false
+      "relative_path": "deep-interview",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/deep-interview",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "deepspeed"
+      ],
       "category": "external_domain_skill",
+      "description": "Expert guidance for distributed training with DeepSpeed - ZeRO optimization stages, pipeline parallelism, FP16/BF16/FP8, 1-bit Adam, sparse attention",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/deepspeed"
+      ],
       "id": "deepspeed",
       "name": "deepspeed",
       "path": "/home/hujie/.codex/skills/deepspeed",
-      "reserved": false
+      "relative_path": "deepspeed",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/deepspeed",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "develop-web-game"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when Codex is building or iterating on a web game (HTML/JS) and needs a reliable development + testing loop: implement small changes, run a Playwright-based test script with short input bursts and intentional pauses, inspect screenshots/text, and review console errors with render_game_to_text.",
       "id": "develop-web-game",
       "name": "develop-web-game",
       "path": "/home/hujie/.codex/skills/develop-web-game",
-      "reserved": false
+      "relative_path": "develop-web-game",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/develop-web-game",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "doc"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks.",
       "id": "doc",
       "name": "doc",
       "path": "/home/hujie/.codex/skills/doc",
-      "reserved": false
+      "relative_path": "doc",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/doc",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "dse-loop"
+      ],
       "category": "external_domain_skill",
+      "description": "Autonomous design space exploration loop for computer architecture and EDA. Runs a program, analyzes results, tunes parameters, and iterates until objective is met or timeout. Use when user says \\\\\\\"DSE\\\\\\\", \\\\\\\"design space exploration\\\\\\\", \\\\\\\"sweep parameters\\\\\\\", \\\\\\\"optimize\\\\\\\", \\\\\\\"find best config\\\\\\\", or wants iterative parameter tuning.",
       "id": "dse-loop",
       "name": "dse-loop",
       "path": "/home/hujie/.codex/skills/dse-loop",
-      "reserved": false
+      "relative_path": "dse-loop",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/dse-loop",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "dspy"
+      ],
       "category": "external_domain_skill",
+      "description": "Build complex AI systems with declarative programming, optimize prompts automatically, create modular RAG systems and agents with DSPy - Stanford NLP's framework for systematic LM programming",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/dspy"
+      ],
       "id": "dspy",
       "name": "dspy",
       "path": "/home/hujie/.codex/skills/dspy",
-      "reserved": false
+      "relative_path": "dspy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/16-prompt-engineering/dspy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "experiment-bridge"
+      ],
       "category": "external_domain_skill",
+      "description": "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \\\"\u5b9e\u73b0\u5b9e\u9a8c\\\", \\\"implement experiments\\\", \\\"bridge\\\", \\\"\u4ece\u8ba1\u5212\u5230\u8dd1\u5b9e\u9a8c\\\", \\\"deploy the plan\\\", or has an experiment plan ready to execute.",
       "id": "experiment-bridge",
       "name": "experiment-bridge",
       "path": "/home/hujie/.codex/skills/experiment-bridge",
-      "reserved": false
+      "relative_path": "experiment-bridge",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/experiment-bridge",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "experiment-plan"
+      ],
       "category": "external_domain_skill",
+      "description": "Turn a refined research proposal or method idea into a detailed, claim-driven experiment roadmap. Use after `research-refine`, or when the user asks for a detailed experiment plan, ablation matrix, evaluation protocol, run order, compute budget, or paper-ready validation that supports the core problem, novelty, simplicity, and any LLM / VLM / Diffusion / RL-based contribution.",
       "id": "experiment-plan",
       "name": "experiment-plan",
       "path": "/home/hujie/.codex/skills/experiment-plan",
-      "reserved": false
+      "relative_path": "experiment-plan",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/experiment-plan",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "expert-debate"
+      ],
       "category": "reserved_orchestration_skill",
+      "description": "Run a structured adversarial expert panel when the user asks for expert debate, domain experts to argue, red-team discussion, multiple experts who challenge each other, or Chinese requests such as \"\u4e13\u5bb6\u8fa9\u8bba\", \"\u4e13\u5bb6\u8ba8\u8bba\", \"\u53cd\u9a73\", \"\u591a\u4e13\u5bb6\u8bc4\u5ba1\". The facilitator selects a bounded expert team, runs independent positions, evidence-based rebuttals, optional red-team stress testing, and produces a moderator-led synthesis.",
       "id": "expert-debate",
       "name": "expert-debate",
       "path": "/home/hujie/.codex/skills/expert-debate",
-      "reserved": true
+      "relative_path": "expert-debate",
+      "reserved": true,
+      "resolved_path": "/home/hujie/.codex/skills/expert-debate",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "faiss"
+      ],
       "category": "external_domain_skill",
+      "description": "Facebook's library for efficient similarity search and clustering of dense vectors. Supports billions of vectors, GPU acceleration, and various index types (Flat, IVF, HNSW). Use for fast k-NN search, large-scale vector retrieval, or when you need pure similarity search without metadata. Best for high-performance applications.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/faiss"
+      ],
       "id": "faiss",
       "name": "faiss",
       "path": "/home/hujie/.codex/skills/faiss",
-      "reserved": false
+      "relative_path": "faiss",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/15-rag/faiss",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "feishu-notify"
+      ],
       "category": "external_domain_skill",
+      "description": "Send notifications to Feishu/Lark. Internal utility used by other skills, or manually via /feishu-notify. Supports push-only (webhook) and interactive (bidirectional) modes. Use when user says \\\\\\\"\\u53d1\\u98de\\u4e66\\\\\\\", \\\\\\\"notify feishu\\\\\\\", or other skills need to send status updates.",
       "id": "feishu-notify",
       "name": "feishu-notify",
       "path": "/home/hujie/.codex/skills/feishu-notify",
-      "reserved": false
+      "relative_path": "feishu-notify",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/feishu-notify",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma"
+      ],
       "category": "external_domain_skill",
+      "description": "Use the Figma MCP server to fetch design context, screenshots, variables, and assets from Figma, and to translate Figma nodes into production code. Trigger when a task involves Figma URLs, node IDs, design-to-code implementation, or Figma MCP setup and troubleshooting.",
       "id": "figma",
       "name": "figma",
       "path": "/home/hujie/.codex/skills/figma",
-      "reserved": false
+      "relative_path": "figma",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-code-connect-components"
+      ],
       "category": "external_domain_skill",
+      "description": "Connects Figma design components to code components using Code Connect mapping tools. Use when user says \"code connect\", \"connect this component to code\", \"map this component\", \"link component to code\", \"create code connect mapping\", or wants to establish mappings between Figma designs and code implementations. For canvas writes via `use_figma`, use `figma-use`.",
       "id": "figma-code-connect-components",
       "name": "figma-code-connect-components",
       "path": "/home/hujie/.codex/skills/figma-code-connect-components",
-      "reserved": false
+      "relative_path": "figma-code-connect-components",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-code-connect-components",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-create-design-system-rules"
+      ],
       "category": "external_domain_skill",
+      "description": "Generates custom design system rules for the user's codebase. Use when user says \"create design system rules\", \"generate rules for my project\", \"set up design rules\", \"customize design system guidelines\", or wants to establish project-specific conventions for Figma-to-code workflows. Requires Figma MCP server connection.",
       "id": "figma-create-design-system-rules",
       "name": "figma-create-design-system-rules",
       "path": "/home/hujie/.codex/skills/figma-create-design-system-rules",
-      "reserved": false
+      "relative_path": "figma-create-design-system-rules",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-create-design-system-rules",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-create-new-file"
+      ],
       "category": "external_domain_skill",
+      "description": "Create a new blank Figma file. Use when the user wants to create a new Figma design or FigJam file, or when you need a new file before calling use_figma. Handles plan resolution via whoami if needed. Usage \u2014 /figma-create-new-file [editorType] [fileName] (e.g. /figma-create-new-file figjam My Whiteboard)",
       "id": "figma-create-new-file",
       "name": "figma-create-new-file",
       "path": "/home/hujie/.codex/skills/figma-create-new-file",
-      "reserved": false
+      "relative_path": "figma-create-new-file",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-create-new-file",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-generate-design"
+      ],
       "category": "external_domain_skill",
+      "description": "Use this skill alongside figma-use when the task involves translating an application page, view, or multi-section layout into Figma. Triggers: 'write to Figma', 'create in Figma from code', 'push page to Figma', 'take this app/page and build it in Figma', 'create a screen', 'build a landing page in Figma', 'update the Figma screen to match code'. This is the preferred workflow skill whenever the user wants to build or update a full page, screen, or view in Figma from code or a description. Discovers design system components, variables, and styles via search_design_system, imports them, and assembles screens incrementally section-by-section using design system tokens instead of hardcoded values.",
       "id": "figma-generate-design",
       "name": "figma-generate-design",
       "path": "/home/hujie/.codex/skills/figma-generate-design",
-      "reserved": false
+      "relative_path": "figma-generate-design",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-generate-design",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-generate-library"
+      ],
       "category": "external_domain_skill",
+      "description": "Build or update a professional-grade design system in Figma from a codebase. Use when the user wants to create variables/tokens, build component libraries, set up theming (light/dark modes), document foundations, or reconcile gaps between code and Figma. This skill teaches WHAT to build and in WHAT ORDER \u2014 it complements the `figma-use` skill which teaches HOW to call the Plugin API. Both skills should be loaded together.",
       "id": "figma-generate-library",
       "name": "figma-generate-library",
       "path": "/home/hujie/.codex/skills/figma-generate-library",
-      "reserved": false
+      "relative_path": "figma-generate-library",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-generate-library",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-implement-design"
+      ],
       "category": "external_domain_skill",
+      "description": "Translates Figma designs into production-ready application code with 1:1 visual fidelity. Use when implementing UI code from Figma files, when user mentions \"implement design\", \"generate code\", \"implement component\", provides Figma URLs, or asks to build components matching Figma specs. For Figma canvas writes via `use_figma`, use `figma-use`.",
       "id": "figma-implement-design",
       "name": "figma-implement-design",
       "path": "/home/hujie/.codex/skills/figma-implement-design",
-      "reserved": false
+      "relative_path": "figma-implement-design",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-implement-design",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "figma-use"
+      ],
       "category": "external_domain_skill",
+      "description": "**MANDATORY prerequisite** \u2014 you MUST invoke this skill BEFORE every `use_figma` tool call. NEVER call `use_figma` directly without loading this skill first. Skipping it causes common, hard-to-debug failures. Trigger whenever the user wants to perform a write action or a unique read action that requires JavaScript execution in the Figma file context \u2014 e.g. create/edit/delete nodes, set up variables or tokens, build components and variants, modify auto-layout or fills, bind variables to properties, or inspect file structure programmatically.",
       "id": "figma-use",
       "name": "figma-use",
       "path": "/home/hujie/.codex/skills/figma-use",
-      "reserved": false
+      "relative_path": "figma-use",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figma-use",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "flash-attention",
+        "optimizing-attention-flash"
+      ],
       "category": "external_domain_skill",
+      "description": "Optimizes transformer attention with Flash Attention for 2-4x speedup and 10-20x memory reduction. Use when training/running transformers with long sequences (>512 tokens), encountering GPU memory issues with attention, or need faster inference. Supports PyTorch native SDPA, flash-attn library, H100 FP8, and sliding window attention.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/flash-attention"
+      ],
       "id": "flash-attention",
       "name": "optimizing-attention-flash",
       "path": "/home/hujie/.codex/skills/flash-attention",
-      "reserved": false
+      "relative_path": "flash-attention",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/flash-attention",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "formula-derivation"
+      ],
       "category": "external_domain_skill",
+      "description": "Structure and derive research formulas when the user wants to \u63a8\u5bfc\u516c\u5f0f, derive a theory line, build equations from a problem statement, clarify assumptions, separate formal derivation from remarks, or turn messy theory notes into a paper-ready derivation skeleton. Use for research-style formula development, not for fully rigorous theorem proving once the claim is already fixed.",
       "id": "formula-derivation",
       "name": "formula-derivation",
       "path": "/home/hujie/.codex/skills/formula-derivation",
-      "reserved": false
+      "relative_path": "formula-derivation",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/formula-derivation",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "frontend"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when building or polishing frontend experiences: visually strong landing pages, websites, apps, prototypes, demos, game UI, or existing React/Vue/Next/Vite UI screens. Supports build mode for new UI and polish mode for improving spacing, typography, hierarchy, responsiveness, states, forms, and accessibility while preserving business logic.",
       "id": "frontend",
       "name": "frontend",
       "path": "/home/hujie/.codex/skills/frontend",
-      "reserved": false
+      "relative_path": "frontend",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/frontend",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "gguf",
+        "gguf-quantization"
+      ],
       "category": "external_domain_skill",
+      "description": "GGUF format and llama.cpp quantization for efficient CPU/GPU inference. Use when deploying models on consumer hardware, Apple Silicon, or when needing flexible quantization from 2-8 bit without GPU requirements.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/gguf"
+      ],
       "id": "gguf",
       "name": "gguf-quantization",
       "path": "/home/hujie/.codex/skills/gguf",
-      "reserved": false
+      "relative_path": "gguf",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/gguf",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "gh-address-comments"
+      ],
       "category": "external_domain_skill",
+      "description": "Help address review/issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in.",
       "id": "gh-address-comments",
       "name": "gh-address-comments",
       "path": "/home/hujie/.codex/skills/gh-address-comments",
-      "reserved": false
+      "relative_path": "gh-address-comments",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/gh-address-comments",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "gh-fix-ci"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when a user asks to debug or fix failing GitHub PR checks that run in GitHub Actions; use `gh` to inspect checks and logs, summarize failure context, draft a fix plan, and implement only after explicit approval. Treat external providers (for example Buildkite) as out of scope and report only the details URL.",
       "id": "gh-fix-ci",
       "name": "gh-fix-ci",
       "path": "/home/hujie/.codex/skills/gh-fix-ci",
-      "reserved": false
+      "relative_path": "gh-fix-ci",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/gh-fix-ci",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "git-pr-workflow"
+      ],
       "category": "external_domain_skill",
+      "description": "Enforce a strict Git-first, branch-oriented, PR-oriented workflow for code changes in an existing repository. Use when work must stay tightly scoped, reviewable, validated, and ready for branch/commit/PR handoff. Respect AGENTS.md and repo-specific Git/PR rules. Single-agent only.",
       "id": "git-pr-workflow",
       "name": "git-pr-workflow",
       "path": "/home/hujie/.codex/skills/git-pr-workflow",
-      "reserved": false
+      "relative_path": "git-pr-workflow",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/git-pr-workflow",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "gptq"
+      ],
       "category": "external_domain_skill",
+      "description": "Post-training 4-bit quantization for LLMs with minimal accuracy loss. Use for deploying large models (70B, 405B) on consumer GPUs, when you need 4\u00d7 memory reduction with <2% perplexity degradation, or for faster inference (3-4\u00d7 speedup) vs FP16. Integrates with transformers and PEFT for QLoRA fine-tuning.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/gptq"
+      ],
       "id": "gptq",
       "name": "gptq",
       "path": "/home/hujie/.codex/skills/gptq",
-      "reserved": false
+      "relative_path": "gptq",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/gptq",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "grant-proposal"
+      ],
       "category": "external_domain_skill",
+      "description": "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including \u9762\u4e0a/\u9752\u5e74/\u4f18\u9752/\u6770\u9752/\u6d77\u5916\u4f18\u9752/\u91cd\u70b9), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \\\"write grant\\\", \\\"grant proposal\\\", \\\"\u7533\u8acb\u66f8\\\", \\\"write KAKENHI\\\", \\\"\u79d1\u7814\u8cbb\\\", \\\"\u57fa\u91d1\u7533\u8bf7\\\", \\\"\u5199\u57fa\u91d1\\\", \\\"NSF proposal\\\", or wants to turn research ideas into a funding application.",
       "id": "grant-proposal",
       "name": "grant-proposal",
       "path": "/home/hujie/.codex/skills/grant-proposal",
-      "reserved": false
+      "relative_path": "grant-proposal",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/grant-proposal",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "grpo-rl-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Expert guidance for GRPO/RL fine-tuning with TRL for reasoning and task-specific model training",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/grpo-rl-training"
+      ],
       "id": "grpo-rl-training",
       "name": "grpo-rl-training",
       "path": "/home/hujie/.codex/skills/grpo-rl-training",
-      "reserved": false
+      "relative_path": "grpo-rl-training",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/grpo-rl-training",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "guidance"
+      ],
       "category": "external_domain_skill",
+      "description": "Control LLM output with regex and grammars, guarantee valid JSON/XML/code generation, enforce structured formats, and build multi-step workflows with Guidance - Microsoft Research's constrained generation framework",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/guidance"
+      ],
       "id": "guidance",
       "name": "guidance",
       "path": "/home/hujie/.codex/skills/guidance",
-      "reserved": false
+      "relative_path": "guidance",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/16-prompt-engineering/guidance",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "harness-engineer"
+      ],
       "category": "core_harness_skill",
+      "description": "Build and operate agent-first harnesses for reproducible, comparable, iterative AI agent work. Use when creating or improving repo-native feedback loops, autonomous foreground-first auto harness loops, agent-readable context, mechanical gates, traces, startup cleanup of inactive agent threads, proactively formed core and domain expert teams, external domain skill allowlists, run artifacts, failure analysis, and reserved orchestration skill policy.",
       "id": "harness-engineer",
       "name": "harness-engineer",
       "path": "/home/hujie/.codex/skills/harness-engineer",
-      "reserved": false
+      "relative_path": "harness-engineer",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/harness-engineer",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "hqq",
+        "hqq-quantization"
+      ],
       "category": "external_domain_skill",
+      "description": "Half-Quadratic Quantization for LLMs without calibration data. Use when quantizing models to 4/3/2-bit precision without needing calibration datasets, for fast quantization workflows, or when deploying with vLLM or HuggingFace Transformers.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/hqq"
+      ],
       "id": "hqq",
       "name": "hqq-quantization",
       "path": "/home/hujie/.codex/skills/hqq",
-      "reserved": false
+      "relative_path": "hqq",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/hqq",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "huggingface-tokenizers"
+      ],
       "category": "external_domain_skill",
+      "description": "Fast tokenizers optimized for research and production. Rust-based implementation tokenizes 1GB in <20 seconds. Supports BPE, WordPiece, and Unigram algorithms. Train custom vocabularies, track alignments, handle padding/truncation. Integrates seamlessly with transformers. Use when you need high-performance tokenization or custom tokenizer training.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/huggingface-tokenizers"
+      ],
       "id": "huggingface-tokenizers",
       "name": "huggingface-tokenizers",
       "path": "/home/hujie/.codex/skills/huggingface-tokenizers",
-      "reserved": false
+      "relative_path": "huggingface-tokenizers",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/02-tokenization/huggingface-tokenizers",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "idea-creator"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate and rank research ideas given a broad direction. Use when user says \\\"\\u627eidea\\\", \\\"brainstorm ideas\\\", \\\"generate research ideas\\\", \\\"what can we work on\\\", or wants to explore a research area for publishable directions.",
       "id": "idea-creator",
       "name": "idea-creator",
       "path": "/home/hujie/.codex/skills/idea-creator",
-      "reserved": false
+      "relative_path": "idea-creator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/idea-creator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "idea-discovery"
+      ],
       "category": "external_domain_skill",
+      "description": "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit \\u2192 idea-creator \\u2192 novelty-check \\u2192 research-review to go from a broad research direction to validated, pilot-tested ideas. Use when user says \\\\\\\"\\u627eidea\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"idea discovery pipeline\\\\\\\", \\\\\\\"\\u4ece\\u96f6\\u5f00\\u59cb\\u627e\\u65b9\\u5411\\\\\\\", or wants the complete idea exploration workflow.",
       "id": "idea-discovery",
       "name": "idea-discovery",
       "path": "/home/hujie/.codex/skills/idea-discovery",
-      "reserved": false
+      "relative_path": "idea-discovery",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/idea-discovery",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "idea-discovery-robot"
+      ],
       "category": "external_domain_skill",
+      "description": "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \\\\\\\"robotics idea discovery\\\\\\\", \\\\\\\"\\u673a\\u5668\\u4eba\\u627eidea\\\\\\\", \\\\\\\"embodied AI idea\\\\\\\", \\\\\\\"\\u673a\\u5668\\u4eba\\u65b9\\u5411\\u63a2\\u7d22\\\\\\\", \\\\\\\"sim2real \\u9009\\u9898\\\\\\\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning.",
       "id": "idea-discovery-robot",
       "name": "idea-discovery-robot",
       "path": "/home/hujie/.codex/skills/idea-discovery-robot",
-      "reserved": false
+      "relative_path": "idea-discovery-robot",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/idea-discovery-robot",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "imagegen"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
       "id": "imagegen",
       "name": "imagegen",
       "path": "/home/hujie/.codex/skills/.system/imagegen",
-      "reserved": false
+      "relative_path": ".system/imagegen",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/.system/imagegen",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "instructor"
+      ],
       "category": "external_domain_skill",
+      "description": "Extract structured data from LLM responses with Pydantic validation, retry failed extractions automatically, parse complex JSON with type safety, and stream partial results with Instructor - battle-tested structured output library",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/instructor"
+      ],
       "id": "instructor",
       "name": "instructor",
       "path": "/home/hujie/.codex/skills/instructor",
-      "reserved": false
+      "relative_path": "instructor",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/16-prompt-engineering/instructor",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "jupyter-notebook"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user asks to create, scaffold, or edit Jupyter notebooks (`.ipynb`) for experiments, explorations, or tutorials; prefer the bundled templates and run the helper script `new_notebook.py` to generate a clean starting notebook.",
       "id": "jupyter-notebook",
       "name": "jupyter-notebook",
       "path": "/home/hujie/.codex/skills/jupyter-notebook",
-      "reserved": false
+      "relative_path": "jupyter-notebook",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/jupyter-notebook",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "knowledge-distillation"
+      ],
       "category": "external_domain_skill",
+      "description": "Compress large language models using knowledge distillation from teacher to student models. Use when deploying smaller models with retained performance, transferring GPT-4 capabilities to open-source models, or reducing inference costs. Covers temperature scaling, soft targets, reverse KLD, logit distillation, and MiniLLM training strategies.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/knowledge-distillation"
+      ],
       "id": "knowledge-distillation",
       "name": "knowledge-distillation",
       "path": "/home/hujie/.codex/skills/knowledge-distillation",
-      "reserved": false
+      "relative_path": "knowledge-distillation",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/knowledge-distillation",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "lambda-labs",
+        "lambda-labs-gpu-cloud"
+      ],
       "category": "external_domain_skill",
+      "description": "Reserved and on-demand GPU cloud instances for ML training and inference. Use when you need dedicated GPU instances with simple SSH access, persistent filesystems, or high-performance multi-node clusters for large-scale training.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/lambda-labs"
+      ],
       "id": "lambda-labs",
       "name": "lambda-labs-gpu-cloud",
       "path": "/home/hujie/.codex/skills/lambda-labs",
-      "reserved": false
+      "relative_path": "lambda-labs",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/09-infrastructure/lambda-labs",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "langchain"
+      ],
       "category": "external_domain_skill",
+      "description": "Framework for building LLM-powered applications with agents, chains, and RAG. Supports multiple providers (OpenAI, Anthropic, Google), 500+ integrations, ReAct agents, tool calling, memory management, and vector store retrieval. Use for building chatbots, question-answering systems, autonomous agents, or RAG applications. Best for rapid prototyping and production deployments.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/langchain"
+      ],
       "id": "langchain",
       "name": "langchain",
       "path": "/home/hujie/.codex/skills/langchain",
-      "reserved": false
+      "relative_path": "langchain",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/14-agents/langchain",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "langsmith",
+        "langsmith-observability"
+      ],
       "category": "external_domain_skill",
+      "description": "LLM observability platform for tracing, evaluation, and monitoring. Use when debugging LLM applications, evaluating model outputs against datasets, monitoring production systems, or building systematic testing pipelines for AI applications.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/langsmith"
+      ],
       "id": "langsmith",
       "name": "langsmith-observability",
       "path": "/home/hujie/.codex/skills/langsmith",
-      "reserved": false
+      "relative_path": "langsmith",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/17-observability/langsmith",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "linear"
+      ],
       "category": "external_domain_skill",
+      "description": "Manage issues, projects & team workflows in Linear. Use when the user wants to read, create or updates tickets in Linear.",
       "id": "linear",
       "name": "linear",
       "path": "/home/hujie/.codex/skills/linear",
-      "reserved": false
+      "relative_path": "linear",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/linear",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "implementing-llms-litgpt",
+        "litgpt"
+      ],
       "category": "external_domain_skill",
+      "description": "Implements and trains LLMs using Lightning AI's LitGPT with 20+ pretrained architectures (Llama, Gemma, Phi, Qwen, Mistral). Use when need clean model implementations, educational understanding of architectures, or production fine-tuning with LoRA/QLoRA. Single-file implementations, no abstraction layers.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/litgpt"
+      ],
       "id": "litgpt",
       "name": "implementing-llms-litgpt",
       "path": "/home/hujie/.codex/skills/litgpt",
-      "reserved": false
+      "relative_path": "litgpt",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/01-model-architecture/litgpt",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "llama-cpp"
+      ],
       "category": "external_domain_skill",
+      "description": "Runs LLM inference on CPU, Apple Silicon, and consumer GPUs without NVIDIA hardware. Use for edge deployment, M1/M2/M3 Macs, AMD/Intel GPUs, or when CUDA is unavailable. Supports GGUF quantization (1.5-8 bit) for reduced memory and 4-10\u00d7 speedup vs PyTorch on CPU.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/llama-cpp"
+      ],
       "id": "llama-cpp",
       "name": "llama-cpp",
       "path": "/home/hujie/.codex/skills/llama-cpp",
-      "reserved": false
+      "relative_path": "llama-cpp",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/12-inference-serving/llama-cpp",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "llama-factory"
+      ],
       "category": "external_domain_skill",
+      "description": "Expert guidance for fine-tuning LLMs with LLaMA-Factory - WebUI no-code, 100+ models, 2/3/4/5/6/8-bit QLoRA, multimodal support",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/llama-factory"
+      ],
       "id": "llama-factory",
       "name": "llama-factory",
       "path": "/home/hujie/.codex/skills/llama-factory",
-      "reserved": false
+      "relative_path": "llama-factory",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/03-fine-tuning/llama-factory",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "llamaguard"
+      ],
       "category": "external_domain_skill",
+      "description": "Meta's 7-8B specialized moderation model for LLM input/output filtering. 6 safety categories - violence/hate, sexual content, weapons, substances, self-harm, criminal planning. 94-95% accuracy. Deploy with vLLM, HuggingFace, Sagemaker. Integrates with NeMo Guardrails.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/llamaguard"
+      ],
       "id": "llamaguard",
       "name": "llamaguard",
       "path": "/home/hujie/.codex/skills/llamaguard",
-      "reserved": false
+      "relative_path": "llamaguard",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/07-safety-alignment/llamaguard",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "llamaindex"
+      ],
       "category": "external_domain_skill",
+      "description": "Data framework for building LLM applications with RAG. Specializes in document ingestion (300+ connectors), indexing, and querying. Features vector indices, query engines, agents, and multi-modal support. Use for document Q&A, chatbots, knowledge retrieval, or building RAG pipelines. Best for data-centric LLM applications.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/llamaindex"
+      ],
       "id": "llamaindex",
       "name": "llamaindex",
       "path": "/home/hujie/.codex/skills/llamaindex",
-      "reserved": false
+      "relative_path": "llamaindex",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/14-agents/llamaindex",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "llava"
+      ],
       "category": "external_domain_skill",
+      "description": "Large Language and Vision Assistant. Enables visual instruction tuning and image-based conversations. Combines CLIP vision encoder with Vicuna/LLaMA language models. Supports multi-turn image chat, visual question answering, and instruction following. Use for vision-language chatbots or image understanding tasks. Best for conversational image analysis.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/llava"
+      ],
       "id": "llava",
       "name": "llava",
       "path": "/home/hujie/.codex/skills/llava",
-      "reserved": false
+      "relative_path": "llava",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/llava",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "evaluating-llms-harness",
+        "lm-evaluation-harness"
+      ],
       "category": "external_domain_skill",
+      "description": "Evaluates LLMs across 60+ academic benchmarks (MMLU, HumanEval, GSM8K, TruthfulQA, HellaSwag). Use when benchmarking model quality, comparing models, reporting academic results, or tracking training progress. Industry standard used by EleutherAI, HuggingFace, and major labs. Supports HuggingFace, vLLM, APIs.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/lm-evaluation-harness"
+      ],
       "id": "lm-evaluation-harness",
       "name": "evaluating-llms-harness",
       "path": "/home/hujie/.codex/skills/lm-evaluation-harness",
-      "reserved": false
+      "relative_path": "lm-evaluation-harness",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/11-evaluation/lm-evaluation-harness",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "long-context"
+      ],
       "category": "external_domain_skill",
+      "description": "Extend context windows of transformer models using RoPE, YaRN, ALiBi, and position interpolation techniques. Use when processing long documents (32k-128k+ tokens), extending pre-trained models beyond original context limits, or implementing efficient positional encodings. Covers rotary embeddings, attention biases, interpolation methods, and extrapolation strategies for LLMs.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/long-context"
+      ],
       "id": "long-context",
       "name": "long-context",
       "path": "/home/hujie/.codex/skills/long-context",
-      "reserved": false
+      "relative_path": "long-context",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/long-context",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "mamba",
+        "mamba-architecture"
+      ],
       "category": "external_domain_skill",
+      "description": "State-space model with O(n) complexity vs Transformers' O(n\u00b2). 5\u00d7 faster inference, million-token sequences, no KV cache. Selective SSM with hardware-aware design. Mamba-1 (d_state=16) and Mamba-2 (d_state=128, multi-head). Models 130M-2.8B on HuggingFace.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/mamba"
+      ],
       "id": "mamba",
       "name": "mamba-architecture",
       "path": "/home/hujie/.codex/skills/mamba",
-      "reserved": false
+      "relative_path": "mamba",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/01-model-architecture/mamba",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "megatron-core",
+        "training-llms-megatron"
+      ],
       "category": "external_domain_skill",
+      "description": "Trains large language models (2B-462B parameters) using NVIDIA Megatron-Core with advanced parallelism strategies. Use when training models >1B parameters, need maximum GPU efficiency (47% MFU on H100), or require tensor/pipeline/sequence/context/expert parallelism. Production-ready framework used for Nemotron, LLaMA, DeepSeek.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/megatron-core"
+      ],
       "id": "megatron-core",
       "name": "training-llms-megatron",
       "path": "/home/hujie/.codex/skills/megatron-core",
-      "reserved": false
+      "relative_path": "megatron-core",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/megatron-core",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "miles",
+        "miles-rl-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for enterprise-grade RL training using miles, a production-ready fork of slime. Use when training large MoE models with FP8/INT4, needing train-inference alignment, or requiring speculative RL for maximum throughput.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/miles"
+      ],
       "id": "miles",
       "name": "miles-rl-training",
       "path": "/home/hujie/.codex/skills/miles",
-      "reserved": false
+      "relative_path": "miles",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/miles",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "ml-paper-writing"
+      ],
       "category": "external_domain_skill",
+      "description": "Write publication-ready ML/AI papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, or preparing camera-ready submissions. For systems venues (OSDI, NSDI, ASPLOS, SOSP), use systems-paper-writing instead.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/ml-paper-writing"
+      ],
       "id": "ml-paper-writing",
       "name": "ml-paper-writing",
       "path": "/home/hujie/.codex/skills/ml-paper-writing",
-      "reserved": false
+      "relative_path": "ml-paper-writing",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/20-ml-paper-writing/ml-paper-writing",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "ml-training-recipes"
+      ],
       "category": "external_domain_skill",
+      "description": "Battle-tested PyTorch training recipes for all domains \u2014 LLMs, vision, diffusion, medical imaging, protein/drug discovery, spatial omics, genomics. Covers training loops, optimizer selection (AdamW, Muon), LR scheduling, mixed precision, debugging, and systematic experimentation. Use when training or fine-tuning neural networks, debugging loss spikes or OOM, choosing architectures, or optimizing GPU throughput.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/ml-training-recipes"
+      ],
       "id": "ml-training-recipes",
       "name": "ml-training-recipes",
       "path": "/home/hujie/.codex/skills/ml-training-recipes",
-      "reserved": false
+      "relative_path": "ml-training-recipes",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/10-optimization/ml-training-recipes",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "mlflow"
+      ],
       "category": "external_domain_skill",
+      "description": "Track ML experiments, manage model registry with versioning, deploy models to production, and reproduce experiments with MLflow - framework-agnostic ML lifecycle platform",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/mlflow"
+      ],
       "id": "mlflow",
       "name": "mlflow",
       "path": "/home/hujie/.codex/skills/mlflow",
-      "reserved": false
+      "relative_path": "mlflow",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/13-mlops/mlflow",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "modal",
+        "modal-serverless-gpu"
+      ],
       "category": "external_domain_skill",
+      "description": "Serverless GPU cloud platform for running ML workloads. Use when you need on-demand GPU access without infrastructure management, deploying ML models as APIs, or running batch jobs with automatic scaling.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/modal"
+      ],
       "id": "modal",
       "name": "modal-serverless-gpu",
       "path": "/home/hujie/.codex/skills/modal",
-      "reserved": false
+      "relative_path": "modal",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/09-infrastructure/modal",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "model-merging"
+      ],
       "category": "external_domain_skill",
+      "description": "Merge multiple fine-tuned models using mergekit to combine capabilities without retraining. Use when creating specialized models by blending domain-specific expertise (math + coding + chat), improving performance beyond single models, or experimenting rapidly with model variants. Covers SLERP, TIES-Merging, DARE, Task Arithmetic, linear merging, and production deployment strategies.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/model-merging"
+      ],
       "id": "model-merging",
       "name": "model-merging",
       "path": "/home/hujie/.codex/skills/model-merging",
-      "reserved": false
+      "relative_path": "model-merging",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/model-merging",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "model-pruning"
+      ],
       "category": "external_domain_skill",
+      "description": "Reduce LLM size and accelerate inference using pruning techniques like Wanda and SparseGPT. Use when compressing models without retraining, achieving 50% sparsity with minimal accuracy loss, or enabling faster inference on hardware accelerators. Covers unstructured pruning, structured pruning, N:M sparsity, magnitude pruning, and one-shot methods.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/model-pruning"
+      ],
       "id": "model-pruning",
       "name": "model-pruning",
       "path": "/home/hujie/.codex/skills/model-pruning",
-      "reserved": false
+      "relative_path": "model-pruning",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/model-pruning",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "moe-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Train Mixture of Experts (MoE) models using DeepSpeed or HuggingFace. Use when training large-scale models with limited compute (5\u00d7 cost reduction vs dense models), implementing sparse architectures like Mixtral 8x7B or DeepSeek-V3, or scaling model capacity without proportional compute increase. Covers MoE architectures, routing mechanisms, load balancing, expert parallelism, and inference optimization.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/moe-training"
+      ],
       "id": "moe-training",
       "name": "moe-training",
       "path": "/home/hujie/.codex/skills/moe-training",
-      "reserved": false
+      "relative_path": "moe-training",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/moe-training",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "monitor-experiment"
+      ],
       "category": "external_domain_skill",
+      "description": "Monitor running experiments, check progress, collect results. Use when user says \\\"check results\\\", \\\"is it done\\\", \\\"monitor\\\", or wants experiment output.",
       "id": "monitor-experiment",
       "name": "monitor-experiment",
       "path": "/home/hujie/.codex/skills/monitor-experiment",
-      "reserved": false
+      "relative_path": "monitor-experiment",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/monitor-experiment",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "multi-agent"
+      ],
       "category": "reserved_orchestration_skill",
+      "description": "Orchestrate a bounded team of Codex subagents for complex work when the user explicitly asks for multi-agent help, expert-team discussion, \"\u591a\u4e2a\u5b50\u667a\u80fd\u4f53\", \"\u591a\u4e2a\u4e13\u5bb6\", \"\u591a\u667a\u80fd\u4f53\", \"multi-agent\", or invokes \"$multi-agent\". Automatically selects expert roles, expert count, and discussion rounds based on the task type and complexity, with per-expert skill allowlists for research, paper writing, paper-to-code implementation, algorithm optimization, theory derivation, paper figures, frontend/backend projects, project delivery, and material organization. Do not use for simple tasks that one agent can answer directly.",
       "id": "multi-agent",
       "name": "multi-agent",
       "path": "/home/hujie/.codex/skills/multi-agent",
-      "reserved": true
+      "relative_path": "multi-agent",
+      "reserved": true,
+      "resolved_path": "/home/hujie/.codex/skills/multi-agent",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "nanogpt"
+      ],
       "category": "external_domain_skill",
+      "description": "Educational GPT implementation in ~300 lines. Reproduces GPT-2 (124M) on OpenWebText. Clean, hackable code for learning transformers. By Andrej Karpathy. Perfect for understanding GPT architecture from scratch. Train on Shakespeare (CPU) or OpenWebText (multi-GPU).",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/nanogpt"
+      ],
       "id": "nanogpt",
       "name": "nanogpt",
       "path": "/home/hujie/.codex/skills/nanogpt",
-      "reserved": false
+      "relative_path": "nanogpt",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/01-model-architecture/nanogpt",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "nemo-curator"
+      ],
       "category": "external_domain_skill",
+      "description": "GPU-accelerated data curation for LLM training. Supports text/image/video/audio. Features fuzzy deduplication (16\u00d7 faster), quality filtering (30+ heuristics), semantic deduplication, PII redaction, NSFW detection. Scales across GPUs with RAPIDS. Use for preparing high-quality training datasets, cleaning web data, or deduplicating large corpora.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/nemo-curator"
+      ],
       "id": "nemo-curator",
       "name": "nemo-curator",
       "path": "/home/hujie/.codex/skills/nemo-curator",
-      "reserved": false
+      "relative_path": "nemo-curator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/05-data-processing/nemo-curator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "nemo-evaluator",
+        "nemo-evaluator-sdk"
+      ],
       "category": "external_domain_skill",
+      "description": "Evaluates LLMs across 100+ benchmarks from 18+ harnesses (MMLU, HumanEval, GSM8K, safety, VLM) with multi-backend execution. Use when needing scalable evaluation on local Docker, Slurm HPC, or cloud platforms. NVIDIA's enterprise-grade platform with container-first architecture for reproducible benchmarking.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/nemo-evaluator"
+      ],
       "id": "nemo-evaluator",
       "name": "nemo-evaluator-sdk",
       "path": "/home/hujie/.codex/skills/nemo-evaluator",
-      "reserved": false
+      "relative_path": "nemo-evaluator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/11-evaluation/nemo-evaluator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "nemo-guardrails"
+      ],
       "category": "external_domain_skill",
+      "description": "NVIDIA's runtime safety framework for LLM applications. Features jailbreak detection, input/output validation, fact-checking, hallucination detection, PII filtering, toxicity detection. Uses Colang 2.0 DSL for programmable rails. Production-ready, runs on T4 GPU.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/nemo-guardrails"
+      ],
       "id": "nemo-guardrails",
       "name": "nemo-guardrails",
       "path": "/home/hujie/.codex/skills/nemo-guardrails",
-      "reserved": false
+      "relative_path": "nemo-guardrails",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/07-safety-alignment/nemo-guardrails",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "netlify-deploy"
+      ],
       "category": "external_domain_skill",
+      "description": "Deploy web projects to Netlify using the Netlify CLI (`npx netlify`). Use when the user asks to deploy, host, publish, or link a site/repo on Netlify, including preview and production deploys.",
       "id": "netlify-deploy",
       "name": "netlify-deploy",
       "path": "/home/hujie/.codex/skills/netlify-deploy",
-      "reserved": false
+      "relative_path": "netlify-deploy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/netlify-deploy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "nnsight",
+        "nnsight-remote-interpretability"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for interpreting and manipulating neural network internals using nnsight with optional NDIF remote execution. Use when needing to run interpretability experiments on massive models (70B+) without local GPU resources, or when working with any PyTorch architecture.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/nnsight"
+      ],
       "id": "nnsight",
       "name": "nnsight-remote-interpretability",
       "path": "/home/hujie/.codex/skills/nnsight",
-      "reserved": false
+      "relative_path": "nnsight",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/04-mechanistic-interpretability/nnsight",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "notion-knowledge-capture"
+      ],
       "category": "external_domain_skill",
+      "description": "Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking.",
       "id": "notion-knowledge-capture",
       "name": "notion-knowledge-capture",
       "path": "/home/hujie/.codex/skills/notion-knowledge-capture",
-      "reserved": false
+      "relative_path": "notion-knowledge-capture",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/notion-knowledge-capture",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "notion-meeting-intelligence"
+      ],
       "category": "external_domain_skill",
+      "description": "Prepare meeting materials with Notion context and Codex research; use when gathering context, drafting agendas/pre-reads, and tailoring materials to attendees.",
       "id": "notion-meeting-intelligence",
       "name": "notion-meeting-intelligence",
       "path": "/home/hujie/.codex/skills/notion-meeting-intelligence",
-      "reserved": false
+      "relative_path": "notion-meeting-intelligence",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/notion-meeting-intelligence",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "notion-research-documentation"
+      ],
       "category": "external_domain_skill",
+      "description": "Research across Notion and synthesize into structured documentation; use when gathering info from multiple Notion sources to produce briefs, comparisons, or reports with citations.",
       "id": "notion-research-documentation",
       "name": "notion-research-documentation",
       "path": "/home/hujie/.codex/skills/notion-research-documentation",
-      "reserved": false
+      "relative_path": "notion-research-documentation",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/notion-research-documentation",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "notion-spec-to-implementation"
+      ],
       "category": "external_domain_skill",
+      "description": "Turn Notion specs into implementation plans, tasks, and progress tracking; use when implementing PRDs/feature specs and creating Notion plans + tasks from them.",
       "id": "notion-spec-to-implementation",
       "name": "notion-spec-to-implementation",
       "path": "/home/hujie/.codex/skills/notion-spec-to-implementation",
-      "reserved": false
+      "relative_path": "notion-spec-to-implementation",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/notion-spec-to-implementation",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "novelty-check"
+      ],
       "category": "external_domain_skill",
+      "description": "Verify research idea novelty against recent literature. Use when user says \\\"\\u67e5\\u65b0\\\", \\\"novelty check\\\", \\\"\\u6709\\u6ca1\\u6709\\u4eba\\u505a\\u8fc7\\\", \\\"check novelty\\\", or wants to verify a research idea is novel before implementing.",
       "id": "novelty-check",
       "name": "novelty-check",
       "path": "/home/hujie/.codex/skills/novelty-check",
-      "reserved": false
+      "relative_path": "novelty-check",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/novelty-check",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "openai-docs"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations, help choosing the latest model for a use case, or model upgrade and prompt-upgrade guidance; prioritize OpenAI docs MCP tools, use bundled references only as helper context, and restrict any fallback browsing to official OpenAI domains.",
       "id": "openai-docs",
       "name": "openai-docs",
       "path": "/home/hujie/.codex/skills/.system/openai-docs",
-      "reserved": false
+      "relative_path": ".system/openai-docs",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/.system/openai-docs",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "fine-tuning-serving-openpi",
+        "openpi"
+      ],
       "category": "external_domain_skill",
+      "description": "Fine-tune and serve Physical Intelligence OpenPI models (pi0, pi0-fast, pi0.5) using JAX or PyTorch backends for robot policy inference across ALOHA, DROID, and LIBERO environments. Use when adapting pi0 models to custom datasets, converting JAX checkpoints to PyTorch, running policy inference servers, or debugging norm stats and GPU memory issues.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/openpi"
+      ],
       "id": "openpi",
       "name": "fine-tuning-serving-openpi",
       "path": "/home/hujie/.codex/skills/openpi",
-      "reserved": false
+      "relative_path": "openpi",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/openpi",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "openrlhf",
+        "openrlhf-training"
+      ],
       "category": "external_domain_skill",
+      "description": "High-performance RLHF framework with Ray+vLLM acceleration. Use for PPO, GRPO, RLOO, DPO training of large models (7B-70B+). Built on Ray, vLLM, ZeRO-3. 2\u00d7 faster than DeepSpeedChat with distributed architecture and GPU resource sharing.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/openrlhf"
+      ],
       "id": "openrlhf",
       "name": "openrlhf-training",
       "path": "/home/hujie/.codex/skills/openrlhf",
-      "reserved": false
+      "relative_path": "openrlhf",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/openrlhf",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "fine-tuning-openvla-oft",
+        "openvla-oft"
+      ],
       "category": "external_domain_skill",
+      "description": "Fine-tunes and evaluates OpenVLA-OFT and OpenVLA-OFT+ policies for robot action generation with continuous action heads, LoRA adaptation, and FiLM conditioning on LIBERO simulation and ALOHA real-world setups. Use when reproducing OpenVLA-OFT paper results, training custom VLA action heads (L1 or diffusion), deploying server-client inference for ALOHA, or debugging normalization, LoRA merge, and cross-GPU issues.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/openvla-oft"
+      ],
       "id": "openvla-oft",
       "name": "fine-tuning-openvla-oft",
       "path": "/home/hujie/.codex/skills/openvla-oft",
-      "reserved": false
+      "relative_path": "openvla-oft",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/openvla-oft",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "outlines"
+      ],
       "category": "external_domain_skill",
+      "description": "Guarantee valid JSON/XML/code structure during generation, use Pydantic models for type-safe outputs, support local models (Transformers, vLLM), and maximize inference speed with Outlines - dottxt.ai's structured generation library",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/outlines"
+      ],
       "id": "outlines",
       "name": "outlines",
       "path": "/home/hujie/.codex/skills/outlines",
-      "reserved": false
+      "relative_path": "outlines",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/16-prompt-engineering/outlines",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-compile"
+      ],
       "category": "external_domain_skill",
+      "description": "Compile LaTeX paper to PDF, fix errors, and verify output. Use when user says \\\\\\\"\\u7f16\\u8bd1\\u8bba\\u6587\\\\\\\", \\\\\\\"compile paper\\\\\\\", \\\\\\\"build PDF\\\\\\\", \\\\\\\"\\u751f\\u6210PDF\\\\\\\", or wants to compile LaTeX into a submission-ready PDF.",
       "id": "paper-compile",
       "name": "paper-compile",
       "path": "/home/hujie/.codex/skills/paper-compile",
-      "reserved": false
+      "relative_path": "paper-compile",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-compile",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-figure"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate publication-quality figures and tables from experiment results. Use when user says \\\\\\\"\\u753b\\u56fe\\\\\\\", \\\\\\\"\\u4f5c\\u56fe\\\\\\\", \\\\\\\"generate figures\\\\\\\", \\\\\\\"paper figures\\\\\\\", or needs plots for a paper.",
       "id": "paper-figure",
       "name": "paper-figure",
       "path": "/home/hujie/.codex/skills/paper-figure",
-      "reserved": false
+      "relative_path": "paper-figure",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-figure",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-illustration"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate publication-quality AI illustrations for academic papers using Gemini image generation. Creates architecture diagrams, method illustrations with Codex-supervised iterative refinement loop. Use when user says \\\"\u751f\u6210\u56fe\u8868\\\", \\\"\u753b\u67b6\u6784\u56fe\\\", \\\"AI\u7ed8\u56fe\\\", \\\"paper illustration\\\", \\\"generate diagram\\\", or needs visual figures for papers.",
       "id": "paper-illustration",
       "name": "paper-illustration",
       "path": "/home/hujie/.codex/skills/paper-illustration",
-      "reserved": false
+      "relative_path": "paper-illustration",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-illustration",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-plan"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate a structured paper outline from review conclusions and experiment results. Use when user says \\\\\\\"\\u5199\\u5927\\u7eb2\\\\\\\", \\\\\\\"paper outline\\\\\\\", \\\\\\\"plan the paper\\\\\\\", \\\\\\\"\\u8bba\\u6587\\u89c4\\u5212\\\\\\\", or wants to create a paper plan before writing.",
       "id": "paper-plan",
       "name": "paper-plan",
       "path": "/home/hujie/.codex/skills/paper-plan",
-      "reserved": false
+      "relative_path": "paper-plan",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-plan",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-poster"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate a conference poster (article + tcbposter LaTeX \u2192 A0/A1 PDF + editable PPTX + SVG) from a compiled paper. Use when user says \\\"\u505a\u6d77\u62a5\\\", \\\"\u5236\u4f5c\u6d77\u62a5\\\", \\\"conference poster\\\", \\\"make poster\\\", \\\"\u751f\u6210poster\\\", \\\"poster session\\\", or wants to create a poster for a conference presentation.",
       "id": "paper-poster",
       "name": "paper-poster",
       "path": "/home/hujie/.codex/skills/paper-poster",
-      "reserved": false
+      "relative_path": "paper-poster",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-poster",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-slides"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate conference presentation slides (beamer LaTeX \u2192 PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \\\"\u505aPPT\\\", \\\"\u505a\u5e7b\u706f\u7247\\\", \\\"make slides\\\", \\\"conference talk\\\", \\\"presentation slides\\\", \\\"\u751f\u6210slides\\\", \\\"\u5199\u6f14\u8bb2\u7a3f\\\", or wants beamer slides for a conference talk.",
       "id": "paper-slides",
       "name": "paper-slides",
       "path": "/home/hujie/.codex/skills/paper-slides",
-      "reserved": false
+      "relative_path": "paper-slides",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-slides",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-write"
+      ],
       "category": "external_domain_skill",
+      "description": "Draft LaTeX paper section by section from an outline. Use when user says \\\\\\\"\\u5199\\u8bba\\u6587\\\\\\\", \\\\\\\"write paper\\\\\\\", \\\\\\\"draft LaTeX\\\\\\\", \\\\\\\"\\u5f00\\u59cb\\u5199\\\\\\\", or wants to generate LaTeX content from a paper plan.",
       "id": "paper-write",
       "name": "paper-write",
       "path": "/home/hujie/.codex/skills/paper-write",
-      "reserved": false
+      "relative_path": "paper-write",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-write",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "paper-writing"
+      ],
       "category": "external_domain_skill",
+      "description": "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan \\u2192 paper-figure \\u2192 paper-write \\u2192 paper-compile \\u2192 auto-paper-improvement-loop to go from a narrative report to a polished, submission-ready PDF. Use when user says \\\\\\\"\\u5199\\u8bba\\u6587\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"write paper pipeline\\\\\\\", \\\\\\\"\\u4ece\\u62a5\\u544a\\u5230PDF\\\\\\\", \\\\\\\"paper writing\\\\\\\", or wants the complete paper generation workflow.",
       "id": "paper-writing",
       "name": "paper-writing",
       "path": "/home/hujie/.codex/skills/paper-writing",
-      "reserved": false
+      "relative_path": "paper-writing",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-writing",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pdf"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
       "id": "pdf",
       "name": "pdf",
       "path": "/home/hujie/.codex/skills/pdf",
-      "reserved": false
+      "relative_path": "pdf",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/pdf",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "peft",
+        "peft-fine-tuning"
+      ],
       "category": "external_domain_skill",
+      "description": "Parameter-efficient fine-tuning for LLMs using LoRA, QLoRA, and 25+ methods. Use when fine-tuning large models (7B-70B) with limited GPU memory, when you need to train <1% of parameters with minimal accuracy loss, or for multi-adapter serving. HuggingFace's official library integrated with transformers ecosystem.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/peft"
+      ],
       "id": "peft",
       "name": "peft-fine-tuning",
       "path": "/home/hujie/.codex/skills/peft",
-      "reserved": false
+      "relative_path": "peft",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/03-fine-tuning/peft",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "phoenix",
+        "phoenix-observability"
+      ],
       "category": "external_domain_skill",
+      "description": "Open-source AI observability platform for LLM tracing, evaluation, and monitoring. Use when debugging LLM applications with detailed traces, running evaluations on datasets, or monitoring production AI systems with real-time insights.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/phoenix"
+      ],
       "id": "phoenix",
       "name": "phoenix-observability",
       "path": "/home/hujie/.codex/skills/phoenix",
-      "reserved": false
+      "relative_path": "phoenix",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/17-observability/phoenix",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pinecone"
+      ],
       "category": "external_domain_skill",
+      "description": "Managed vector database for production AI applications. Fully managed, auto-scaling, with hybrid search (dense + sparse), metadata filtering, and namespaces. Low latency (<100ms p95). Use for production RAG, recommendation systems, or semantic search at scale. Best for serverless, managed infrastructure.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/pinecone"
+      ],
       "id": "pinecone",
       "name": "pinecone",
       "path": "/home/hujie/.codex/skills/pinecone",
-      "reserved": false
+      "relative_path": "pinecone",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/15-rag/pinecone",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pixel-art"
+      ],
       "category": "external_domain_skill",
+      "description": "Generate pixel art SVG illustrations for READMEs, docs, or slides. Use when user says \\\"\\u753b\\u50cf\\u7d20\\u56fe\\\", \\\"pixel art\\\", \\\"make an SVG illustration\\\", \\\"README hero image\\\", or wants a cute visual.",
       "id": "pixel-art",
       "name": "pixel-art",
       "path": "/home/hujie/.codex/skills/pixel-art",
-      "reserved": false
+      "relative_path": "pixel-art",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/pixel-art",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "planner"
+      ],
       "category": "external_domain_skill",
+      "description": ">",
       "id": "planner",
       "name": "planner",
       "path": "/home/hujie/.agents/skills/planner",
-      "reserved": false
+      "relative_path": "planner",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.agents/skills/planner",
+      "source_root": "/home/hujie/.agents/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "playwright"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script.",
       "id": "playwright",
       "name": "playwright",
       "path": "/home/hujie/.codex/skills/playwright",
-      "reserved": false
+      "relative_path": "playwright",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/playwright",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "playwright-interactive"
+      ],
       "category": "external_domain_skill",
+      "description": "Persistent browser and Electron interaction through `js_repl` for fast iterative UI debugging.",
       "id": "playwright-interactive",
       "name": "playwright-interactive",
       "path": "/home/hujie/.codex/skills/playwright-interactive",
-      "reserved": false
+      "relative_path": "playwright-interactive",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/playwright-interactive",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "plugin-creator"
+      ],
       "category": "external_domain_skill",
+      "description": "Create and scaffold plugin directories for Codex with a required `.codex-plugin/plugin.json`, optional plugin folders/files, and baseline placeholders you can edit before publishing or testing. Use when Codex needs to create a new local plugin, add optional plugin structure, or generate or update repo-root `.agents/plugins/marketplace.json` entries for plugin ordering and availability metadata.",
       "id": "plugin-creator",
       "name": "plugin-creator",
       "path": "/home/hujie/.codex/skills/.system/plugin-creator",
-      "reserved": false
+      "relative_path": ".system/plugin-creator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/.system/plugin-creator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "presenting-conference-talks"
+      ],
       "category": "external_domain_skill",
+      "description": "Generates conference presentation slides (Beamer LaTeX PDF and editable PPTX) from a compiled paper with speaker notes and talk script. Use when preparing oral talks, spotlight presentations, or invited talks for ML and systems conferences.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/presenting-conference-talks"
+      ],
       "id": "presenting-conference-talks",
       "name": "presenting-conference-talks",
       "path": "/home/hujie/.codex/skills/presenting-conference-talks",
-      "reserved": false
+      "relative_path": "presenting-conference-talks",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/20-ml-paper-writing/presenting-conference-talks",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "project-phase-report"
+      ],
       "category": "external_domain_skill",
+      "description": "Manage project progress nodes and generate phase or weekly update reports. Use when the user wants to add a progress node, compare the current node with the previous node, summarize what changed since a named node, prepare a weekly status report, collect feature/effect deltas from git/docs/artifacts, or maintain project milestone records such as docs/progress/WEEKLY_NODES.md.",
       "id": "project-phase-report",
       "name": "project-phase-report",
       "path": "/home/hujie/.codex/skills/project-phase-report",
-      "reserved": false
+      "relative_path": "project-phase-report",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/project-phase-report",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "prompt-guard"
+      ],
       "category": "external_domain_skill",
+      "description": "Meta's 86M prompt injection and jailbreak detector. Filters malicious prompts and third-party data for LLM apps. 99%+ TPR, <1% FPR. Fast (<2ms GPU). Multilingual (8 languages). Deploy with HuggingFace or batch processing for RAG security.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/prompt-guard"
+      ],
       "id": "prompt-guard",
       "name": "prompt-guard",
       "path": "/home/hujie/.codex/skills/prompt-guard",
-      "reserved": false
+      "relative_path": "prompt-guard",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/07-safety-alignment/prompt-guard",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "proof-writer"
+      ],
       "category": "external_domain_skill",
+      "description": "Writes rigorous mathematical proofs for ML/AI theory. Use when asked to prove a theorem, lemma, proposition, or corollary, fill in missing proof steps, formalize a proof sketch, \\u8865\\u5168\\u8bc1\\u660e, \\u5199\\u8bc1\\u660e, \\u8bc1\\u660e\\u67d0\\u4e2a\\u547d\\u9898, or determine whether a claimed proof can actually be completed under the stated assumptions.",
       "id": "proof-writer",
       "name": "proof-writer",
       "path": "/home/hujie/.codex/skills/proof-writer",
-      "reserved": false
+      "relative_path": "proof-writer",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/proof-writer",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pytorch-fsdp2"
+      ],
       "category": "external_domain_skill",
+      "description": "Adds PyTorch FSDP2 (fully_shard) to training scripts with correct init, sharding, mixed precision/offload config, and distributed checkpointing. Use when models exceed single-GPU memory or when you need DTensor-based sharding with DeviceMesh.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/pytorch-fsdp2"
+      ],
       "id": "pytorch-fsdp2",
       "name": "pytorch-fsdp2",
       "path": "/home/hujie/.codex/skills/pytorch-fsdp2",
-      "reserved": false
+      "relative_path": "pytorch-fsdp2",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/pytorch-fsdp2",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pytorch-lightning"
+      ],
       "category": "external_domain_skill",
+      "description": "High-level PyTorch framework with Trainer class, automatic distributed training (DDP/FSDP/DeepSpeed), callbacks system, and minimal boilerplate. Scales from laptop to supercomputer with same code. Use when you want clean training loops with built-in best practices.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/pytorch-lightning"
+      ],
       "id": "pytorch-lightning",
       "name": "pytorch-lightning",
       "path": "/home/hujie/.codex/skills/pytorch-lightning",
-      "reserved": false
+      "relative_path": "pytorch-lightning",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/pytorch-lightning",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "pyvene",
+        "pyvene-interventions"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for performing causal interventions on PyTorch models using pyvene's declarative intervention framework. Use when conducting causal tracing, activation patching, interchange intervention training, or testing causal hypotheses about model behavior.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/pyvene"
+      ],
       "id": "pyvene",
       "name": "pyvene-interventions",
       "path": "/home/hujie/.codex/skills/pyvene",
-      "reserved": false
+      "relative_path": "pyvene",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/04-mechanistic-interpretability/pyvene",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "qdrant",
+        "qdrant-vector-search"
+      ],
       "category": "external_domain_skill",
+      "description": "High-performance vector similarity search engine for RAG and semantic search. Use when building production RAG systems requiring fast nearest neighbor search, hybrid search with filtering, or scalable vector storage with Rust-powered performance.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/qdrant"
+      ],
       "id": "qdrant",
       "name": "qdrant-vector-search",
       "path": "/home/hujie/.codex/skills/qdrant",
-      "reserved": false
+      "relative_path": "qdrant",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/15-rag/qdrant",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "ray-data"
+      ],
       "category": "external_domain_skill",
+      "description": "Scalable data processing for ML workloads. Streaming execution across CPU/GPU, supports Parquet/CSV/JSON/images. Integrates with Ray Train, PyTorch, TensorFlow. Scales from single machine to 100s of nodes. Use for batch inference, data preprocessing, multi-modal data loading, or distributed ETL pipelines.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/ray-data"
+      ],
       "id": "ray-data",
       "name": "ray-data",
       "path": "/home/hujie/.codex/skills/ray-data",
-      "reserved": false
+      "relative_path": "ray-data",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/05-data-processing/ray-data",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "ray-train"
+      ],
       "category": "external_domain_skill",
+      "description": "Distributed training orchestration across clusters. Scales PyTorch/TensorFlow/HuggingFace from laptop to 1000s of nodes. Built-in hyperparameter tuning with Ray Tune, fault tolerance, elastic scaling. Use when training massive models across multiple machines or running distributed hyperparameter sweeps.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/ray-train"
+      ],
       "id": "ray-train",
       "name": "ray-train",
       "path": "/home/hujie/.codex/skills/ray-train",
-      "reserved": false
+      "relative_path": "ray-train",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/ray-train",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "render-deploy"
+      ],
       "category": "external_domain_skill",
+      "description": "Deploy applications to Render by analyzing codebases, generating render.yaml Blueprints, and providing Dashboard deeplinks. Use when the user wants to deploy, host, publish, or set up their application on Render's cloud platform.",
       "id": "render-deploy",
       "name": "render-deploy",
       "path": "/home/hujie/.codex/skills/render-deploy",
-      "reserved": false
+      "relative_path": "render-deploy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/render-deploy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "repo-refactor-governance"
+      ],
       "category": "external_domain_skill",
+      "description": "Use this skill when the user wants Codex to systematically clean up, decouple, simplify, and refactor a real production codebase without rewriting it from scratch. Trigger this skill for repository-wide or module-level work such as reducing coupling, removing dead code, consolidating duplicate logic, splitting oversized modules, improving maintainability, improving testability, and running an analyze-plan-change-validate loop with explicit findings and low-risk incremental refactors.",
       "id": "repo-refactor-governance",
       "name": "repo-refactor-governance",
       "path": "/home/hujie/.codex/skills/repo-refactor-governance",
-      "reserved": false
+      "relative_path": "repo-refactor-governance",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/repo-refactor-governance",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-lit"
+      ],
       "category": "external_domain_skill",
+      "description": "Search and analyze research papers, find related work, summarize key ideas. Use when user says \\\"find papers\\\", \\\"related work\\\", \\\"literature review\\\", \\\"what does this paper say\\\", or needs to understand academic papers.",
       "id": "research-lit",
       "name": "research-lit",
       "path": "/home/hujie/.codex/skills/research-lit",
-      "reserved": false
+      "relative_path": "research-lit",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-lit",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-pipeline"
+      ],
       "category": "external_domain_skill",
+      "description": "Full research pipeline: Workflow 1 (idea discovery) \\u2192 implementation \\u2192 Workflow 2 (auto review loop). Goes from a broad research direction all the way to a submission-ready paper. Use when user says \\\\\\\"\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"full pipeline\\\\\\\", \\\\\\\"\\u4ece\\u627eidea\\u5230\\u6295\\u7a3f\\\\\\\", \\\\\\\"end-to-end research\\\\\\\", or wants the complete autonomous research lifecycle.",
       "id": "research-pipeline",
       "name": "research-pipeline",
       "path": "/home/hujie/.codex/skills/research-pipeline",
-      "reserved": false
+      "relative_path": "research-pipeline",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-pipeline",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-refine"
+      ],
       "category": "external_domain_skill",
+      "description": "Turn a vague research direction into a problem-anchored, elegant, frontier-aware, implementation-oriented method plan via iterative GPT-5.4 review. Use when the user says \\\"refine my approach\\\", \\\"\\u5e2e\\u6211\\u7ec6\\u5316\\u65b9\\u6848\\\", \\\"decompose this problem\\\", \\\"\\u6253\\u78e8idea\\\", \\\"refine research plan\\\", \\\"\\u7ec6\\u5316\\u7814\\u7a76\\u65b9\\u6848\\\", or wants a concrete research method that stays simple, focused, and top-venue ready instead of a vague or overbuilt idea.",
       "id": "research-refine",
       "name": "research-refine",
       "path": "/home/hujie/.codex/skills/research-refine",
-      "reserved": false
+      "relative_path": "research-refine",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-refine",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-refine-pipeline"
+      ],
       "category": "external_domain_skill",
+      "description": "Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to \\\"\\u4e32\\u8d77\\u6765\\\", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.",
       "id": "research-refine-pipeline",
       "name": "research-refine-pipeline",
       "path": "/home/hujie/.codex/skills/research-refine-pipeline",
-      "reserved": false
+      "relative_path": "research-refine-pipeline",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-refine-pipeline",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-review"
+      ],
       "category": "external_domain_skill",
+      "description": "Get a deep critical review of research from GPT using a secondary Codex agent. Use when user says \\\"review my research\\\", \\\"help me review\\\", \\\"get external review\\\", or wants critical feedback on research ideas, papers, or experimental results.",
       "id": "research-review",
       "name": "research-review",
       "path": "/home/hujie/.codex/skills/research-review",
-      "reserved": false
+      "relative_path": "research-review",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-review",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "research-survey"
+      ],
       "category": "external_domain_skill",
+      "description": "Comprehensive research and engineering survey across papers, arXiv, GitHub projects, official docs, technical blogs, and production systems. Use when the user asks for \u8c03\u7814, survey, literature review plus engineering implementation analysis, technical landscape comparison, latest progress, strongest methods, best open-source implementations, industrial feasibility, or decision support for a research or engineering direction.",
       "id": "research-survey",
       "name": "research-survey",
       "path": "/home/hujie/.codex/skills/research-survey",
-      "reserved": false
+      "relative_path": "research-survey",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-survey",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "run-experiment"
+      ],
       "category": "external_domain_skill",
+      "description": "Deploy and run ML experiments on local or remote GPU servers. Use when user says \\\"run experiment\\\", \\\"deploy to server\\\", \\\"\\u8dd1\\u5b9e\\u9a8c\\\", or needs to launch training jobs.",
       "id": "run-experiment",
       "name": "run-experiment",
       "path": "/home/hujie/.codex/skills/run-experiment",
-      "reserved": false
+      "relative_path": "run-experiment",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/run-experiment",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "rwkv",
+        "rwkv-architecture"
+      ],
       "category": "external_domain_skill",
+      "description": "RNN+Transformer hybrid with O(n) inference. Linear time, infinite context, no KV cache. Train like GPT (parallel), infer like RNN (sequential). Linux Foundation AI project. Production at Windows, Office, NeMo. RWKV-7 (March 2025). Models up to 14B parameters.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/rwkv"
+      ],
       "id": "rwkv",
       "name": "rwkv-architecture",
       "path": "/home/hujie/.codex/skills/rwkv",
-      "reserved": false
+      "relative_path": "rwkv",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/01-model-architecture/rwkv",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "saelens",
+        "sparse-autoencoder-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for training and analyzing Sparse Autoencoders (SAEs) using SAELens to decompose neural network activations into interpretable features. Use when discovering interpretable features, analyzing superposition, or studying monosemantic representations in language models.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/saelens"
+      ],
       "id": "saelens",
       "name": "sparse-autoencoder-training",
       "path": "/home/hujie/.codex/skills/saelens",
-      "reserved": false
+      "relative_path": "saelens",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/04-mechanistic-interpretability/saelens",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "screenshot"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.",
       "id": "screenshot",
       "name": "screenshot",
       "path": "/home/hujie/.codex/skills/screenshot",
-      "reserved": false
+      "relative_path": "screenshot",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/screenshot",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "security-best-practices"
+      ],
       "category": "external_domain_skill",
+      "description": "Perform language and framework specific security best-practice reviews and suggest improvements. Trigger only when the user explicitly requests security best practices guidance, a security review/report, or secure-by-default coding help. Trigger only for supported languages (python, javascript/typescript, go). Do not trigger for general code review, debugging, or non-security tasks.",
       "id": "security-best-practices",
       "name": "security-best-practices",
       "path": "/home/hujie/.codex/skills/security-best-practices",
-      "reserved": false
+      "relative_path": "security-best-practices",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/security-best-practices",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "security-ownership-map"
+      ],
       "category": "external_domain_skill",
+      "description": "Analyze git repositories to build a security ownership topology (people-to-file), compute bus factor and sensitive-code ownership, and export CSV/JSON for graph databases and visualization. Trigger only when the user explicitly wants a security-oriented ownership or bus-factor analysis grounded in git history (for example: orphaned sensitive code, security maintainers, CODEOWNERS reality checks for risk, sensitive hotspots, or ownership clusters). Do not trigger for general maintainer lists or non-security ownership questions.",
       "id": "security-ownership-map",
       "name": "security-ownership-map",
       "path": "/home/hujie/.codex/skills/security-ownership-map",
-      "reserved": false
+      "relative_path": "security-ownership-map",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/security-ownership-map",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "security-threat-model"
+      ],
       "category": "external_domain_skill",
+      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attacker capabilities, abuse paths, and mitigations, and writes a concise Markdown threat model. Trigger only when the user explicitly asks to threat model a codebase or path, enumerate threats/abuse paths, or perform AppSec threat modeling. Do not trigger for general architecture summaries, code review, or non-security design work.",
       "id": "security-threat-model",
       "name": "security-threat-model",
       "path": "/home/hujie/.codex/skills/security-threat-model",
-      "reserved": false
+      "relative_path": "security-threat-model",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/security-threat-model",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "segment-anything",
+        "segment-anything-model"
+      ],
       "category": "external_domain_skill",
+      "description": "Foundation model for image segmentation with zero-shot transfer. Use when you need to segment any object in images using points, boxes, or masks as prompts, or automatically generate all object masks in an image.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/segment-anything"
+      ],
       "id": "segment-anything",
       "name": "segment-anything-model",
       "path": "/home/hujie/.codex/skills/segment-anything",
-      "reserved": false
+      "relative_path": "segment-anything",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/segment-anything",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "sentence-transformers"
+      ],
       "category": "external_domain_skill",
+      "description": "Framework for state-of-the-art sentence, text, and image embeddings. Provides 5000+ pre-trained models for semantic similarity, clustering, and retrieval. Supports multilingual, domain-specific, and multimodal models. Use for generating embeddings for RAG, semantic search, or similarity tasks. Best for production embedding generation.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/sentence-transformers"
+      ],
       "id": "sentence-transformers",
       "name": "sentence-transformers",
       "path": "/home/hujie/.codex/skills/sentence-transformers",
-      "reserved": false
+      "relative_path": "sentence-transformers",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/15-rag/sentence-transformers",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "sentencepiece"
+      ],
       "category": "external_domain_skill",
+      "description": "Language-independent tokenizer treating text as raw Unicode. Supports BPE and Unigram algorithms. Fast (50k sentences/sec), lightweight (6MB memory), deterministic vocabulary. Used by T5, ALBERT, XLNet, mBART. Train on raw text without pre-tokenization. Use when you need multilingual support, CJK languages, or reproducible tokenization.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/sentencepiece"
+      ],
       "id": "sentencepiece",
       "name": "sentencepiece",
       "path": "/home/hujie/.codex/skills/sentencepiece",
-      "reserved": false
+      "relative_path": "sentencepiece",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/02-tokenization/sentencepiece",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "sentry"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user asks to inspect Sentry issues or events, summarize recent production errors, or pull basic Sentry health data via the Sentry CLI; perform read-only queries using the `sentry` command.",
       "id": "sentry",
       "name": "sentry",
       "path": "/home/hujie/.codex/skills/sentry",
-      "reserved": false
+      "relative_path": "sentry",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/sentry",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "sglang"
+      ],
       "category": "external_domain_skill",
+      "description": "Fast structured generation and serving for LLMs with RadixAttention prefix caching. Use for JSON/regex outputs, constrained decoding, agentic workflows with tool calls, or when you need 5\u00d7 faster inference than vLLM with prefix sharing. Powers 300,000+ GPUs at xAI, AMD, NVIDIA, and LinkedIn.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/sglang"
+      ],
       "id": "sglang",
       "name": "sglang",
       "path": "/home/hujie/.codex/skills/sglang",
-      "reserved": false
+      "relative_path": "sglang",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/12-inference-serving/sglang",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "simpo",
+        "simpo-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Simple Preference Optimization for LLM alignment. Reference-free alternative to DPO with better performance (+6.4 points on AlpacaEval 2.0). No reference model needed, more efficient than DPO. Use for preference alignment when want simpler, faster training than DPO/PPO.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/simpo"
+      ],
       "id": "simpo",
       "name": "simpo-training",
       "path": "/home/hujie/.codex/skills/simpo",
-      "reserved": false
+      "relative_path": "simpo",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/simpo",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "skill-creator"
+      ],
       "category": "external_domain_skill",
+      "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations.",
       "id": "skill-creator",
       "name": "skill-creator",
       "path": "/home/hujie/.codex/skills/.system/skill-creator",
-      "reserved": false
+      "relative_path": ".system/skill-creator",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/.system/skill-creator",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "skill-installer"
+      ],
       "category": "external_domain_skill",
+      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
       "id": "skill-installer",
       "name": "skill-installer",
       "path": "/home/hujie/.codex/skills/.system/skill-installer",
-      "reserved": false
+      "relative_path": ".system/skill-installer",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/.system/skill-installer",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "skypilot",
+        "skypilot-multi-cloud-orchestration"
+      ],
       "category": "external_domain_skill",
+      "description": "Multi-cloud orchestration for ML workloads with automatic cost optimization. Use when you need to run training or batch jobs across multiple clouds, leverage spot instances with auto-recovery, or optimize GPU costs across providers.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/skypilot"
+      ],
       "id": "skypilot",
       "name": "skypilot-multi-cloud-orchestration",
       "path": "/home/hujie/.codex/skills/skypilot",
-      "reserved": false
+      "relative_path": "skypilot",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/09-infrastructure/skypilot",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "slides"
+      ],
       "category": "external_domain_skill",
+      "description": "Create and edit presentation slide decks (`.pptx`) with PptxGenJS, bundled layout helpers, and render/validation utilities. Use when tasks involve building a new PowerPoint deck, recreating slides from screenshots/PDFs/reference decks, modifying slide content while preserving editable output, adding charts/diagrams/visuals, or diagnosing layout issues such as overflow, overlaps, and font substitution.",
       "id": "slides",
       "name": "slides",
       "path": "/home/hujie/.codex/skills/slides",
-      "reserved": false
+      "relative_path": "slides",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/slides",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "slime",
+        "slime-rl-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for LLM post-training with RL using slime, a Megatron+SGLang framework. Use when training GLM models, implementing custom data generation workflows, or needing tight Megatron-LM integration for RL scaling.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/slime"
+      ],
       "id": "slime",
       "name": "slime-rl-training",
       "path": "/home/hujie/.codex/skills/slime",
-      "reserved": false
+      "relative_path": "slime",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/slime",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "software-engineer"
+      ],
       "category": "external_domain_skill",
+      "description": "Disciplined single-agent software engineering for existing repositories across algorithmic, backend, frontend, data-processing, model, inference, evaluation, and pipeline work. Use when Codex needs an AGENTS-first execution baseline, stable low-risk project-change workflow, or research-informed algorithm optimization workflow for implementing features, fixing bugs, performing targeted refactors, searching relevant papers and engineering projects, judging whether existing methods solve the user's problem, fusing ideas into novel implementation hypotheses, safely modifying backend or algorithm code, and shipping repository changes with repository instructions, existing conventions, minimal diffs, compatibility checks, repo-native validation, and PR-ready reporting.",
       "id": "software-engineer",
       "name": "software-engineer",
       "path": "/home/hujie/.codex/skills/software-engineer",
-      "reserved": false
+      "relative_path": "software-engineer",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/software-engineer",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "sora"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user asks to generate, edit, extend, poll, list, download, or delete Sora videos, create reusable non-human Sora character references, or run local multi-video queues via the bundled CLI (`scripts/sora.py`); includes requests like: (i) generate AI video, (ii) edit this Sora clip, (iii) extend this video, (iv) create a character reference, (v) download video/thumbnail/spritesheet, and (vi) Sora batch planning; requires `OPENAI_API_KEY` and Sora API access.",
       "id": "sora",
       "name": "sora",
       "path": "/home/hujie/.codex/skills/sora",
-      "reserved": false
+      "relative_path": "sora",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/sora",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "speculative-decoding"
+      ],
       "category": "external_domain_skill",
+      "description": "Accelerate LLM inference using speculative decoding, Medusa multiple heads, and lookahead decoding techniques. Use when optimizing inference speed (1.5-3.6\u00d7 speedup), reducing latency for real-time applications, or deploying models with limited compute. Covers draft models, tree-based attention, Jacobi iteration, parallel token generation, and production deployment strategies.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/speculative-decoding"
+      ],
       "id": "speculative-decoding",
       "name": "speculative-decoding",
       "path": "/home/hujie/.codex/skills/speculative-decoding",
-      "reserved": false
+      "relative_path": "speculative-decoding",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/19-emerging-techniques/speculative-decoding",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "speech"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when the user asks for text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; run the bundled CLI (`scripts/text_to_speech.py`) with built-in voices and require `OPENAI_API_KEY` for live calls. Custom voice creation is out of scope.",
       "id": "speech",
       "name": "speech",
       "path": "/home/hujie/.codex/skills/speech",
-      "reserved": false
+      "relative_path": "speech",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/speech",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "spreadsheet"
+      ],
       "category": "external_domain_skill",
+      "description": "Use when tasks involve creating, editing, analyzing, or formatting spreadsheets (`.xlsx`, `.csv`, `.tsv`) using Python (`openpyxl`, `pandas`), especially when formulas, references, and formatting need to be preserved and verified.",
       "id": "spreadsheet",
       "name": "spreadsheet",
       "path": "/home/hujie/.codex/skills/spreadsheet",
-      "reserved": false
+      "relative_path": "spreadsheet",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/spreadsheet",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "stable-diffusion",
+        "stable-diffusion-image-generation"
+      ],
       "category": "external_domain_skill",
+      "description": "State-of-the-art text-to-image generation with Stable Diffusion models via HuggingFace Diffusers. Use when generating images from text prompts, performing image-to-image translation, inpainting, or building custom diffusion pipelines.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/stable-diffusion"
+      ],
       "id": "stable-diffusion",
       "name": "stable-diffusion-image-generation",
       "path": "/home/hujie/.codex/skills/stable-diffusion",
-      "reserved": false
+      "relative_path": "stable-diffusion",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/stable-diffusion",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "experiment-tracking-swanlab",
+        "swanlab"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for experiment tracking with SwanLab. Use when you need open-source run tracking, local or self-hosted dashboards, and lightweight media logging for ML workflows.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/swanlab"
+      ],
       "id": "swanlab",
       "name": "experiment-tracking-swanlab",
       "path": "/home/hujie/.codex/skills/swanlab",
-      "reserved": false
+      "relative_path": "swanlab",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/13-mlops/swanlab",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "systems-paper-writing"
+      ],
       "category": "external_domain_skill",
+      "description": "Comprehensive guide for writing systems papers targeting OSDI, SOSP, ASPLOS, NSDI, and EuroSys. Provides paragraph-level structural blueprints, writing patterns, venue-specific checklists, reviewer guidelines, LaTeX templates, and conference deadlines. Use this skill for all systems conference paper writing.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/systems-paper-writing"
+      ],
       "id": "systems-paper-writing",
       "name": "systems-paper-writing",
       "path": "/home/hujie/.codex/skills/systems-paper-writing",
-      "reserved": false
+      "relative_path": "systems-paper-writing",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/20-ml-paper-writing/systems-paper-writing",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "tensorboard"
+      ],
       "category": "external_domain_skill",
+      "description": "Visualize training metrics, debug models with histograms, compare experiments, visualize model graphs, and profile performance with TensorBoard - Google's ML visualization toolkit",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/tensorboard"
+      ],
       "id": "tensorboard",
       "name": "tensorboard",
       "path": "/home/hujie/.codex/skills/tensorboard",
-      "reserved": false
+      "relative_path": "tensorboard",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/13-mlops/tensorboard",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "tensorrt-llm"
+      ],
       "category": "external_domain_skill",
+      "description": "Optimizes LLM inference with NVIDIA TensorRT for maximum throughput and lowest latency. Use for production deployment on NVIDIA GPUs (A100/H100), when you need 10-100x faster inference than PyTorch, or for serving models with quantization (FP8/INT4), in-flight batching, and multi-GPU scaling.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/tensorrt-llm"
+      ],
       "id": "tensorrt-llm",
       "name": "tensorrt-llm",
       "path": "/home/hujie/.codex/skills/tensorrt-llm",
-      "reserved": false
+      "relative_path": "tensorrt-llm",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/12-inference-serving/tensorrt-llm",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "torchforge",
+        "torchforge-rl-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for PyTorch-native agentic RL using torchforge, Meta's library separating infra from algorithms. Use when you want clean RL abstractions, easy algorithm experimentation, or scalable training with Monarch and TorchTitan.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/torchforge"
+      ],
       "id": "torchforge",
       "name": "torchforge-rl-training",
       "path": "/home/hujie/.codex/skills/torchforge",
-      "reserved": false
+      "relative_path": "torchforge",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/torchforge",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "distributed-llm-pretraining-torchtitan",
+        "torchtitan"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides PyTorch-native distributed LLM pretraining using torchtitan with 4D parallelism (FSDP2, TP, PP, CP). Use when pretraining Llama 3.1, DeepSeek V3, or custom models at scale from 8 to 512+ GPUs with Float8, torch.compile, and distributed checkpointing.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/torchtitan"
+      ],
       "id": "torchtitan",
       "name": "distributed-llm-pretraining-torchtitan",
       "path": "/home/hujie/.codex/skills/torchtitan",
-      "reserved": false
+      "relative_path": "torchtitan",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/01-model-architecture/torchtitan",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "transcribe"
+      ],
       "category": "external_domain_skill",
+      "description": "Transcribe audio files to text with optional diarization and known-speaker hints. Use when a user asks to transcribe speech from audio/video, extract text from recordings, or label speakers in interviews or meetings.",
       "id": "transcribe",
       "name": "transcribe",
       "path": "/home/hujie/.codex/skills/transcribe",
-      "reserved": false
+      "relative_path": "transcribe",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/transcribe",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "transformer-lens",
+        "transformer-lens-interpretability"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for mechanistic interpretability research using TransformerLens to inspect and manipulate transformer internals via HookPoints and activation caching. Use when reverse-engineering model algorithms, studying attention patterns, or performing activation patching experiments.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/transformer-lens"
+      ],
       "id": "transformer-lens",
       "name": "transformer-lens-interpretability",
       "path": "/home/hujie/.codex/skills/transformer-lens",
-      "reserved": false
+      "relative_path": "transformer-lens",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/04-mechanistic-interpretability/transformer-lens",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "fine-tuning-with-trl",
+        "trl-fine-tuning"
+      ],
       "category": "external_domain_skill",
+      "description": "Fine-tune LLMs using reinforcement learning with TRL - SFT for instruction tuning, DPO for preference alignment, PPO/GRPO for reward optimization, and reward model training. Use when need RLHF, align model with preferences, or train from human feedback. Works with HuggingFace Transformers.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/trl-fine-tuning"
+      ],
       "id": "trl-fine-tuning",
       "name": "fine-tuning-with-trl",
       "path": "/home/hujie/.codex/skills/trl-fine-tuning",
-      "reserved": false
+      "relative_path": "trl-fine-tuning",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/trl-fine-tuning",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "unsloth"
+      ],
       "category": "external_domain_skill",
+      "description": "Expert guidance for fast fine-tuning with Unsloth - 2-5x faster training, 50-80% less memory, LoRA/QLoRA optimization",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/unsloth"
+      ],
       "id": "unsloth",
       "name": "unsloth",
       "path": "/home/hujie/.codex/skills/unsloth",
-      "reserved": false
+      "relative_path": "unsloth",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/03-fine-tuning/unsloth",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "vercel-deploy"
+      ],
       "category": "external_domain_skill",
+      "description": "Deploy applications and websites to Vercel. Use when the user requests deployment actions like \"deploy my app\", \"deploy and give me the link\", \"push this live\", or \"create a preview deployment\".",
       "id": "vercel-deploy",
       "name": "vercel-deploy",
       "path": "/home/hujie/.codex/skills/vercel-deploy",
-      "reserved": false
+      "relative_path": "vercel-deploy",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/vercel-deploy",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "verl",
+        "verl-rl-training"
+      ],
       "category": "external_domain_skill",
+      "description": "Provides guidance for training LLMs with reinforcement learning using verl (Volcano Engine RL). Use when implementing RLHF, GRPO, PPO, or other RL algorithms for LLM post-training at scale with flexible infrastructure backends.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/verl"
+      ],
       "id": "verl",
       "name": "verl-rl-training",
       "path": "/home/hujie/.codex/skills/verl",
-      "reserved": false
+      "relative_path": "verl",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/06-post-training/verl",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "serving-llms-vllm",
+        "vllm"
+      ],
       "category": "external_domain_skill",
+      "description": "Serves LLMs with high throughput using vLLM's PagedAttention and continuous batching. Use when deploying production LLM APIs, optimizing inference latency/throughput, or serving models with limited GPU memory. Supports OpenAI-compatible endpoints, quantization (GPTQ/AWQ/FP8), and tensor parallelism.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/vllm"
+      ],
       "id": "vllm",
       "name": "serving-llms-vllm",
       "path": "/home/hujie/.codex/skills/vllm",
-      "reserved": false
+      "relative_path": "vllm",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/12-inference-serving/vllm",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "waterfall-delivery"
+      ],
       "category": "external_domain_skill",
+      "description": "Execute non-trivial software work using a document-first waterfall workflow. Trigger for new features, change requests, behavior-changing work, and non-trivial refactors. Do not trigger for tiny typo fixes, formatting-only edits, comments-only changes, or trivial low-risk edits with no behavior impact.",
       "id": "waterfall-delivery",
       "name": "waterfall-delivery",
       "path": "/home/hujie/.codex/skills/waterfall-delivery",
-      "reserved": false
+      "relative_path": "waterfall-delivery",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/waterfall-delivery",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "weights-and-biases"
+      ],
       "category": "external_domain_skill",
+      "description": "Track ML experiments with automatic logging, visualize training in real-time, optimize hyperparameters with sweeps, and manage model registry with W&B - collaborative MLOps platform",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/weights-and-biases"
+      ],
       "id": "weights-and-biases",
       "name": "weights-and-biases",
       "path": "/home/hujie/.codex/skills/weights-and-biases",
-      "reserved": false
+      "relative_path": "weights-and-biases",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/13-mlops/weights-and-biases",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "whisper"
+      ],
       "category": "external_domain_skill",
+      "description": "OpenAI's general-purpose speech recognition model. Supports 99 languages, transcription, translation to English, and language identification. Six model sizes from tiny (39M params) to large (1550M params). Use for speech-to-text, podcast transcription, or multilingual audio processing. Best for robust, multilingual ASR.",
+      "duplicate_paths": [
+        "/home/hujie/.agents/skills/whisper"
+      ],
       "id": "whisper",
       "name": "whisper",
       "path": "/home/hujie/.codex/skills/whisper",
-      "reserved": false
+      "relative_path": "whisper",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.orchestra/skills/18-multimodal/whisper",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "winui-app"
+      ],
       "category": "external_domain_skill",
+      "description": "Bootstrap, develop, and design modern WinUI 3 desktop applications with C# and the Windows App SDK using official Microsoft guidance, WinUI Gallery patterns, Windows App SDK samples, and CommunityToolkit components. Use when creating a brand new app, preparing a machine for WinUI, reviewing, refactoring, planning, troubleshooting, environment-checking, or setting up WinUI 3 XAML, controls, navigation, windowing, theming, accessibility, responsiveness, performance, deployment, or related Windows app design and development work.",
       "id": "winui-app",
       "name": "winui-app",
       "path": "/home/hujie/.codex/skills/winui-app",
-      "reserved": false
+      "relative_path": "winui-app",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/winui-app",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     },
     {
+      "aliases": [
+        "yeet"
+      ],
       "category": "external_domain_skill",
+      "description": "Use only when the user explicitly asks to stage, commit, push, and open a GitHub pull request in one flow using the GitHub CLI (`gh`).",
       "id": "yeet",
       "name": "yeet",
       "path": "/home/hujie/.codex/skills/yeet",
-      "reserved": false
+      "relative_path": "yeet",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/yeet",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
     }
   ],
   "skills_roots": [
     "/home/hujie/.codex/skills",
     "/home/hujie/.agents/skills"
   ],
-  "version": 1
+  "version": 2
 }

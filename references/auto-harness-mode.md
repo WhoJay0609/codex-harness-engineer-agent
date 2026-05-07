@@ -99,6 +99,6 @@ Status values are `baseline`, `keep`, `discard`, `crash`, `no-op`, `blocked`, `r
 
 ## Internal Experts And Parallel Experiments
 
-Use the `harness-experts.v2` internal team for auto work. Typical roles are `Professor Orchestrator`, `Context Curator`, `Runner Coordinator`, `Verifier / Evidence Auditor`, `Failure Analyst`, and `Mechanical Gatekeeper`.
+Use the `harness-experts.v3` internal team for auto work. Typical roles are `Professor Orchestrator`, `Context Curator`, `Runner Coordinator`, `Verifier / Evidence Auditor`, `Failure Analyst`, and `Mechanical Gatekeeper`.
 
 Parallel experiments are optional and must be approved during launch. Each worker gets an isolated worktree, one hypothesis, the same verify/guard contract, and a bounded device/resource assignment. The orchestrator selects the best mechanically verified result and records worker rows plus one authoritative main row in `results.tsv`.

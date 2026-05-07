@@ -54,8 +54,40 @@ RUN_TERMINAL_STATUSES = {
 }
 TERMINAL_STATUSES = {"completed", "stopped", "replaced", "failed", "blocked"}
 TERMINAL_EVENTS = {"completed", "stopped", "replaced", "failed", "blocked"}
-EXPERT_LIBRARY_VERSION = "harness-experts.v2"
-ALLOWED_EXPERT_LIBRARY_VERSIONS = {"harness-experts.v1", "harness-experts.v2"}
+TRACE_V2_EVENT_TYPES = {
+    "message",
+    "thought",
+    "plan",
+    "action",
+    "observation",
+    "tool_call",
+    "tool_observation",
+    "skill_check",
+    "skill_invocation",
+    "subagent_created",
+    "subagent_terminal",
+    "escalation",
+    "metric",
+    "failure",
+    "checkpoint",
+    "decision",
+    "state_snapshot",
+    "termination",
+}
+TRACE_V2_SOURCES = {
+    "user",
+    "orchestrator",
+    "subagent",
+    "tool",
+    "skill",
+    "runtime",
+    "environment",
+    "validator",
+    "system",
+}
+TRACE_V2_TOOL_OBSERVATION_TYPES = {"tool_observation", "observation"}
+EXPERT_LIBRARY_VERSION = "harness-experts.v3"
+ALLOWED_EXPERT_LIBRARY_VERSIONS = {"harness-experts.v1", "harness-experts.v2", "harness-experts.v3"}
 RESERVED_ORCHESTRATION_SKILLS = {"codex-autoresearch", "multi-agent", "expert-debate"}
 EXPERT_ROLES = {
     "Professor Orchestrator",
@@ -169,6 +201,116 @@ def load_jsonl(path: Path, errors: list[str]) -> list[dict[str, Any]]:
     return rows
 
 
+def is_trace_v2_row(row: dict[str, Any]) -> bool:
+    return any(
+        key in row
+        for key in [
+            "event_version",
+            "event_id",
+            "parent_id",
+            "event_type",
+            "source",
+            "tool_call_id",
+            "command_hash",
+        ]
+    )
+
+
+def check_typed_event_log(
+    events: list[dict[str, Any]],
+    tool_calls: list[dict[str, Any]],
+    failures: list[dict[str, Any]],
+    errors: list[str],
+) -> None:
+    v2_events = [row for row in events if is_trace_v2_row(row)]
+    if not v2_events:
+        return
+
+    seen_ids: set[str] = set()
+    tool_call_events: dict[str, dict[str, Any]] = {}
+    observed_tool_calls: set[str] = set()
+    terminal_seen = False
+
+    for row in v2_events:
+        line = row.get("_line")
+        prefix = f"events.jsonl:{line}"
+        event_version = row.get("event_version")
+        if event_version not in {None, 2}:
+            errors.append(f"{prefix}: event_version must be 2 when present")
+        event_id = row.get("event_id")
+        if not isinstance(event_id, str) or not event_id:
+            errors.append(f"{prefix}: trace v2 event must include non-empty event_id")
+        elif event_id in seen_ids:
+            errors.append(f"{prefix}: duplicate event_id {event_id}")
+        else:
+            seen_ids.add(event_id)
+
+        parent_id = row.get("parent_id")
+        if parent_id not in {None, ""} and parent_id not in seen_ids:
+            errors.append(f"{prefix}: parent_id {parent_id} must reference an earlier event_id")
+
+        event_type = row.get("event_type")
+        if event_type not in TRACE_V2_EVENT_TYPES:
+            errors.append(f"{prefix}: unknown trace v2 event_type {event_type!r}")
+
+        source = row.get("source")
+        if source not in TRACE_V2_SOURCES:
+            errors.append(f"{prefix}: unknown trace v2 source {source!r}")
+
+        if not row.get("ts"):
+            errors.append(f"{prefix}: trace v2 event must include ts")
+
+        if event_type in {"action", "tool_call"} and not row.get("action") and not row.get("tool"):
+            errors.append(f"{prefix}: {event_type} event must include action or tool")
+        if event_type in TRACE_V2_TOOL_OBSERVATION_TYPES and not row.get("observation"):
+            errors.append(f"{prefix}: {event_type} event must include observation")
+        if event_type == "tool_call":
+            tool_call_id = row.get("tool_call_id")
+            if not isinstance(tool_call_id, str) or not tool_call_id:
+                errors.append(f"{prefix}: tool_call event must include tool_call_id")
+            else:
+                tool_call_events[tool_call_id] = row
+        if event_type in TRACE_V2_TOOL_OBSERVATION_TYPES:
+            tool_call_id = row.get("tool_call_id")
+            if isinstance(tool_call_id, str) and tool_call_id:
+                observed_tool_calls.add(tool_call_id)
+        if event_type == "failure" and not row.get("error_kind"):
+            errors.append(f"{prefix}: failure event must include error_kind")
+        if event_type == "termination":
+            terminal_seen = True
+            status = row.get("status")
+            if status not in RUN_TERMINAL_STATUSES:
+                errors.append(f"{prefix}: termination event status must be a harness terminal status")
+
+    for tool_call_id, row in sorted(tool_call_events.items()):
+        if tool_call_id not in observed_tool_calls:
+            errors.append(
+                f"events.jsonl:{row.get('_line')}: tool_call {tool_call_id} has no matching observation event"
+            )
+
+    if v2_events and not terminal_seen:
+        errors.append("events.jsonl: trace v2 runs must include a termination event")
+
+    for row in tool_calls:
+        if not is_trace_v2_row(row):
+            continue
+        line = row.get("_line")
+        if not row.get("tool_call_id"):
+            errors.append(f"tool_calls.jsonl:{line}: trace v2 tool call must include tool_call_id")
+        if not row.get("tool") and not row.get("action"):
+            errors.append(f"tool_calls.jsonl:{line}: trace v2 tool call must include tool or action")
+        status = row.get("status")
+        if status and status not in {"pending", "running", "completed", "failed", "blocked"}:
+            errors.append(f"tool_calls.jsonl:{line}: unknown trace v2 tool call status {status!r}")
+
+    for row in failures:
+        if not is_trace_v2_row(row):
+            continue
+        line = row.get("_line")
+        if not row.get("error_kind") and not row.get("failure_kind"):
+            errors.append(f"failures.jsonl:{line}: trace v2 failure must include error_kind or failure_kind")
+
+
 def load_skill_inventory(errors: list[str]) -> tuple[set[str], set[str]]:
     """Return installed skill ids/names and the reserved orchestration subset."""
     inventory_path = Path(__file__).resolve().parents[1] / "references" / "skill-inventory.json"
@@ -208,13 +350,37 @@ def load_skill_inventory(errors: list[str]) -> tuple[set[str], set[str]]:
     return installed, reserved
 
 
+def load_expert_roles(errors: list[str]) -> set[str]:
+    """Return known expert roles from the generated library plus legacy roles."""
+    expert_library_path = Path(__file__).resolve().parents[1] / "references" / "expert-capability-library.json"
+    roles = set(EXPERT_ROLES)
+    if not expert_library_path.exists():
+        errors.append("expert-capability-library.json: missing generated expert library")
+        return roles
+    data = load_json(expert_library_path, errors)
+    if not isinstance(data, dict):
+        errors.append("expert-capability-library.json: must be a JSON object")
+        return roles
+    role_records = data.get("roles")
+    if not isinstance(role_records, list):
+        errors.append("expert-capability-library.json: roles must be a list")
+        return roles
+    for record in role_records:
+        if not isinstance(record, dict):
+            continue
+        role = record.get("role")
+        if isinstance(role, str) and role:
+            roles.add(role)
+    return roles
+
+
 def check_required_files(run_dir: Path, errors: list[str]) -> None:
     for name in REQUIRED_FILES:
         if not (run_dir / name).exists():
             errors.append(f"missing required artifact: {name}")
 
 
-def check_manifest(manifest: Any, errors: list[str]) -> None:
+def check_manifest(manifest: Any, expert_roles: set[str], errors: list[str]) -> None:
     if not isinstance(manifest, dict):
         errors.append("manifest.json: must be a JSON object")
         return
@@ -238,7 +404,7 @@ def check_manifest(manifest: Any, errors: list[str]) -> None:
         errors.append("manifest.json: team_policy.initial_roles must be a list")
     else:
         for role in initial_roles:
-            if role not in EXPERT_ROLES:
+            if role not in expert_roles:
                 errors.append(f"manifest.json: unknown initial role '{role}'")
     expert_library_version = team_policy.get("expert_library_version")
     if expert_library_version not in ALLOWED_EXPERT_LIBRARY_VERSIONS:
@@ -295,6 +461,7 @@ def check_subagents(
     escalations: list[dict[str, Any]],
     installed_skills: set[str],
     reserved_skills: set[str],
+    expert_roles: set[str],
     errors: list[str],
 ) -> None:
     created: dict[str, dict[str, Any]] = {}
@@ -309,7 +476,7 @@ def check_subagents(
         event = row.get("event")
         status = row.get("status")
         role = row.get("role")
-        if role and role not in EXPERT_ROLES:
+        if role and role not in expert_roles:
             errors.append(f"subagents.jsonl:{row.get('_line')}: unknown expert role '{role}'")
         if event == "created":
             created[agent_id] = row
@@ -351,7 +518,7 @@ def check_subagents(
 
         needed_role = row.get("needed_internal_expert")
         if needed_role:
-            if needed_role not in EXPERT_ROLES:
+            if needed_role not in expert_roles:
                 errors.append(f"subagents.jsonl:{row.get('_line')}: unknown needed_internal_expert '{needed_role}'")
             has_decision = any(
                 esc.get("triggered_by") == agent_id or esc.get("agent_id") == agent_id
@@ -471,6 +638,7 @@ def check_escalations(
     escalations: list[dict[str, Any]],
     installed_skills: set[str],
     reserved_skills: set[str],
+    expert_roles: set[str],
     errors: list[str],
 ) -> None:
     for row in escalations:
@@ -517,7 +685,7 @@ def check_escalations(
             if internal_action not in {"add", "stop", "replace"}:
                 errors.append(f"escalations.jsonl:{line}: internal_expert_action must be add, stop, or replace")
             role = row.get("role")
-            if role not in EXPERT_ROLES:
+            if role not in expert_roles:
                 errors.append(f"escalations.jsonl:{line}: unknown internal expert role '{role}'")
             for key in ["reason", "decision"]:
                 if not row.get(key):
@@ -726,28 +894,29 @@ def check_auto_harness(run_dir: Path, manifest: Any, errors: list[str]) -> None:
 def validate(run_dir: Path) -> list[str]:
     errors: list[str] = []
     installed_skills, reserved_skills = load_skill_inventory(errors)
+    expert_roles = load_expert_roles(errors)
     check_required_files(run_dir, errors)
 
     manifest_path = run_dir / "manifest.json"
     manifest = None
     if manifest_path.exists():
         manifest = load_json(manifest_path, errors)
-        check_manifest(manifest, errors)
+        check_manifest(manifest, expert_roles, errors)
 
     subagents = load_jsonl(run_dir / "subagents.jsonl", errors) if (run_dir / "subagents.jsonl").exists() else []
     skills = load_jsonl(run_dir / "skill_invocations.jsonl", errors) if (run_dir / "skill_invocations.jsonl").exists() else []
     escalations = load_jsonl(run_dir / "escalations.jsonl", errors) if (run_dir / "escalations.jsonl").exists() else []
+    events = load_jsonl(run_dir / "events.jsonl", errors) if (run_dir / "events.jsonl").exists() else []
+    tool_calls = load_jsonl(run_dir / "tool_calls.jsonl", errors) if (run_dir / "tool_calls.jsonl").exists() else []
+    failures = load_jsonl(run_dir / "failures.jsonl", errors) if (run_dir / "failures.jsonl").exists() else []
 
     check_skill_invocations(skills, subagents, installed_skills, reserved_skills, errors)
-    check_escalations(escalations, installed_skills, reserved_skills, errors)
-    check_subagents(subagents, skills, escalations, installed_skills, reserved_skills, errors)
+    check_escalations(escalations, installed_skills, reserved_skills, expert_roles, errors)
+    check_subagents(subagents, skills, escalations, installed_skills, reserved_skills, expert_roles, errors)
     check_team_policy(manifest, subagents, errors)
     check_auto_harness(run_dir, manifest, errors)
+    check_typed_event_log(events, tool_calls, failures, errors)
 
-    for name in ["events.jsonl", "tool_calls.jsonl", "failures.jsonl"]:
-        path = run_dir / name
-        if path.exists():
-            load_jsonl(path, errors)
     for name in ["metrics.json"]:
         path = run_dir / name
         if path.exists():

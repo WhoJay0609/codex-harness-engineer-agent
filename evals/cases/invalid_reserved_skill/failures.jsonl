@@ -1,0 +1,1 @@
+{"event_version":2,"agent_id":"verifier-1","error_kind":"policy_violation","summary":"reserved orchestration skill was allowed without explicit request"}

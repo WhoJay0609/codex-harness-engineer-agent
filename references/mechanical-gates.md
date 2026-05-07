@@ -5,7 +5,8 @@ Use this reference when converting guidance into executable checks.
 ## Gate Types
 
 - Artifact gates: required files exist and parse.
-- Schema gates: JSON and JSONL records contain required keys.
+- Schema gates: JSON and JSONL records contain required keys; Trace v2 events follow `references/schemas/harness-event.schema.json`.
+- Trace gates: event IDs are unique, `parent_id` points backward, tool calls have observations, failures have `error_kind`, and termination is explicit.
 - Lifecycle gates: every created subagent terminates with a stop reason.
 - Startup cleanup gates: `manifest.json` includes `startup_cleanup`; any startup cleanup action that closed, skipped, or could not inspect a handle has a corresponding `runtime_cleanup.jsonl` record.
 - Skill gates: subagents with `required_skill_check` have skill invocation records, used skills are installed, and used skills are inside the subagent allowlist.
@@ -13,6 +14,7 @@ Use this reference when converting guidance into executable checks.
 - Verification gates: success requires tests, metrics, screenshots, logs, or review evidence.
 - Architecture gates: dependency, layering, naming, and file-size rules are checked mechanically.
 - Documentation gates: behavior changes update the repo record system.
+- Self-eval gates: skill changes run `scripts/run_harness_evals.py` before publication.
 
 ## Error Message Style
 
