@@ -8,6 +8,8 @@ Use this reference when a subagent needs to call a skill.
 - `external_domain_skill`: installed skills for specific domains such as paper writing, frontend, model training, RAG, deployment, documents, and security. Subagents may use these when they appear in the task-card `allowed_skills`.
 - `reserved_orchestration_skill`: `codex-autoresearch`, `multi-agent`, and `expert-debate`. Their core capabilities are internalized in harness protocols. They are blocked unless the user explicitly requests that exact external skill.
 
+Code Auto Research as a design pattern is internalized in `auto_harness`. The external `$codex-autoresearch` skill remains reserved because invoking it changes orchestration ownership.
+
 The installed inventory lives in `references/skill-inventory.json`. A skill reference may match either a skill directory `id` or SKILL frontmatter `name`.
 
 ## Subagent Rules

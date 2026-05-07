@@ -1,12 +1,25 @@
 # Auto Harness Mode
 
-Use this reference when a harness should run an autonomous improve/verify loop toward a measurable or mechanically verifiable outcome. Auto Harness Mode is built into `harness-engineer`; do not call `$codex-autoresearch` unless the user explicitly requests that skill.
+Use this reference when a harness should run an autonomous improve/verify loop toward a measurable or mechanically verifiable outcome. Auto Harness Mode is the built-in Code Auto Research style loop for `harness-engineer`; read `references/code-autoresearch-integration.md` for project inspiration and mapping rules. Do not call `$codex-autoresearch` unless the user explicitly requests that skill.
 
 ## Activation
 
 Use `mode: "auto_harness"` in `manifest.json` when the task needs repeated iterations such as optimization, failing-test repair, error reduction, benchmark improvement, ship-readiness gates, or long-running research harness work.
 
 Default run mode is `foreground`: keep the loop in the current Codex session. Use `background` only after the user explicitly chooses it during launch confirmation.
+
+## Code Auto Research Lens
+
+For codebase work, treat each iteration as a measured experiment packet:
+
+- one safe edit scope;
+- one primary metric and direction;
+- one verify command;
+- one guard command when regression risk exists;
+- one keep, discard, crash, or blocked decision in `results.tsv`.
+
+This mirrors the useful parts of Code Auto Research projects while keeping the
+run inside the `harness-engineer` artifact and trace contract.
 
 ## Launch Wizard
 

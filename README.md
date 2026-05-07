@@ -41,6 +41,8 @@ skill path:
   unless the user explicitly requests them.
 - Supports Trace v2 typed events for tool calls, observations, failures,
   checkpoints, metrics, and termination.
+- Includes a built-in Code Auto Research style `auto_harness` mode for measured
+  codebase improvement loops.
 - Provides self-evals so changes to the skill can be regression-tested.
 
 ## Layout
@@ -49,6 +51,8 @@ skill path:
 SKILL.md
 agents/openai.yaml
 references/
+  framework.md
+  code-autoresearch-integration.md
   schemas/harness-event.schema.json
 scripts/
 evals/
@@ -108,11 +112,25 @@ is unavailable or blocked and the reason is recorded, or
 Full auto-harness runs also include `auto_state.json`, `results.tsv`, and
 `context.json`. See `SKILL.md` and `references/` for the full contract.
 
+## Related GitHub Projects
+
+- [leo-lilinxiao/codex-autoresearch](https://github.com/leo-lilinxiao/codex-autoresearch):
+  Codex Autoresearch Skill for goal-driven modify, verify, keep or discard
+  loops over mechanically verifiable codebase metrics. This repository borrows
+  the measured loop pattern while keeping `$codex-autoresearch` as an
+  explicit-request-only external orchestration skill.
+- [TheGreenCedar/codex-autoresearch](https://github.com/TheGreenCedar/codex-autoresearch):
+  Codex plugin for benchmark-contract-driven experiment packets, durable
+  session files, structured packet memory, and dashboard-backed review.
+
 ## Implementation References
 
 This skill remains Codex-native and file-based, but its harness mechanics were
 informed by these open-source projects and docs:
 
+- [karpathy/autoresearch](https://github.com/karpathy/autoresearch): fixed-budget
+  autonomous research loop with scalar metric comparison and keep/discard
+  experimentation.
 - [OpenHands Events](https://docs.openhands.dev/sdk/arch/events): append-only,
   typed event logs with source-aware event records.
 - [OpenHands Runtime](https://github.com/OpenHands/OpenHands/blob/main/openhands/runtime/README.md):

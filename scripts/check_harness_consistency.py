@@ -13,8 +13,10 @@ from typing import Any
 
 
 EXPECTED_REFERENCES = [
+    "framework.md",
     "harness-principles.md",
     "auto-harness-mode.md",
+    "code-autoresearch-integration.md",
     "expert-capability-library.md",
     "expert-capability-library.json",
     "schemas/harness-event.schema.json",

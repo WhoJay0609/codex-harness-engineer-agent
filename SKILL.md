@@ -5,93 +5,147 @@ description: Build and operate agent-first harnesses for reproducible, comparabl
 
 # Harness Engineer
 
-Use this skill to design the harness around agents: environment, constraints, feedback loops, artifacts, internal expert roles, skill activation, verification gates, decision support, escalation policy, and foreground-first autonomous loops. The goal is not "more agents"; it is reliable agent execution with evidence.
+Use this skill to design the system around agent work: goal framing, context
+delivery, runtime hygiene, expert roles, skill routing, feedback loops,
+mechanical gates, trace artifacts, and evidence-backed termination.
 
-## Core Principles
+The goal is not "more agents". The goal is reliable execution with inspectable
+evidence.
 
-- Humans steer; agents execute. Convert user intent into success criteria, constraints, and feedback loops.
-- The repo is the record system. Decisions, plans, validation, failures, and harness rules should become discoverable versioned artifacts.
-- Use maps, not manuals. Keep entry instructions short and point to deeper references only when needed.
-- Enforce invariants mechanically. Prefer schemas, linters, tests, trace validators, and CI over reminders.
-- Optimize for agent readability. Make context, runtime state, logs, metrics, and UI behavior inspectable by agents.
-- Treat failures as harness gaps. Ask what context, tool, constraint, metric, or feedback loop was missing.
-- Iterate until the goal is met or a bounded stop condition is reached; never silently declare success without evidence.
-- Bound autonomy with mechanical metrics, fast verification, explicit rollback, and traceable keep/discard decisions.
+## Mental Model
+
+Harness engineering has seven layers:
+
+1. Intent: goal, scope, budget, stop conditions, and success criteria.
+2. Context: repo map, prior runs, constraints, local instructions, and risks.
+3. Team: single-agent exception, inline expert fallback, or real runtime
+   subagents when the request and platform permit delegation.
+4. Tools: skill allowlists, shell/browser/runtime access, and guard commands.
+5. Artifacts: manifests, traces, logs, metrics, replay, and summaries.
+6. Loop: baseline, change, verify, keep/discard, recover, and terminate.
+7. Maintenance: refresh skill inventory, expert library, schemas, and evals as
+   the surrounding Codex skill set changes.
+
+Read `references/framework.md` for the full architecture map.
+
+## Operating Modes
+
+- `standard_harness`: design or improve a reproducible agent workflow.
+- `auto_harness`: run a foreground-first improve/verify loop over a measurable
+  target. This is the built-in Code Auto Research style mode.
+- `maintenance`: update this skill package, references, generated expert
+  library, or validation scripts.
+- `single_agent_exception`: trivial read-only checks, tiny edits, or one-command
+  validation. Record the reason when artifacts are produced.
+
+For codebase optimization loops, read `references/code-autoresearch-integration.md`
+and `references/auto-harness-mode.md`.
 
 ## Required Workflow
 
-1. Define the goal, success criteria, budget, stop conditions, and expected artifacts.
-2. Inspect the repo or workspace map before designing the harness.
-3. For `auto_harness` work, perform a read-only launch scan and at least one confirmation round before the loop starts. Default to foreground mode; use background runtime only when the user explicitly chooses it. Read `references/auto-harness-mode.md`.
-4. Before starting new agent threads, subagents, long-running commands, or harness subprocesses, perform startup runtime hygiene: identify stale or inactive threads/processes from the available runtime state, close only safe inactive work, and record what was kept, closed, skipped, or uncertain. If a runtime/thread limit is reached, clean inactive work first and retry once before reducing team size or escalating.
-5. For non-trivial harness work, classify the task and proactively create a small core council and any needed domain specialists from `harness-experts.v3` before main execution. When the runtime exposes subagent/thread APIs and the current user request or platform policy permits delegation, create real runtime subagents rather than only simulating expert roles inline. Use single-agent mode only for trivial inspection or tiny edits, and record the skip reason in `manifest.json`.
-6. Give each subagent a task card with `role`, `scope`, `allowed_skills`, `forbidden_skills`, `required_skill_check`, `inputs`, `expected_output_schema`, `budget`, `stop_conditions`, and `escalation_triggers`.
-7. Require every subagent to proactively check and use applicable skills from its allowlist. External domain skills are allowed when listed in `allowed_skills`. If a needed skill is outside the allowlist, the subagent reports `needed_skill` to the orchestrator.
-8. If runtime subagent creation is unavailable or blocked by platform policy, record `team_policy.subagent_execution_mode: "inline_expert_memos"`, `team_policy.subagent_runtime_blocked_reason`, and a Trace v2 `subagent_created` event that marks the fallback. Do not silently treat inline expert notes as real subagent execution.
-9. Record all runs, startup cleanup actions, tool calls, skill checks, failures, escalations, metrics, auto-loop decisions, and harness gaps.
-10. Verify with real evidence. If verification fails, classify whether to fix code, improve context, add a tool, add a mechanical gate, update docs, add or stop a subagent, or escalate.
-11. Use the internal expert library for critique, risk review, cross-domain coverage, role-specialized work, and auto-loop hypothesis generation.
-12. Treat `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` as reserved orchestration skills. Do not call them unless the user explicitly requests those skills; record explicit reserved skill use in `escalations.jsonl`.
-13. Prefer Trace v2 typed events in `events.jsonl` for new harness runs. Every tool call should have a matching observation, failures should include `error_kind`, and termination should be explicit.
-14. End only with `goal_met`, `budget_exhausted`, `policy_blocked`, `environment_blocked`, `user_decision_needed`, or `failed_with_evidence`.
+1. Frame the work: state the goal, scope, primary metric, guard, budget, stop
+   condition, and expected artifacts.
+2. Inspect first: read the repo or skill package map before designing or
+   editing the harness.
+3. Choose the mode and team policy: classify the task, decide
+   `team_policy.subagent_execution_mode`, and create real runtime subagents
+   when the current request and platform policy permit delegation.
+4. Route skills deliberately: use generated expert allowlists for domain work;
+   keep `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` explicit
+   request only.
+5. Record evidence: write Trace v2 events, tool observations, failures, metrics,
+   skill decisions, runtime cleanup, and terminal status when producing a run.
+6. Iterate mechanically: measure a baseline, make one focused change or
+   experiment, verify, guard, keep or discard, and log the decision.
+7. Maintain the harness: when rules, installed skills, or artifact contracts
+   change, update references, scripts, eval fixtures, README, and generated
+   expert library together.
+
+End only with `goal_met`, `budget_exhausted`, `policy_blocked`,
+`environment_blocked`, `user_decision_needed`, or `failed_with_evidence`.
 
 ## Artifact Contract
 
-For each run, prefer this layout:
+Minimum viable harness run:
 
 ```text
 runs/<experiment_id>/<run_id>/
   manifest.json
-  team_graph.json
   subagents.jsonl
   skill_invocations.jsonl
-  escalations.jsonl
   events.jsonl
   tool_calls.jsonl
-  runtime_cleanup.jsonl
   failures.jsonl
   metrics.json
-  auto_state.json
-  results.tsv
-  context.json
-  harness_gap_log.jsonl
-  state_snapshots/
   summary.md
   replay.md
 ```
 
-Minimum viable run: `manifest.json`, `subagents.jsonl`, `skill_invocations.jsonl`, `events.jsonl`, `tool_calls.jsonl`, `failures.jsonl`, `metrics.json`, `summary.md`, and `replay.md`. `manifest.json` must include `team_policy` with `expert_library_version`, `subagent_execution_mode`, and a `startup_cleanup` summary. If `subagent_execution_mode` is `runtime_subagents`, created subagent records must include a runtime handle such as `runtime_agent_id` or `thread_id`. If it is `inline_expert_memos`, `team_policy.subagent_runtime_blocked_reason` and each created subagent record must explain the fallback. If `manifest.json` uses `mode: "auto_harness"`, the run also needs `auto_state.json`, `results.tsv`, and `context.json`. Background auto runs may add `launch.json`, `runtime.json`, and `runtime.log`, but foreground is the default. If any inactive thread, subagent, terminal session, or subprocess is closed or skipped during startup hygiene, record the detailed action in `runtime_cleanup.jsonl` and cross-reference it from `events.jsonl`.
+Full runs may also include `team_graph.json`, `escalations.jsonl`,
+`runtime_cleanup.jsonl`, `auto_state.json`, `results.tsv`, `context.json`,
+`harness_gap_log.jsonl`, and `state_snapshots/`.
 
-Trace v2 events should follow `references/schemas/harness-event.schema.json`. Keep `events.jsonl` append-only and use `event_id`, `parent_id`, `source`, `event_type`, `agent_id`, `role`, `tool_call_id`, `skill`, `status`, `error_kind`, `files_changed`, and `command_hash` when applicable.
+`manifest.json` must include `team_policy.expert_library_version`,
+`team_policy.subagent_execution_mode`, and startup cleanup summary. If the mode
+is `runtime_subagents`, created subagents need `runtime_agent_id`, `thread_id`,
+or an equivalent handle. If the mode is `inline_expert_memos`, the manifest and
+subagent records must explain the fallback reason.
 
-## Reference Loading
+Trace v2 events follow `references/schemas/harness-event.schema.json`.
 
-- For first principles and OpenAI-style harness framing, read `references/harness-principles.md`.
-- For foreground-first autonomous improve/verify loops, read `references/auto-harness-mode.md`.
-- For the generated expert capability library, read `references/expert-capability-library.md` and `references/expert-capability-library.json`.
-- For installed skill classes, domain skill allowlists, and reserved orchestration skill rules, read `references/skill-routing-policy.md` and `references/skill-inventory.json`.
-- For Trace v2 event structure, read `references/schemas/harness-event.schema.json`.
-- When installed skills change, refresh `references/skill-inventory.json` with `scripts/update_skill_inventory.py`, then refresh the expert library with `scripts/update_expert_library.py`.
-- For proactive internal team formation and single-agent exceptions, read `references/team-formation-policy.md`.
-- For startup cleanup, dynamic subagent creation, stopping, replacement, and trace fields, read `references/subagent-runtime.md`.
-- For proactive skill usage by subagents, read `references/skill-activation-policy.md`.
-- For explicit-request-only `$codex-autoresearch`, `$expert-debate`, and `$multi-agent` policy, read `references/decision-support-policy.md`.
-- For when subagent issues require external review, read `references/escalation-policy.md`.
-- For iterative repair loops and run states, read `references/feedback-loop.md`.
-- For schemas, validators, lint-like gates, and artifact checks, read `references/mechanical-gates.md`.
-- For drift cleanup, stale docs, duplicate patterns, and quality gardening, read `references/entropy-garbage-collection.md`.
+## Reference Map
 
-## Script Use
+Architecture:
 
-- Use `scripts/validate_harness_trace.py <run_dir>` before trusting a run.
-- Use `scripts/replay_harness_run.py <run_dir>` to render a readable replay from artifacts.
-- Use `scripts/query_harness_trace.py <run_dir> ...` to inspect events, tool calls, skill decisions, failures, and subagent records.
-- Use `scripts/export_trace_table.py <run_dir>` to export artifacts as CSV or JSONL.
-- Use `scripts/run_harness_evals.py` to run harness self-evals before publishing skill changes.
-- Use `scripts/compare_runs.py <run_dir>...` to compare baseline and candidate runs.
-- Use `scripts/summarize_failures.py <run_dir>...` to aggregate failure causes.
-- Use `scripts/update_skill_inventory.py` to scan installed skills and write `references/skill-inventory.json`.
-- Use `scripts/update_expert_library.py` to rebuild `references/expert-capability-library.json` and `references/expert-capability-library.md` from the current skill inventory.
-- Use `scripts/check_harness_consistency.py <skill_or_harness_dir>` to check skill/reference/script consistency.
+- `references/framework.md`: skill structure, layer model, and ownership map.
+- `references/harness-principles.md`: first principles and source inspiration.
+- `references/auto-harness-mode.md`: foreground-first autonomous improve/verify
+  loop.
+- `references/code-autoresearch-integration.md`: Code Auto Research patterns and
+  related projects.
 
-If a script reports missing artifacts, stale inventory, stale expert library output, or invalid state, fix the harness evidence before claiming the task is complete.
+Team and runtime:
+
+- `references/expert-capability-library.md` and
+  `references/expert-capability-library.json`: generated `harness-experts.v3`
+  role library.
+- `references/team-formation-policy.md`: proactive team selection and
+  single-agent exceptions.
+- `references/subagent-runtime.md`: startup cleanup, runtime subagents, fallback
+  modes, stop/replace rules, and trace fields.
+
+Skill routing and escalation:
+
+- `references/skill-routing-policy.md` and `references/skill-inventory.json`:
+  installed skill classes, allowlists, and reserved orchestration skills.
+- `references/skill-activation-policy.md`: proactive skill checks by subagents.
+- `references/decision-support-policy.md`: explicit-request-only policy for
+  reserved orchestration skills.
+- `references/escalation-policy.md`: adding, stopping, replacing, or escalating
+  expert work.
+
+Evidence and maintenance:
+
+- `references/feedback-loop.md`: iteration states, failure records, and harness
+  gap records.
+- `references/mechanical-gates.md`: validators, schemas, CI gates, and artifact
+  checks.
+- `references/entropy-garbage-collection.md`: drift cleanup and quality
+  gardening.
+
+## Script Map
+
+- Validate runs: `scripts/validate_harness_trace.py <run_dir>`
+- Replay runs: `scripts/replay_harness_run.py <run_dir>`
+- Query traces: `scripts/query_harness_trace.py <run_dir> ...`
+- Export traces: `scripts/export_trace_table.py <run_dir>`
+- Compare runs: `scripts/compare_runs.py <run_dir>...`
+- Summarize failures: `scripts/summarize_failures.py <run_dir>...`
+- Refresh skill inventory: `scripts/update_skill_inventory.py`
+- Refresh expert library: `scripts/update_expert_library.py`
+- Run self-evals: `scripts/run_harness_evals.py`
+- Check package consistency:
+  `scripts/check_harness_consistency.py <skill_or_harness_dir>`
+
+If a script reports missing artifacts, stale generated files, or invalid state,
+fix the harness evidence before claiming the task is complete.
