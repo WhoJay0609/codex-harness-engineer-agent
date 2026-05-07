@@ -1,0 +1,3 @@
+iteration	commit	metric	delta	guard	status	description
+0	-	0	0	-	baseline	baseline score
+1	-	1	1	pass	keep	metric improved in eval fixture

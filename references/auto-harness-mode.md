@@ -31,6 +31,27 @@ Before a new auto run starts:
 4. Confirm foreground/background explicitly. Foreground is the recommended default.
 5. Do not ask new questions after the user approves launch. If ambiguity appears mid-loop, apply the confirmed defaults, log the decision, and continue until a terminal condition.
 
+## Helper Scripts
+
+Use these helpers for executable foreground loops:
+
+```bash
+python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ...
+python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> ...
+python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
+```
+
+`init_auto_harness.py` creates the run directory, baseline row, `auto_state.json`,
+`context.json`, and normal harness trace files. `record_auto_iteration.py`
+atomically appends one `results.tsv` row and synchronizes state, metrics,
+manifest termination, events, summary, and replay. `run_auto_harness.py` drives a
+foreground command loop: iteration command, verify command, optional guard,
+keep/discard decision, optional rollback command, and iteration recording.
+
+Background runtime control and user-level hooks are intentionally not part of
+the core helper set yet. Use foreground loops first; add background control only
+when the repository has a stable launch contract and stop/resume semantics.
+
 ## Artifacts
 
 Auto runs live inside the normal harness run directory:

@@ -1,0 +1,23 @@
+{
+  "config": {
+    "direction": "higher",
+    "goal": "Validate a complete auto_harness run.",
+    "guard": "python -m py_compile scripts/*.py",
+    "metric": "score",
+    "primary_metric_key": null,
+    "run_mode": "foreground",
+    "scope": "src/",
+    "verify": "printf \"1\\\\n\"",
+    "verify_format": "scalar"
+  },
+  "mode": "auto_harness",
+  "state": {
+    "baseline_metric": 0.0,
+    "best_metric": 1.0,
+    "current_metric": 1.0,
+    "iteration": 1,
+    "last_status": "keep",
+    "terminal_status": "goal_met"
+  },
+  "version": 1
+}

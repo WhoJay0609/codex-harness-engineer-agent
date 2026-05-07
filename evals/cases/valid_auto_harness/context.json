@@ -1,0 +1,8 @@
+{
+  "artifact_root": "/home/hujie/.codex/skills/harness-engineer/evals/cases/valid_auto_harness",
+  "primary_repo": "/tmp/harness-example-repo",
+  "run_mode": "foreground",
+  "scope": "src/",
+  "verify_cwd": "/tmp/harness-example-repo",
+  "version": 1
+}

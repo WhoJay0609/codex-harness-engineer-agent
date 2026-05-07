@@ -124,3 +124,11 @@ python scripts/replay_harness_run.py runs/<experiment_id>/<run_id>
 
 Use `scripts/query_harness_trace.py` and `scripts/export_trace_table.py` for
 inspection and downstream analysis.
+
+For executable `auto_harness` runs, prefer the helper scripts:
+
+```bash
+python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ...
+python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> ...
+python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
+```

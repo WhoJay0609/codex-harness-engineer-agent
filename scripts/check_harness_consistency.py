@@ -35,6 +35,9 @@ EXPECTED_REFERENCES = [
 ]
 
 EXPECTED_SCRIPTS = [
+    "init_auto_harness.py",
+    "record_auto_iteration.py",
+    "run_auto_harness.py",
     "validate_harness_trace.py",
     "compare_runs.py",
     "summarize_failures.py",

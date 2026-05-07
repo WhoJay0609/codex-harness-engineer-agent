@@ -120,6 +120,10 @@ Evidence and maintenance:
 
 ## Script Map
 
+- Initialize auto runs: `scripts/init_auto_harness.py --run-dir <run_dir> ...`
+- Record auto iterations: `scripts/record_auto_iteration.py --run-dir <run_dir> ...`
+- Run foreground auto loops:
+  `scripts/run_auto_harness.py --run-dir <run_dir> --iteration-command <cmd>`
 - Validate runs: `scripts/validate_harness_trace.py <run_dir>`
 - Replay runs: `scripts/replay_harness_run.py <run_dir>`
 - Query traces: `scripts/query_harness_trace.py <run_dir> ...`

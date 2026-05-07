@@ -28,6 +28,8 @@ Do not edit generated caches or run outputs into either tree.
 - Skill-inventory change: run `scripts/update_skill_inventory.py` and then
   `scripts/update_expert_library.py`.
 - Script or validator change: update or add eval cases under `evals/cases/`.
+- Auto-harness execution change: update helper scripts, `auto-harness-mode.md`,
+  `code-autoresearch-integration.md`, and at least one `auto_harness` eval case.
 - User-facing packaging change: update publish-repo `README.md`.
 
 ## Local Validation

@@ -42,7 +42,8 @@ skill path:
 - Supports Trace v2 typed events for tool calls, observations, failures,
   checkpoints, metrics, and termination.
 - Includes a built-in Code Auto Research style `auto_harness` mode for measured
-  codebase improvement loops.
+  codebase improvement loops with initialization, iteration logging, and a
+  foreground command runner.
 - Provides self-evals so changes to the skill can be regression-tested.
 
 ## Layout
@@ -85,6 +86,28 @@ python scripts/replay_harness_run.py runs/<experiment_id>/<run_id>
 python scripts/query_harness_trace.py runs/<experiment_id>/<run_id> --event-type tool_call
 python scripts/export_trace_table.py runs/<experiment_id>/<run_id> --format csv
 ```
+
+Run a foreground Code Auto Research style loop:
+
+```bash
+python scripts/init_auto_harness.py \
+  --run-dir runs/demo/001 \
+  --goal "improve the measured score" \
+  --scope src/ \
+  --metric score \
+  --direction higher \
+  --verify "python scripts/score.py" \
+  --guard "pytest -q" \
+  --baseline-metric 0
+
+python scripts/run_auto_harness.py \
+  --run-dir runs/demo/001 \
+  --iteration-command "python scripts/propose_one_change.py" \
+  --iterations 5
+```
+
+Use `scripts/record_auto_iteration.py` directly when Codex or a custom runner
+performs the edit/verify step and only needs to append a keep/discard/crash row.
 
 ## Artifact Contract
 
