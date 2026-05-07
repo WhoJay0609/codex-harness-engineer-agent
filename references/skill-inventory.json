@@ -1,0 +1,1334 @@
+{
+  "core_harness_skills": [
+    "harness-engineer"
+  ],
+  "generated_by": "scripts/update_skill_inventory.py",
+  "reserved_orchestration_skills": [
+    "codex-autoresearch",
+    "expert-debate",
+    "multi-agent"
+  ],
+  "skills": [
+    {
+      "category": "external_domain_skill",
+      "id": "0-autoresearch-skill",
+      "name": "autoresearch",
+      "path": "/home/hujie/.codex/skills/0-autoresearch-skill",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "a-evolve",
+      "name": "evolving-ai-agents",
+      "path": "/home/hujie/.codex/skills/a-evolve",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "academic-plotting",
+      "name": "academic-plotting",
+      "path": "/home/hujie/.codex/skills/academic-plotting",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "accelerate",
+      "name": "huggingface-accelerate",
+      "path": "/home/hujie/.codex/skills/accelerate",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "algorithm-improvement-loop",
+      "name": "algorithm-improvement-loop",
+      "path": "/home/hujie/.codex/skills/algorithm-improvement-loop",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "analyze-results",
+      "name": "analyze-results",
+      "path": "/home/hujie/.codex/skills/analyze-results",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "arxiv",
+      "name": "arxiv",
+      "path": "/home/hujie/.codex/skills/arxiv",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "aspnet-core",
+      "name": "aspnet-core",
+      "path": "/home/hujie/.codex/skills/aspnet-core",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "audiocraft",
+      "name": "audiocraft-audio-generation",
+      "path": "/home/hujie/.codex/skills/audiocraft",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "auto-paper-improvement-loop",
+      "name": "auto-paper-improvement-loop",
+      "path": "/home/hujie/.codex/skills/auto-paper-improvement-loop",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "auto-review-loop",
+      "name": "auto-review-loop",
+      "path": "/home/hujie/.codex/skills/auto-review-loop",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "auto-review-loop-llm",
+      "name": "auto-review-loop-llm",
+      "path": "/home/hujie/.codex/skills/auto-review-loop-llm",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "auto-review-loop-minimax",
+      "name": "auto-review-loop-minimax",
+      "path": "/home/hujie/.codex/skills/auto-review-loop-minimax",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "autogpt",
+      "name": "autogpt-agents",
+      "path": "/home/hujie/.codex/skills/autogpt",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "awq",
+      "name": "awq-quantization",
+      "path": "/home/hujie/.codex/skills/awq",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "axolotl",
+      "name": "axolotl",
+      "path": "/home/hujie/.codex/skills/axolotl",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "bigcode-evaluation-harness",
+      "name": "evaluating-code-models",
+      "path": "/home/hujie/.codex/skills/bigcode-evaluation-harness",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "bitsandbytes",
+      "name": "quantizing-models-bitsandbytes",
+      "path": "/home/hujie/.codex/skills/bitsandbytes",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "blip-2",
+      "name": "blip-2-vision-language",
+      "path": "/home/hujie/.codex/skills/blip-2",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "brainstorming-research-ideas",
+      "name": "brainstorming-research-ideas",
+      "path": "/home/hujie/.codex/skills/brainstorming-research-ideas",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "chatgpt-apps",
+      "name": "chatgpt-apps",
+      "path": "/home/hujie/.codex/skills/chatgpt-apps",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "chroma",
+      "name": "chroma",
+      "path": "/home/hujie/.codex/skills/chroma",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "cli-creator",
+      "name": "cli-creator",
+      "path": "/home/hujie/.codex/skills/cli-creator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "clip",
+      "name": "clip",
+      "path": "/home/hujie/.codex/skills/clip",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "cloudflare-deploy",
+      "name": "cloudflare-deploy",
+      "path": "/home/hujie/.codex/skills/cloudflare-deploy",
+      "reserved": false
+    },
+    {
+      "category": "reserved_orchestration_skill",
+      "id": "codex-autoresearch",
+      "name": "codex-autoresearch",
+      "path": "/home/hujie/.codex/skills/codex-autoresearch",
+      "reserved": true
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "comm-lit-review",
+      "name": "comm-lit-review",
+      "path": "/home/hujie/.codex/skills/comm-lit-review",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "constitutional-ai",
+      "name": "constitutional-ai",
+      "path": "/home/hujie/.codex/skills/constitutional-ai",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "cosmos-policy",
+      "name": "evaluating-cosmos-policy",
+      "path": "/home/hujie/.codex/skills/cosmos-policy",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "creative-thinking-for-research",
+      "name": "creative-thinking-for-research",
+      "path": "/home/hujie/.codex/skills/creative-thinking-for-research",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "crewai",
+      "name": "crewai-multi-agent",
+      "path": "/home/hujie/.codex/skills/crewai",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "deep-interview",
+      "name": "deep-interview",
+      "path": "/home/hujie/.codex/skills/deep-interview",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "deepspeed",
+      "name": "deepspeed",
+      "path": "/home/hujie/.codex/skills/deepspeed",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "develop-web-game",
+      "name": "develop-web-game",
+      "path": "/home/hujie/.codex/skills/develop-web-game",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "doc",
+      "name": "doc",
+      "path": "/home/hujie/.codex/skills/doc",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "dse-loop",
+      "name": "dse-loop",
+      "path": "/home/hujie/.codex/skills/dse-loop",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "dspy",
+      "name": "dspy",
+      "path": "/home/hujie/.codex/skills/dspy",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "experiment-bridge",
+      "name": "experiment-bridge",
+      "path": "/home/hujie/.codex/skills/experiment-bridge",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "experiment-plan",
+      "name": "experiment-plan",
+      "path": "/home/hujie/.codex/skills/experiment-plan",
+      "reserved": false
+    },
+    {
+      "category": "reserved_orchestration_skill",
+      "id": "expert-debate",
+      "name": "expert-debate",
+      "path": "/home/hujie/.codex/skills/expert-debate",
+      "reserved": true
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "faiss",
+      "name": "faiss",
+      "path": "/home/hujie/.codex/skills/faiss",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "feishu-notify",
+      "name": "feishu-notify",
+      "path": "/home/hujie/.codex/skills/feishu-notify",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma",
+      "name": "figma",
+      "path": "/home/hujie/.codex/skills/figma",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-code-connect-components",
+      "name": "figma-code-connect-components",
+      "path": "/home/hujie/.codex/skills/figma-code-connect-components",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-create-design-system-rules",
+      "name": "figma-create-design-system-rules",
+      "path": "/home/hujie/.codex/skills/figma-create-design-system-rules",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-create-new-file",
+      "name": "figma-create-new-file",
+      "path": "/home/hujie/.codex/skills/figma-create-new-file",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-generate-design",
+      "name": "figma-generate-design",
+      "path": "/home/hujie/.codex/skills/figma-generate-design",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-generate-library",
+      "name": "figma-generate-library",
+      "path": "/home/hujie/.codex/skills/figma-generate-library",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-implement-design",
+      "name": "figma-implement-design",
+      "path": "/home/hujie/.codex/skills/figma-implement-design",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "figma-use",
+      "name": "figma-use",
+      "path": "/home/hujie/.codex/skills/figma-use",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "flash-attention",
+      "name": "optimizing-attention-flash",
+      "path": "/home/hujie/.codex/skills/flash-attention",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "formula-derivation",
+      "name": "formula-derivation",
+      "path": "/home/hujie/.codex/skills/formula-derivation",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "frontend",
+      "name": "frontend",
+      "path": "/home/hujie/.codex/skills/frontend",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "gguf",
+      "name": "gguf-quantization",
+      "path": "/home/hujie/.codex/skills/gguf",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "gh-address-comments",
+      "name": "gh-address-comments",
+      "path": "/home/hujie/.codex/skills/gh-address-comments",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "gh-fix-ci",
+      "name": "gh-fix-ci",
+      "path": "/home/hujie/.codex/skills/gh-fix-ci",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "git-pr-workflow",
+      "name": "git-pr-workflow",
+      "path": "/home/hujie/.codex/skills/git-pr-workflow",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "gptq",
+      "name": "gptq",
+      "path": "/home/hujie/.codex/skills/gptq",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "grant-proposal",
+      "name": "grant-proposal",
+      "path": "/home/hujie/.codex/skills/grant-proposal",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "grpo-rl-training",
+      "name": "grpo-rl-training",
+      "path": "/home/hujie/.codex/skills/grpo-rl-training",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "guidance",
+      "name": "guidance",
+      "path": "/home/hujie/.codex/skills/guidance",
+      "reserved": false
+    },
+    {
+      "category": "core_harness_skill",
+      "id": "harness-engineer",
+      "name": "harness-engineer",
+      "path": "/home/hujie/.codex/skills/harness-engineer",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "hqq",
+      "name": "hqq-quantization",
+      "path": "/home/hujie/.codex/skills/hqq",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "huggingface-tokenizers",
+      "name": "huggingface-tokenizers",
+      "path": "/home/hujie/.codex/skills/huggingface-tokenizers",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "idea-creator",
+      "name": "idea-creator",
+      "path": "/home/hujie/.codex/skills/idea-creator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "idea-discovery",
+      "name": "idea-discovery",
+      "path": "/home/hujie/.codex/skills/idea-discovery",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "idea-discovery-robot",
+      "name": "idea-discovery-robot",
+      "path": "/home/hujie/.codex/skills/idea-discovery-robot",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "imagegen",
+      "name": "imagegen",
+      "path": "/home/hujie/.codex/skills/.system/imagegen",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "instructor",
+      "name": "instructor",
+      "path": "/home/hujie/.codex/skills/instructor",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "jupyter-notebook",
+      "name": "jupyter-notebook",
+      "path": "/home/hujie/.codex/skills/jupyter-notebook",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "knowledge-distillation",
+      "name": "knowledge-distillation",
+      "path": "/home/hujie/.codex/skills/knowledge-distillation",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "lambda-labs",
+      "name": "lambda-labs-gpu-cloud",
+      "path": "/home/hujie/.codex/skills/lambda-labs",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "langchain",
+      "name": "langchain",
+      "path": "/home/hujie/.codex/skills/langchain",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "langsmith",
+      "name": "langsmith-observability",
+      "path": "/home/hujie/.codex/skills/langsmith",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "linear",
+      "name": "linear",
+      "path": "/home/hujie/.codex/skills/linear",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "litgpt",
+      "name": "implementing-llms-litgpt",
+      "path": "/home/hujie/.codex/skills/litgpt",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "llama-cpp",
+      "name": "llama-cpp",
+      "path": "/home/hujie/.codex/skills/llama-cpp",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "llama-factory",
+      "name": "llama-factory",
+      "path": "/home/hujie/.codex/skills/llama-factory",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "llamaguard",
+      "name": "llamaguard",
+      "path": "/home/hujie/.codex/skills/llamaguard",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "llamaindex",
+      "name": "llamaindex",
+      "path": "/home/hujie/.codex/skills/llamaindex",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "llava",
+      "name": "llava",
+      "path": "/home/hujie/.codex/skills/llava",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "lm-evaluation-harness",
+      "name": "evaluating-llms-harness",
+      "path": "/home/hujie/.codex/skills/lm-evaluation-harness",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "long-context",
+      "name": "long-context",
+      "path": "/home/hujie/.codex/skills/long-context",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "mamba",
+      "name": "mamba-architecture",
+      "path": "/home/hujie/.codex/skills/mamba",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "megatron-core",
+      "name": "training-llms-megatron",
+      "path": "/home/hujie/.codex/skills/megatron-core",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "miles",
+      "name": "miles-rl-training",
+      "path": "/home/hujie/.codex/skills/miles",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "ml-paper-writing",
+      "name": "ml-paper-writing",
+      "path": "/home/hujie/.codex/skills/ml-paper-writing",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "ml-training-recipes",
+      "name": "ml-training-recipes",
+      "path": "/home/hujie/.codex/skills/ml-training-recipes",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "mlflow",
+      "name": "mlflow",
+      "path": "/home/hujie/.codex/skills/mlflow",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "modal",
+      "name": "modal-serverless-gpu",
+      "path": "/home/hujie/.codex/skills/modal",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "model-merging",
+      "name": "model-merging",
+      "path": "/home/hujie/.codex/skills/model-merging",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "model-pruning",
+      "name": "model-pruning",
+      "path": "/home/hujie/.codex/skills/model-pruning",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "moe-training",
+      "name": "moe-training",
+      "path": "/home/hujie/.codex/skills/moe-training",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "monitor-experiment",
+      "name": "monitor-experiment",
+      "path": "/home/hujie/.codex/skills/monitor-experiment",
+      "reserved": false
+    },
+    {
+      "category": "reserved_orchestration_skill",
+      "id": "multi-agent",
+      "name": "multi-agent",
+      "path": "/home/hujie/.codex/skills/multi-agent",
+      "reserved": true
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "nanogpt",
+      "name": "nanogpt",
+      "path": "/home/hujie/.codex/skills/nanogpt",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "nemo-curator",
+      "name": "nemo-curator",
+      "path": "/home/hujie/.codex/skills/nemo-curator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "nemo-evaluator",
+      "name": "nemo-evaluator-sdk",
+      "path": "/home/hujie/.codex/skills/nemo-evaluator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "nemo-guardrails",
+      "name": "nemo-guardrails",
+      "path": "/home/hujie/.codex/skills/nemo-guardrails",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "netlify-deploy",
+      "name": "netlify-deploy",
+      "path": "/home/hujie/.codex/skills/netlify-deploy",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "nnsight",
+      "name": "nnsight-remote-interpretability",
+      "path": "/home/hujie/.codex/skills/nnsight",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "notion-knowledge-capture",
+      "name": "notion-knowledge-capture",
+      "path": "/home/hujie/.codex/skills/notion-knowledge-capture",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "notion-meeting-intelligence",
+      "name": "notion-meeting-intelligence",
+      "path": "/home/hujie/.codex/skills/notion-meeting-intelligence",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "notion-research-documentation",
+      "name": "notion-research-documentation",
+      "path": "/home/hujie/.codex/skills/notion-research-documentation",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "notion-spec-to-implementation",
+      "name": "notion-spec-to-implementation",
+      "path": "/home/hujie/.codex/skills/notion-spec-to-implementation",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "novelty-check",
+      "name": "novelty-check",
+      "path": "/home/hujie/.codex/skills/novelty-check",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "openai-docs",
+      "name": "openai-docs",
+      "path": "/home/hujie/.codex/skills/.system/openai-docs",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "openpi",
+      "name": "fine-tuning-serving-openpi",
+      "path": "/home/hujie/.codex/skills/openpi",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "openrlhf",
+      "name": "openrlhf-training",
+      "path": "/home/hujie/.codex/skills/openrlhf",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "openvla-oft",
+      "name": "fine-tuning-openvla-oft",
+      "path": "/home/hujie/.codex/skills/openvla-oft",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "outlines",
+      "name": "outlines",
+      "path": "/home/hujie/.codex/skills/outlines",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-compile",
+      "name": "paper-compile",
+      "path": "/home/hujie/.codex/skills/paper-compile",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-figure",
+      "name": "paper-figure",
+      "path": "/home/hujie/.codex/skills/paper-figure",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-illustration",
+      "name": "paper-illustration",
+      "path": "/home/hujie/.codex/skills/paper-illustration",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-plan",
+      "name": "paper-plan",
+      "path": "/home/hujie/.codex/skills/paper-plan",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-poster",
+      "name": "paper-poster",
+      "path": "/home/hujie/.codex/skills/paper-poster",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-slides",
+      "name": "paper-slides",
+      "path": "/home/hujie/.codex/skills/paper-slides",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-write",
+      "name": "paper-write",
+      "path": "/home/hujie/.codex/skills/paper-write",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "paper-writing",
+      "name": "paper-writing",
+      "path": "/home/hujie/.codex/skills/paper-writing",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pdf",
+      "name": "pdf",
+      "path": "/home/hujie/.codex/skills/pdf",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "peft",
+      "name": "peft-fine-tuning",
+      "path": "/home/hujie/.codex/skills/peft",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "phoenix",
+      "name": "phoenix-observability",
+      "path": "/home/hujie/.codex/skills/phoenix",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pinecone",
+      "name": "pinecone",
+      "path": "/home/hujie/.codex/skills/pinecone",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pixel-art",
+      "name": "pixel-art",
+      "path": "/home/hujie/.codex/skills/pixel-art",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "planner",
+      "name": "planner",
+      "path": "/home/hujie/.agents/skills/planner",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "playwright",
+      "name": "playwright",
+      "path": "/home/hujie/.codex/skills/playwright",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "playwright-interactive",
+      "name": "playwright-interactive",
+      "path": "/home/hujie/.codex/skills/playwright-interactive",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "plugin-creator",
+      "name": "plugin-creator",
+      "path": "/home/hujie/.codex/skills/.system/plugin-creator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "presenting-conference-talks",
+      "name": "presenting-conference-talks",
+      "path": "/home/hujie/.codex/skills/presenting-conference-talks",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "project-phase-report",
+      "name": "project-phase-report",
+      "path": "/home/hujie/.codex/skills/project-phase-report",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "prompt-guard",
+      "name": "prompt-guard",
+      "path": "/home/hujie/.codex/skills/prompt-guard",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "proof-writer",
+      "name": "proof-writer",
+      "path": "/home/hujie/.codex/skills/proof-writer",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pytorch-fsdp2",
+      "name": "pytorch-fsdp2",
+      "path": "/home/hujie/.codex/skills/pytorch-fsdp2",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pytorch-lightning",
+      "name": "pytorch-lightning",
+      "path": "/home/hujie/.codex/skills/pytorch-lightning",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "pyvene",
+      "name": "pyvene-interventions",
+      "path": "/home/hujie/.codex/skills/pyvene",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "qdrant",
+      "name": "qdrant-vector-search",
+      "path": "/home/hujie/.codex/skills/qdrant",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "ray-data",
+      "name": "ray-data",
+      "path": "/home/hujie/.codex/skills/ray-data",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "ray-train",
+      "name": "ray-train",
+      "path": "/home/hujie/.codex/skills/ray-train",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "render-deploy",
+      "name": "render-deploy",
+      "path": "/home/hujie/.codex/skills/render-deploy",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "repo-refactor-governance",
+      "name": "repo-refactor-governance",
+      "path": "/home/hujie/.codex/skills/repo-refactor-governance",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-lit",
+      "name": "research-lit",
+      "path": "/home/hujie/.codex/skills/research-lit",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-pipeline",
+      "name": "research-pipeline",
+      "path": "/home/hujie/.codex/skills/research-pipeline",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-refine",
+      "name": "research-refine",
+      "path": "/home/hujie/.codex/skills/research-refine",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-refine-pipeline",
+      "name": "research-refine-pipeline",
+      "path": "/home/hujie/.codex/skills/research-refine-pipeline",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-review",
+      "name": "research-review",
+      "path": "/home/hujie/.codex/skills/research-review",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "research-survey",
+      "name": "research-survey",
+      "path": "/home/hujie/.codex/skills/research-survey",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "run-experiment",
+      "name": "run-experiment",
+      "path": "/home/hujie/.codex/skills/run-experiment",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "rwkv",
+      "name": "rwkv-architecture",
+      "path": "/home/hujie/.codex/skills/rwkv",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "saelens",
+      "name": "sparse-autoencoder-training",
+      "path": "/home/hujie/.codex/skills/saelens",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "screenshot",
+      "name": "screenshot",
+      "path": "/home/hujie/.codex/skills/screenshot",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "security-best-practices",
+      "name": "security-best-practices",
+      "path": "/home/hujie/.codex/skills/security-best-practices",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "security-ownership-map",
+      "name": "security-ownership-map",
+      "path": "/home/hujie/.codex/skills/security-ownership-map",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "security-threat-model",
+      "name": "security-threat-model",
+      "path": "/home/hujie/.codex/skills/security-threat-model",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "segment-anything",
+      "name": "segment-anything-model",
+      "path": "/home/hujie/.codex/skills/segment-anything",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "sentence-transformers",
+      "name": "sentence-transformers",
+      "path": "/home/hujie/.codex/skills/sentence-transformers",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "sentencepiece",
+      "name": "sentencepiece",
+      "path": "/home/hujie/.codex/skills/sentencepiece",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "sentry",
+      "name": "sentry",
+      "path": "/home/hujie/.codex/skills/sentry",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "sglang",
+      "name": "sglang",
+      "path": "/home/hujie/.codex/skills/sglang",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "simpo",
+      "name": "simpo-training",
+      "path": "/home/hujie/.codex/skills/simpo",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "skill-creator",
+      "name": "skill-creator",
+      "path": "/home/hujie/.codex/skills/.system/skill-creator",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "skill-installer",
+      "name": "skill-installer",
+      "path": "/home/hujie/.codex/skills/.system/skill-installer",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "skypilot",
+      "name": "skypilot-multi-cloud-orchestration",
+      "path": "/home/hujie/.codex/skills/skypilot",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "slides",
+      "name": "slides",
+      "path": "/home/hujie/.codex/skills/slides",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "slime",
+      "name": "slime-rl-training",
+      "path": "/home/hujie/.codex/skills/slime",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "software-engineer",
+      "name": "software-engineer",
+      "path": "/home/hujie/.codex/skills/software-engineer",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "sora",
+      "name": "sora",
+      "path": "/home/hujie/.codex/skills/sora",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "speculative-decoding",
+      "name": "speculative-decoding",
+      "path": "/home/hujie/.codex/skills/speculative-decoding",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "speech",
+      "name": "speech",
+      "path": "/home/hujie/.codex/skills/speech",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "spreadsheet",
+      "name": "spreadsheet",
+      "path": "/home/hujie/.codex/skills/spreadsheet",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "stable-diffusion",
+      "name": "stable-diffusion-image-generation",
+      "path": "/home/hujie/.codex/skills/stable-diffusion",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "swanlab",
+      "name": "experiment-tracking-swanlab",
+      "path": "/home/hujie/.codex/skills/swanlab",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "systems-paper-writing",
+      "name": "systems-paper-writing",
+      "path": "/home/hujie/.codex/skills/systems-paper-writing",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "tensorboard",
+      "name": "tensorboard",
+      "path": "/home/hujie/.codex/skills/tensorboard",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "tensorrt-llm",
+      "name": "tensorrt-llm",
+      "path": "/home/hujie/.codex/skills/tensorrt-llm",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "torchforge",
+      "name": "torchforge-rl-training",
+      "path": "/home/hujie/.codex/skills/torchforge",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "torchtitan",
+      "name": "distributed-llm-pretraining-torchtitan",
+      "path": "/home/hujie/.codex/skills/torchtitan",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "transcribe",
+      "name": "transcribe",
+      "path": "/home/hujie/.codex/skills/transcribe",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "transformer-lens",
+      "name": "transformer-lens-interpretability",
+      "path": "/home/hujie/.codex/skills/transformer-lens",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "trl-fine-tuning",
+      "name": "fine-tuning-with-trl",
+      "path": "/home/hujie/.codex/skills/trl-fine-tuning",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "unsloth",
+      "name": "unsloth",
+      "path": "/home/hujie/.codex/skills/unsloth",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "vercel-deploy",
+      "name": "vercel-deploy",
+      "path": "/home/hujie/.codex/skills/vercel-deploy",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "verl",
+      "name": "verl-rl-training",
+      "path": "/home/hujie/.codex/skills/verl",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "vllm",
+      "name": "serving-llms-vllm",
+      "path": "/home/hujie/.codex/skills/vllm",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "waterfall-delivery",
+      "name": "waterfall-delivery",
+      "path": "/home/hujie/.codex/skills/waterfall-delivery",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "weights-and-biases",
+      "name": "weights-and-biases",
+      "path": "/home/hujie/.codex/skills/weights-and-biases",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "whisper",
+      "name": "whisper",
+      "path": "/home/hujie/.codex/skills/whisper",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "winui-app",
+      "name": "winui-app",
+      "path": "/home/hujie/.codex/skills/winui-app",
+      "reserved": false
+    },
+    {
+      "category": "external_domain_skill",
+      "id": "yeet",
+      "name": "yeet",
+      "path": "/home/hujie/.codex/skills/yeet",
+      "reserved": false
+    }
+  ],
+  "skills_roots": [
+    "/home/hujie/.codex/skills",
+    "/home/hujie/.agents/skills"
+  ],
+  "version": 1
+}

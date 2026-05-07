@@ -1,0 +1,5 @@
+interface:
+  display_name: "Harness Engineer"
+  short_description: "Build reliable agent auto harnesses"
+  brand_color: "#0F766E"
+  default_prompt: "Use $harness-engineer to build a reproducible agent harness with foreground-first auto loops, startup cleanup, internal experts, skill allowlists, traces, and verification gates."
