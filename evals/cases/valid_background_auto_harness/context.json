@@ -1,0 +1,8 @@
+{
+  "artifact_root": "evals/cases/valid_background_auto_harness",
+  "primary_repo": "eval-fixture-repo",
+  "run_mode": "background",
+  "scope": "metric.txt",
+  "verify_cwd": "eval-fixture-repo",
+  "version": 1
+}

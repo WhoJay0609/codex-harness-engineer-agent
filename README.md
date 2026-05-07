@@ -109,6 +109,41 @@ python scripts/run_auto_harness.py \
 Use `scripts/record_auto_iteration.py` directly when Codex or a custom runner
 performs the edit/verify step and only needs to append a keep/discard/crash row.
 
+Run a detached background loop:
+
+```bash
+python scripts/init_auto_harness.py \
+  --run-dir runs/demo/bg-001 \
+  --goal "improve the measured score" \
+  --scope src/ \
+  --metric score \
+  --direction higher \
+  --verify "python scripts/score.py" \
+  --guard "pytest -q" \
+  --run-mode background \
+  --baseline-metric 0
+
+python scripts/harness_runtime_ctl.py launch \
+  --run-dir runs/demo/bg-001 \
+  --iteration-command "python scripts/propose_one_change.py" \
+  --iterations 10
+
+python scripts/harness_runtime_ctl.py status --run-dir runs/demo/bg-001
+python scripts/harness_runtime_ctl.py stop --run-dir runs/demo/bg-001
+```
+
+Manage optional user-level Codex hooks:
+
+```bash
+python scripts/harness_hooks_ctl.py status
+python scripts/harness_hooks_ctl.py install
+python scripts/harness_hooks_ctl.py uninstall
+```
+
+Hooks write future-session context and stop-hook continuation hints for active
+`auto_harness` runs. They are managed explicitly and are not installed during
+package validation.
+
 ## Artifact Contract
 
 A minimum viable run records:

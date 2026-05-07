@@ -11,11 +11,11 @@ bad changes, and preserve an audit trail.
 systems while preserving this skill's artifact contract, Trace v2 events,
 skill-routing policy, and explicit user approval boundaries.
 
-The core executable helper set is `init_auto_harness.py`,
-`record_auto_iteration.py`, and `run_auto_harness.py`. These provide foreground
-initialization, iteration logging, and command-driven improve/verify loops. They
-do not yet provide codex-autoresearch-style detached background runtime control
-or user-level hooks.
+The executable helper set is `init_auto_harness.py`,
+`record_auto_iteration.py`, `run_auto_harness.py`, `harness_runtime_ctl.py`, and
+`harness_hooks_ctl.py`. These provide initialization, iteration logging,
+foreground command-driven loops, detached background loops, status/stop control,
+and optional user-level hooks for future-session context.
 
 `$codex-autoresearch` remains a reserved orchestration skill. Do not call it
 unless the user explicitly requests that external skill in the current task.

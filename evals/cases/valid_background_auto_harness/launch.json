@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-05-07T11:44:04Z",
+  "iteration_command": "v=$(cat metric.txt); expr $v + 1 > metric.txt",
+  "iterations": 2,
+  "log_path": "evals/cases/valid_background_auto_harness/runtime.log",
+  "rollback_command": null,
+  "run_dir": "evals/cases/valid_background_auto_harness",
+  "sleep_seconds": 0.0,
+  "stop_after_keep": false,
+  "version": 1
+}

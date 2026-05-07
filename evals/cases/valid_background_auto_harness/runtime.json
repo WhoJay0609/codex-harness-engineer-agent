@@ -1,0 +1,16 @@
+{
+  "active": false,
+  "finished_at": "2026-05-07T11:44:05Z",
+  "iterations_completed": 2,
+  "last_returncode": 0,
+  "launch_path": "evals/cases/valid_background_auto_harness/launch.json",
+  "log_path": "evals/cases/valid_background_auto_harness/runtime.log",
+  "pid": 1982409,
+  "returncode": 0,
+  "run_dir": "evals/cases/valid_background_auto_harness",
+  "started_at": "2026-05-07T11:44:04Z",
+  "status": "completed",
+  "stop_requested": false,
+  "updated_at": "2026-05-07T11:44:05Z",
+  "version": 1
+}

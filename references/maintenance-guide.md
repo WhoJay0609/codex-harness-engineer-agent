@@ -30,6 +30,8 @@ Do not edit generated caches or run outputs into either tree.
 - Script or validator change: update or add eval cases under `evals/cases/`.
 - Auto-harness execution change: update helper scripts, `auto-harness-mode.md`,
   `code-autoresearch-integration.md`, and at least one `auto_harness` eval case.
+- Background runtime or hook change: test with a temporary `CODEX_HOME`; do not
+  modify the user's real Codex hook config as part of validation.
 - User-facing packaging change: update publish-repo `README.md`.
 
 ## Local Validation

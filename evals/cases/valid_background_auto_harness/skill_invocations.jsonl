@@ -1,0 +1,3 @@
+{"agent_id": "professor-orchestrator", "allowed": true, "blocked_reason": null, "output_artifact": "auto_state.json", "reason": "initialize auto_harness artifact contract", "skill": "harness-engineer", "used": true}
+{"agent_id": "runner-coordinator", "allowed": true, "blocked_reason": null, "output_artifact": "auto_state.json", "reason": "initialize auto_harness artifact contract", "skill": "harness-engineer", "used": true}
+{"agent_id": "verifier-evidence-auditor", "allowed": true, "blocked_reason": null, "output_artifact": "auto_state.json", "reason": "initialize auto_harness artifact contract", "skill": "harness-engineer", "used": true}

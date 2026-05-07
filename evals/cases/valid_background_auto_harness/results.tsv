@@ -1,0 +1,4 @@
+iteration	commit	metric	delta	guard	status	description
+0	966765ebfe1a19636987e93a6991909245826ae6	0	0	-	baseline	baseline
+1	966765ebfe1a19636987e93a6991909245826ae6	1	1	pass	keep	metric improved to 1
+2	966765ebfe1a19636987e93a6991909245826ae6	2	1	pass	keep	metric improved to 2

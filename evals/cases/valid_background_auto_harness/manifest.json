@@ -1,0 +1,36 @@
+{
+  "experiment_id": "auto-harness",
+  "goal": "increase metric in background",
+  "mode": "auto_harness",
+  "run_id": "run",
+  "schema_version": 2,
+  "startup_cleanup": {
+    "closed_count": 0,
+    "skipped_count": 0,
+    "summary": "no runtime cleanup performed by init helper",
+    "unavailable_count": 0
+  },
+  "success_criteria": [
+    "auto_harness artifacts validate"
+  ],
+  "team_policy": {
+    "expert_library_version": "harness-experts.v3",
+    "initial_roles": [
+      "Professor Orchestrator",
+      "Runner Coordinator",
+      "Verifier / Evidence Auditor"
+    ],
+    "mode": "internal_team",
+    "reason": "auto_harness loop needs execution and verification roles",
+    "reserved_orchestration_policy": "explicit_user_request_only",
+    "single_agent_exception": false,
+    "skill_policy": "external_domain_allowed_by_allowlist",
+    "subagent_execution_mode": "inline_expert_memos",
+    "subagent_runtime_blocked_reason": "auto_harness helper initialized without live runtime subagent handles",
+    "task_class": "execution"
+  },
+  "termination": {
+    "reason": "background runtime reached configured iteration boundary",
+    "status": "budget_exhausted"
+  }
+}

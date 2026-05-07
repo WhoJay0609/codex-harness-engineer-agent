@@ -1,0 +1,23 @@
+{
+  "config": {
+    "direction": "higher",
+    "goal": "increase metric in background",
+    "guard": "test -f metric.txt",
+    "metric": "score",
+    "primary_metric_key": null,
+    "run_mode": "background",
+    "scope": "metric.txt",
+    "verify": "cat metric.txt",
+    "verify_format": "scalar"
+  },
+  "mode": "auto_harness",
+  "state": {
+    "baseline_metric": 0.0,
+    "best_metric": 2.0,
+    "current_metric": 2.0,
+    "iteration": 2,
+    "last_status": "keep",
+    "terminal_status": "budget_exhausted"
+  },
+  "version": 1
+}

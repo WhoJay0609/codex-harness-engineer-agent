@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from auto_harness_common import (
+    RUN_TERMINAL_STATUSES,
     format_metric,
     is_improved,
     load_run_state,
@@ -24,6 +25,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--iterations", type=int, default=1)
     parser.add_argument("--rollback-command", default=None, help="optional command run after discard/crash")
     parser.add_argument("--stop-after-keep", action="store_true")
+    parser.add_argument(
+        "--allow-background",
+        action="store_true",
+        help="allow running a run whose auto_state config.run_mode is background",
+    )
+    parser.add_argument(
+        "--default-terminal-status",
+        choices=sorted(RUN_TERMINAL_STATUSES),
+        default="budget_exhausted",
+        help="terminal status recorded for non-goal iterations",
+    )
     return parser.parse_args()
 
 
@@ -54,8 +66,11 @@ def main() -> int:
         verify_format = str(config.get("verify_format") or "scalar")
         primary_metric_key = config.get("primary_metric_key")
         run_mode = str(config.get("run_mode") or "foreground")
-        if run_mode != "foreground":
-            print("run_auto_harness.py only supports foreground runs", file=sys.stderr)
+        if run_mode == "background" and not args.allow_background:
+            print("run_auto_harness.py requires --allow-background for background runs", file=sys.stderr)
+            return 2
+        if run_mode not in {"foreground", "background"}:
+            print("auto_state.json config.run_mode must be foreground or background", file=sys.stderr)
             return 2
         if direction not in {"higher", "lower"} or not verify:
             print("auto_state.json config must include direction and verify", file=sys.stderr)
@@ -167,7 +182,7 @@ def main() -> int:
                 rollback_proc = shell_run(args.rollback_command, primary_repo, env=env)
                 description += f"; rollback exit={rollback_proc.returncode}"
 
-        terminal_status = "goal_met" if status == "keep" and args.stop_after_keep else "budget_exhausted"
+        terminal_status = "goal_met" if status == "keep" and args.stop_after_keep else args.default_terminal_status
         record_args = [
             "--run-dir",
             str(run_dir),

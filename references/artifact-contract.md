@@ -131,4 +131,7 @@ For executable `auto_harness` runs, prefer the helper scripts:
 python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ...
 python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> ...
 python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
+python scripts/harness_runtime_ctl.py launch --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
+
+Background runs add `launch.json`, `runtime.json`, and `runtime.log`.

@@ -48,9 +48,25 @@ manifest termination, events, summary, and replay. `run_auto_harness.py` drives 
 foreground command loop: iteration command, verify command, optional guard,
 keep/discard decision, optional rollback command, and iteration recording.
 
-Background runtime control and user-level hooks are intentionally not part of
-the core helper set yet. Use foreground loops first; add background control only
-when the repository has a stable launch contract and stop/resume semantics.
+For detached background loops, initialize with `--run-mode background`, then use:
+
+```bash
+python scripts/harness_runtime_ctl.py launch --run-dir runs/<experiment_id>/<run_id> \
+  --iteration-command '<cmd>' --iterations 10
+python scripts/harness_runtime_ctl.py status --run-dir runs/<experiment_id>/<run_id>
+python scripts/harness_runtime_ctl.py stop --run-dir runs/<experiment_id>/<run_id>
+```
+
+User-level Codex hooks are managed separately:
+
+```bash
+python scripts/harness_hooks_ctl.py status
+python scripts/harness_hooks_ctl.py install
+python scripts/harness_hooks_ctl.py uninstall
+```
+
+Hooks are optional infrastructure. They add future-session context and stop-hook
+continuation hints for active runs, but they should not be installed silently.
 
 ## Artifacts
 

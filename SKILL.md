@@ -124,6 +124,9 @@ Evidence and maintenance:
 - Record auto iterations: `scripts/record_auto_iteration.py --run-dir <run_dir> ...`
 - Run foreground auto loops:
   `scripts/run_auto_harness.py --run-dir <run_dir> --iteration-command <cmd>`
+- Control background auto loops:
+  `scripts/harness_runtime_ctl.py launch|status|stop --run-dir <run_dir> ...`
+- Manage user-level hooks: `scripts/harness_hooks_ctl.py status|install|uninstall`
 - Validate runs: `scripts/validate_harness_trace.py <run_dir>`
 - Replay runs: `scripts/replay_harness_run.py <run_dir>`
 - Query traces: `scripts/query_harness_trace.py <run_dir> ...`

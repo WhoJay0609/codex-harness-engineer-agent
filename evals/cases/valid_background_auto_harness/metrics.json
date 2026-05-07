@@ -1,0 +1,9 @@
+{
+  "baseline": 0.0,
+  "best": 2.0,
+  "current": 2.0,
+  "direction": "higher",
+  "iteration": 2,
+  "last_status": "keep",
+  "metric": "score"
+}
