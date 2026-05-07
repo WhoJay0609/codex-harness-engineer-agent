@@ -109,6 +109,10 @@ python scripts/run_auto_harness.py \
 Use `scripts/record_auto_iteration.py` directly when Codex or a custom runner
 performs the edit/verify step and only needs to append a keep/discard/crash row.
 
+Foreground is the default. No detached process is created unless the run is
+initialized with `--run-mode background` and launched through
+`scripts/harness_runtime_ctl.py`.
+
 Run a detached background loop:
 
 ```bash

@@ -87,7 +87,9 @@ Before starting an auto loop, show the user:
 - foreground/background run mode;
 - rollback strategy.
 
-Foreground is the default. Use background only after explicit user approval.
+Foreground is the default. Use background only after explicit user approval and
+after initializing the run with `--run-mode background`; the background runtime
+controller rejects foreground run directories.
 
 ## Safety Boundaries
 

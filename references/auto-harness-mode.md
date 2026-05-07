@@ -67,6 +67,8 @@ python scripts/harness_hooks_ctl.py uninstall
 
 Hooks are optional infrastructure. They add future-session context and stop-hook
 continuation hints for active runs, but they should not be installed silently.
+The background runtime controller rejects foreground run directories; foreground
+runs stay in the current Codex window through `run_auto_harness.py`.
 
 ## Artifacts
 

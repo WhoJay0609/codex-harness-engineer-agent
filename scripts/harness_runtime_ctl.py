@@ -70,6 +70,7 @@ def runtime_log_path(run_dir: Path, explicit: Path | None = None) -> Path:
 
 def create_launch(args: argparse.Namespace) -> dict[str, Any]:
     run_dir = args.run_dir.resolve()
+    require_background_run(run_dir)
     if args.iterations < 1:
         raise SystemExit("--iterations must be >= 1")
     path = launch_path(run_dir, args.launch_path)
@@ -124,8 +125,23 @@ def pid_alive(pid: Any) -> bool:
     return True
 
 
+def require_background_run(run_dir: Path) -> None:
+    try:
+        auto_state = read_json(run_dir / "auto_state.json")
+    except FileNotFoundError as exc:
+        raise SystemExit(f"{run_dir} is not an initialized auto_harness run") from exc
+    config = auto_state.get("config")
+    run_mode = config.get("run_mode", "foreground") if isinstance(config, dict) else "foreground"
+    if run_mode != "background":
+        raise SystemExit(
+            "harness_runtime_ctl.py only controls runs initialized with --run-mode background. "
+            "Use run_auto_harness.py in the current Codex window for foreground runs."
+        )
+
+
 def start_runtime(args: argparse.Namespace, *, runner_path: Path) -> dict[str, Any]:
     run_dir = args.run_dir.resolve()
+    require_background_run(run_dir)
     launch = load_launch(run_dir, args.launch_path)
     current = read_runtime(run_dir)
     if pid_alive(current.get("pid")):
@@ -172,6 +188,7 @@ def start_runtime(args: argparse.Namespace, *, runner_path: Path) -> dict[str, A
 
 def run_runtime(args: argparse.Namespace) -> int:
     run_dir = args.run_dir.resolve()
+    require_background_run(run_dir)
     launch = load_launch(run_dir, args.launch_path)
     total = int(launch.get("iterations") or 1)
     sleep_seconds = float(launch.get("sleep_seconds") or 0)
