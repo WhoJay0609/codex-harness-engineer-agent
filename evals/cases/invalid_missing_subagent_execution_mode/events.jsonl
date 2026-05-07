@@ -1,0 +1,2 @@
+{"event_version":2,"event_id":"evt-001","parent_id":null,"ts":"2026-05-07T00:00:00Z","source":"orchestrator","agent_id":"orchestrator","role":"Professor Orchestrator","event_type":"plan","status":"running","summary":"missing subagent execution mode"}
+{"event_version":2,"event_id":"evt-002","parent_id":"evt-001","ts":"2026-05-07T00:00:01Z","source":"orchestrator","agent_id":"orchestrator","role":"Professor Orchestrator","event_type":"termination","status":"failed_with_evidence","summary":"run completed with invalid manifest"}

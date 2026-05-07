@@ -54,6 +54,7 @@ RUN_TERMINAL_STATUSES = {
 }
 TERMINAL_STATUSES = {"completed", "stopped", "replaced", "failed", "blocked"}
 TERMINAL_EVENTS = {"completed", "stopped", "replaced", "failed", "blocked"}
+SUBAGENT_EXECUTION_MODES = {"runtime_subagents", "inline_expert_memos", "single_agent_exception"}
 TRACE_V2_EVENT_TYPES = {
     "message",
     "thought",
@@ -416,6 +417,19 @@ def check_manifest(manifest: Any, expert_roles: set[str], errors: list[str]) -> 
             errors.append("manifest.json: team_policy.skill_policy must be external_domain_allowed_by_allowlist")
         if team_policy.get("reserved_orchestration_policy") != "explicit_user_request_only":
             errors.append("manifest.json: team_policy.reserved_orchestration_policy must be explicit_user_request_only")
+        subagent_execution_mode = team_policy.get("subagent_execution_mode")
+        if subagent_execution_mode not in SUBAGENT_EXECUTION_MODES:
+            errors.append(
+                "manifest.json: team_policy.subagent_execution_mode must be runtime_subagents, inline_expert_memos, or single_agent_exception"
+            )
+        if mode == "internal_team" and subagent_execution_mode == "single_agent_exception":
+            errors.append("manifest.json: internal_team mode cannot use subagent_execution_mode=single_agent_exception")
+        if mode == "single_agent" and subagent_execution_mode != "single_agent_exception":
+            errors.append("manifest.json: single_agent mode requires subagent_execution_mode=single_agent_exception")
+        if subagent_execution_mode == "inline_expert_memos" and not team_policy.get("subagent_runtime_blocked_reason"):
+            errors.append(
+                "manifest.json: inline_expert_memos requires team_policy.subagent_runtime_blocked_reason"
+            )
     elif team_policy.get("external_skills_policy") != "explicit_user_request_only":
         errors.append("manifest.json: team_policy.external_skills_policy must be explicit_user_request_only for harness-experts.v1")
     if mode == "single_agent" and team_policy.get("single_agent_exception") is not True:
@@ -462,6 +476,7 @@ def check_subagents(
     installed_skills: set[str],
     reserved_skills: set[str],
     expert_roles: set[str],
+    subagent_execution_mode: str | None,
     errors: list[str],
 ) -> None:
     created: dict[str, dict[str, Any]] = {}
@@ -510,6 +525,16 @@ def check_subagents(
                     )
             if "required_skill_check" not in row:
                 errors.append(f"subagents.jsonl:{row.get('_line')}: created subagent {agent_id} must include required_skill_check")
+            if subagent_execution_mode == "runtime_subagents":
+                if not row.get("runtime_agent_id") and not row.get("thread_id"):
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: runtime_subagents mode requires runtime_agent_id or thread_id for {agent_id}"
+                    )
+            if subagent_execution_mode == "inline_expert_memos":
+                if not row.get("runtime_blocked_reason"):
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: inline_expert_memos mode requires runtime_blocked_reason for {agent_id}"
+                    )
 
         if status in TERMINAL_STATUSES or event in TERMINAL_EVENTS:
             terminal[agent_id] = row
@@ -592,6 +617,16 @@ def check_team_policy(manifest: Any, subagents: list[dict[str, Any]], errors: li
     for role in team_policy.get("initial_roles", []):
         if role not in created_roles:
             errors.append(f"subagents.jsonl: initial role '{role}' was not created")
+
+
+def get_subagent_execution_mode(manifest: Any) -> str | None:
+    if not isinstance(manifest, dict):
+        return None
+    team_policy = manifest.get("team_policy")
+    if not isinstance(team_policy, dict):
+        return None
+    value = team_policy.get("subagent_execution_mode")
+    return value if isinstance(value, str) else None
 
 
 def check_skill_invocations(
@@ -912,7 +947,8 @@ def validate(run_dir: Path) -> list[str]:
 
     check_skill_invocations(skills, subagents, installed_skills, reserved_skills, errors)
     check_escalations(escalations, installed_skills, reserved_skills, expert_roles, errors)
-    check_subagents(subagents, skills, escalations, installed_skills, reserved_skills, expert_roles, errors)
+    subagent_execution_mode = get_subagent_execution_mode(manifest)
+    check_subagents(subagents, skills, escalations, installed_skills, reserved_skills, expert_roles, subagent_execution_mode, errors)
     check_team_policy(manifest, subagents, errors)
     check_auto_harness(run_dir, manifest, errors)
     check_typed_event_log(events, tool_calls, failures, errors)

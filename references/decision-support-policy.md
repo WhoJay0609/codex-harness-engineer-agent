@@ -17,7 +17,7 @@ Major boundaries include:
 
 ## Use Internal Experts First
 
-Use the internal expert library for adversarial review, tradeoff analysis, risk pressure, broad domain coverage, and role-specialized work. Domain specialists may call external domain skills from their task-card allowlist.
+Use the internal expert library for adversarial review, tradeoff analysis, risk pressure, broad domain coverage, and role-specialized work. Domain specialists may call external domain skills from their task-card allowlist. When runtime subagents are available and permitted, create real subagents for these roles rather than running all roles as untracked main-agent thoughts.
 
 Good mappings:
 
@@ -25,6 +25,8 @@ Good mappings:
 - Need broad role-specialized coverage: select the task-class preset in `team-formation-policy.md`.
 - Need parallel evidence: create separate internal experts with non-overlapping scopes.
 - Need debate-like disagreement: ask `Debate Moderator`, `Red Team Critic`, and `Verifier / Evidence Auditor` to challenge the plan, then synthesize as orchestrator.
+
+If runtime subagent creation is blocked, record `inline_expert_memos` and the exact reason before continuing. The fallback should be visible in `manifest.json`, `subagents.jsonl`, and `events.jsonl`.
 
 ## External Skills Policy
 

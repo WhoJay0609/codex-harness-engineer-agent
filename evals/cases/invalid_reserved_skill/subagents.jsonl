@@ -1,2 +1,2 @@
-{"agent_id":"verifier-1","event":"created","role":"Verifier / Evidence Auditor","reason":"validate reserved skill policy","allowed_skills":["multi-agent"],"forbidden_skills":["expert-debate","codex-autoresearch"],"required_skill_check":true}
+{"agent_id":"verifier-1","event":"created","role":"Verifier / Evidence Auditor","reason":"validate reserved skill policy","allowed_skills":["multi-agent"],"forbidden_skills":["expert-debate","codex-autoresearch"],"required_skill_check":true,"runtime_agent_id":null,"thread_id":null,"runtime_blocked_reason":"eval fixture uses inline records without live runtime subagent handles"}
 {"agent_id":"verifier-1","event":"blocked","status":"blocked","role":"Verifier / Evidence Auditor","stop_reason":"reserved skill policy blocked"}

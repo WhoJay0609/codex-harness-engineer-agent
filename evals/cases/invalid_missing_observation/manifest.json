@@ -12,6 +12,8 @@
     "reason": "eval case needs a created verifier subagent",
     "initial_roles": ["Verifier / Evidence Auditor"],
     "single_agent_exception": false,
+    "subagent_execution_mode": "inline_expert_memos",
+    "subagent_runtime_blocked_reason": "eval fixture uses inline records without live runtime subagent handles",
     "skill_policy": "external_domain_allowed_by_allowlist",
     "reserved_orchestration_policy": "explicit_user_request_only"
   },

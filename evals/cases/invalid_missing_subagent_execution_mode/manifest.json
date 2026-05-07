@@ -1,19 +1,17 @@
 {
   "schema_version": 2,
   "experiment_id": "evals",
-  "run_id": "valid_trace_v2",
+  "run_id": "invalid_missing_subagent_execution_mode",
   "mode": "standard_harness",
-  "goal": "Validate a minimal Trace v2 harness run.",
-  "success_criteria": ["Trace validates with one tool call and one observation."],
+  "goal": "Reject a v3 internal team that does not declare how subagents executed.",
+  "success_criteria": ["Validator reports the missing subagent execution mode."],
   "team_policy": {
     "mode": "internal_team",
     "task_class": "standard_harness",
     "expert_library_version": "harness-experts.v3",
-    "reason": "eval case needs a created verifier subagent",
+    "reason": "eval case intentionally omits subagent_execution_mode",
     "initial_roles": ["Verifier / Evidence Auditor"],
     "single_agent_exception": false,
-    "subagent_execution_mode": "inline_expert_memos",
-    "subagent_runtime_blocked_reason": "eval fixture uses inline records without live runtime subagent handles",
     "skill_policy": "external_domain_allowed_by_allowlist",
     "reserved_orchestration_policy": "explicit_user_request_only"
   },
@@ -21,7 +19,7 @@
     "summary": "no runtime cleanup needed"
   },
   "termination": {
-    "status": "goal_met",
-    "reason": "valid trace v2 eval passed"
+    "status": "failed_with_evidence",
+    "reason": "missing subagent execution mode"
   }
 }

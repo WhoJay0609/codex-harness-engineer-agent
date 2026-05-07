@@ -38,6 +38,16 @@ For non-trivial harness work, proactively form a small internal team at the star
 
 The usual minimum team is `Context Curator` plus `Verifier / Evidence Auditor`. Add `Harness Architect`, `Runner Coordinator`, `Failure Analyst`, or `Mechanical Gatekeeper` as soon as the task involves design, execution, repair, or enforceable rules. Expert roles must come from the generated `references/expert-capability-library.json`, with the readable view in `references/expert-capability-library.md`.
 
+## Runtime Execution Modes
+
+Internal experts should be real runtime subagents when possible. Before work begins, set `team_policy.subagent_execution_mode`:
+
+- `runtime_subagents`: runtime agent/thread creation is available and permitted. Each created subagent record must include `runtime_agent_id`, `thread_id`, or an equivalent handle.
+- `inline_expert_memos`: runtime agent/thread creation is unavailable, blocked by platform policy, blocked by the current user request, or still impossible after startup cleanup. Each created subagent record must include `runtime_blocked_reason`, and the run should log the fallback in `events.jsonl`.
+- `single_agent_exception`: task is trivial enough that a team would be process overhead. Use only with `team_policy.single_agent_exception: true`.
+
+Inline expert memos can preserve role discipline, but they are not a substitute for real subagent execution. Treat repeated `inline_expert_memos` on non-trivial work as a harness gap unless the user or platform policy blocks delegation.
+
 ## Task Card
 
 Every subagent gets a task card:
@@ -50,6 +60,9 @@ Every subagent gets a task card:
   "allowed_skills": ["software-engineer", "run-experiment", "analyze-results"],
   "forbidden_skills": ["codex-autoresearch", "multi-agent", "expert-debate"],
   "required_skill_check": true,
+  "runtime_agent_id": "agent-abc123",
+  "thread_id": null,
+  "runtime_blocked_reason": null,
   "needed_skill": null,
   "skill_route_decision": null,
   "allowlist_expanded_by": null,
@@ -97,6 +110,9 @@ Record lifecycle events in `subagents.jsonl`:
   "allowed_skills": ["analyze-results", "software-engineer"],
   "forbidden_skills": ["codex-autoresearch", "multi-agent", "expert-debate"],
   "required_skill_check": true,
+  "runtime_agent_id": "agent-failure-1",
+  "thread_id": null,
+  "runtime_blocked_reason": null,
   "status": "active",
   "reason": "candidate run failed with unclear root cause"
 }

@@ -34,6 +34,9 @@ skill path:
 - Builds repo-native harness contracts for agent work.
 - Creates and validates traceable run artifacts.
 - Routes work through generated internal experts from installed skills.
+- Prefers real runtime subagents for non-trivial work when the current runtime
+  and platform policy permit delegation, and records explicit inline fallback
+  reasons when they do not.
 - Keeps `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` reserved
   unless the user explicitly requests them.
 - Supports Trace v2 typed events for tool calls, observations, failures,
@@ -96,7 +99,11 @@ replay.md
 New runs should prefer Trace v2 typed events in `events.jsonl`, following
 `references/schemas/harness-event.schema.json`. Every material tool call should
 have a matching observation, failures should include `error_kind`, and the run
-should end with an explicit terminal status.
+should end with an explicit terminal status. Non-trivial runs must declare
+`team_policy.subagent_execution_mode`: use `runtime_subagents` when real
+subagent/thread handles were created, `inline_expert_memos` only when delegation
+is unavailable or blocked and the reason is recorded, or
+`single_agent_exception` for trivial work.
 
 Full auto-harness runs also include `auto_state.json`, `results.tsv`, and
 `context.json`. See `SKILL.md` and `references/` for the full contract.

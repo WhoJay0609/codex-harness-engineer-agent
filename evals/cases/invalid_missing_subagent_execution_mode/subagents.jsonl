@@ -1,0 +1,2 @@
+{"agent_id":"verifier-1","event":"created","role":"Verifier / Evidence Auditor","reason":"validate the trace","allowed_skills":["analyze-results"],"forbidden_skills":["multi-agent","expert-debate","codex-autoresearch"],"required_skill_check":true}
+{"agent_id":"verifier-1","event":"failed","status":"failed","role":"Verifier / Evidence Auditor","stop_reason":"missing subagent execution mode"}
