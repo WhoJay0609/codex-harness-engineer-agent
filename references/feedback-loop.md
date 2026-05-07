@@ -1,6 +1,7 @@
 # Feedback Loop
 
-Use this reference to run iterative harness work.
+Use this reference to run iterative harness work. Record loop evidence using the
+file responsibilities in `references/artifact-contract.md`.
 
 ## Run States
 

@@ -49,11 +49,11 @@ Keep related concepts together:
 - Team behavior: `team-formation-policy.md`, `subagent-runtime.md`
 - Skill behavior: `skill-routing-policy.md`, `skill-activation-policy.md`,
   `decision-support-policy.md`, `escalation-policy.md`
-- Evidence behavior: `feedback-loop.md`, `mechanical-gates.md`,
-  `schemas/harness-event.schema.json`
+- Evidence behavior: `artifact-contract.md`, `feedback-loop.md`,
+  `mechanical-gates.md`, `schemas/harness-event.schema.json`
 - Maintenance behavior: `entropy-garbage-collection.md`,
   `skill-inventory.json`, `expert-capability-library.json`,
-  `expert-capability-library.md`
+  `expert-capability-library.md`, `maintenance-guide.md`
 
 ## Change Protocol
 
@@ -63,8 +63,10 @@ When changing the skill framework:
 2. Add or update the specific reference that owns the detailed rule.
 3. Update validators when the rule is enforceable.
 4. Update eval fixtures when validator behavior changes.
-5. Update README when users need install, usage, or related-project context.
-6. Run the consistency check, self-evals, and Python syntax check before
+5. Update `references/artifact-contract.md` when a run artifact field is added,
+   renamed, or made required.
+6. Update README when users need install, usage, or related-project context.
+7. Run the consistency check, self-evals, and Python syntax check before
    publishing.
 
 ## Maintenance Smells
@@ -76,6 +78,8 @@ When changing the skill framework:
 - Reserved orchestration skill policy differs across references, validators, and
   evals.
 - README describes behavior not present in the installed skill.
+- The publish repo differs from the installed source skill except for
+  repo-owned files such as root `README.md` and `.gitignore`.
 
 ## Minimal Publish Gate
 

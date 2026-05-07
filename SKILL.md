@@ -66,32 +66,13 @@ End only with `goal_met`, `budget_exhausted`, `policy_blocked`,
 
 ## Artifact Contract
 
-Minimum viable harness run:
+Use `references/artifact-contract.md` as the authoritative run layout and field
+contract. Minimum viable runs include `manifest.json`, `subagents.jsonl`,
+`skill_invocations.jsonl`, `events.jsonl`, `tool_calls.jsonl`,
+`failures.jsonl`, `metrics.json`, `summary.md`, and `replay.md`.
 
-```text
-runs/<experiment_id>/<run_id>/
-  manifest.json
-  subagents.jsonl
-  skill_invocations.jsonl
-  events.jsonl
-  tool_calls.jsonl
-  failures.jsonl
-  metrics.json
-  summary.md
-  replay.md
-```
-
-Full runs may also include `team_graph.json`, `escalations.jsonl`,
-`runtime_cleanup.jsonl`, `auto_state.json`, `results.tsv`, `context.json`,
-`harness_gap_log.jsonl`, and `state_snapshots/`.
-
-`manifest.json` must include `team_policy.expert_library_version`,
-`team_policy.subagent_execution_mode`, and startup cleanup summary. If the mode
-is `runtime_subagents`, created subagents need `runtime_agent_id`, `thread_id`,
-or an equivalent handle. If the mode is `inline_expert_memos`, the manifest and
-subagent records must explain the fallback reason.
-
-Trace v2 events follow `references/schemas/harness-event.schema.json`.
+Trace v2 events follow `references/schemas/harness-event.schema.json`. Run
+`scripts/validate_harness_trace.py <run_dir>` before trusting a run.
 
 ## Reference Map
 
@@ -103,6 +84,8 @@ Architecture:
   loop.
 - `references/code-autoresearch-integration.md`: Code Auto Research patterns and
   related projects.
+- `references/artifact-contract.md`: run directory layout, file
+  responsibilities, and required fields.
 
 Team and runtime:
 
@@ -132,6 +115,8 @@ Evidence and maintenance:
   checks.
 - `references/entropy-garbage-collection.md`: drift cleanup and quality
   gardening.
+- `references/maintenance-guide.md`: local validation, sync, publish, and common
+  packaging pitfalls.
 
 ## Script Map
 

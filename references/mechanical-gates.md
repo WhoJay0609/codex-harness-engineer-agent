@@ -1,6 +1,8 @@
 # Mechanical Gates
 
-Use this reference when converting guidance into executable checks.
+Use this reference when converting guidance into executable checks. For required
+run files and field ownership, read `references/artifact-contract.md` before
+changing validators.
 
 ## Gate Types
 

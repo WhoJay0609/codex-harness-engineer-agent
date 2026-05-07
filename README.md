@@ -53,6 +53,8 @@ agents/openai.yaml
 references/
   framework.md
   code-autoresearch-integration.md
+  artifact-contract.md
+  maintenance-guide.md
   schemas/harness-event.schema.json
 scripts/
 evals/
@@ -100,17 +102,18 @@ summary.md
 replay.md
 ```
 
+`references/artifact-contract.md` is the authoritative file and field contract.
 New runs should prefer Trace v2 typed events in `events.jsonl`, following
 `references/schemas/harness-event.schema.json`. Every material tool call should
 have a matching observation, failures should include `error_kind`, and the run
 should end with an explicit terminal status. Non-trivial runs must declare
-`team_policy.subagent_execution_mode`: use `runtime_subagents` when real
-subagent/thread handles were created, `inline_expert_memos` only when delegation
-is unavailable or blocked and the reason is recorded, or
-`single_agent_exception` for trivial work.
+`team_policy.subagent_execution_mode`.
 
 Full auto-harness runs also include `auto_state.json`, `results.tsv`, and
 `context.json`. See `SKILL.md` and `references/` for the full contract.
+
+For local skill maintenance, sync, validation, and publish steps, see
+`references/maintenance-guide.md`.
 
 ## Related GitHub Projects
 

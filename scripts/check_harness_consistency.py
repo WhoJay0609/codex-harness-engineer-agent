@@ -17,6 +17,7 @@ EXPECTED_REFERENCES = [
     "harness-principles.md",
     "auto-harness-mode.md",
     "code-autoresearch-integration.md",
+    "artifact-contract.md",
     "expert-capability-library.md",
     "expert-capability-library.json",
     "schemas/harness-event.schema.json",
@@ -30,6 +31,7 @@ EXPECTED_REFERENCES = [
     "feedback-loop.md",
     "mechanical-gates.md",
     "entropy-garbage-collection.md",
+    "maintenance-guide.md",
 ]
 
 EXPECTED_SCRIPTS = [
