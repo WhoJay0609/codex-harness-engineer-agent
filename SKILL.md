@@ -47,9 +47,10 @@ and `references/auto-harness-mode.md`.
    condition, and expected artifacts.
 2. Inspect first: read the repo or skill package map before designing or
    editing the harness.
-3. Choose the mode and team policy: classify the task, decide
-   `team_policy.subagent_execution_mode`, and create real runtime subagents
-   when the current request and platform policy permit delegation.
+3. Choose the mode and team policy: classify the task, then proactively create
+   real runtime subagents for parallelizable non-trivial work when the current
+   request and platform policy permit delegation. Use inline expert memos only
+   when runtime creation is blocked, and record the fallback reason.
 4. Route skills deliberately: use generated expert allowlists for domain work;
    keep `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` explicit
    request only.
@@ -121,6 +122,8 @@ Evidence and maintenance:
 ## Script Map
 
 - Initialize auto runs: `scripts/init_auto_harness.py --run-dir <run_dir> ...`
+  Add `--runtime-subagent "Role=runtime_agent_id"` after creating real runtime
+  subagents so artifacts use `team_policy.subagent_execution_mode=runtime_subagents`.
 - Record auto iterations: `scripts/record_auto_iteration.py --run-dir <run_dir> ...`
 - Run foreground auto loops:
   `scripts/run_auto_harness.py --run-dir <run_dir> --iteration-command <cmd>`

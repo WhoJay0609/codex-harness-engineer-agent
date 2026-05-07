@@ -41,6 +41,18 @@ python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> 
 python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
 
+When the task is non-trivial and runtime subagents are permitted, create the
+subagents first and pass their handles into initialization:
+
+```bash
+python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ... \
+  --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
+```
+
+`init_auto_harness.py` selects `runtime_subagents` automatically when at least
+one `--runtime-subagent` is supplied. Without runtime handles, it records
+`inline_expert_memos` as an explicit fallback.
+
 `init_auto_harness.py` creates the run directory, baseline row, `auto_state.json`,
 `context.json`, and normal harness trace files. `record_auto_iteration.py`
 atomically appends one `results.tsv` row and synchronizes state, metrics,

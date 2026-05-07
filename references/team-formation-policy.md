@@ -4,7 +4,7 @@ Use this reference at the start of a harness run.
 
 ## Default
 
-For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v3` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks. Prefer real runtime subagents whenever the active platform policy and user request permit delegation.
+For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v3` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks. Prefer real runtime subagents whenever the active platform policy and user request permit delegation. If the task has independent context gathering, implementation, verification, or failure-analysis branches, start those branches as runtime subagents instead of waiting for the main thread to finish.
 
 Use single-agent mode only for trivial inspection, tiny edits, or one-command checks. When using single-agent mode, record the reason in `manifest.json`. Inline expert memos are a fallback for blocked runtime subagent creation, not the default implementation of internal teams.
 
@@ -12,7 +12,7 @@ Use single-agent mode only for trivial inspection, tiny edits, or one-command ch
 
 At the start of every non-trivial harness run, make a concrete subagent creation decision:
 
-- `runtime_subagents`: create actual subagent/thread handles for the selected roles and record `runtime_agent_id`, `thread_id`, or the equivalent runtime handle in `subagents.jsonl`.
+- `runtime_subagents`: create actual subagent/thread handles for the selected roles and record `runtime_agent_id`, `thread_id`, or the equivalent runtime handle in `subagents.jsonl`. This is the preferred mode for non-trivial parallelizable work.
 - `inline_expert_memos`: use inline expert passes only because runtime subagents are unavailable, platform policy blocks creation, the current user request does not permit delegation, or the environment is at a thread limit after cleanup. Record `team_policy.subagent_runtime_blocked_reason` and `runtime_blocked_reason` on each created subagent record.
 - `single_agent_exception`: only for trivial work; record `single_agent_exception: true` and leave `initial_roles` empty.
 
@@ -156,7 +156,7 @@ For high-risk or cross-domain work, use 5-7 experts. Domain specialists may call
 3. Decide `subagent_execution_mode` before implementation. If `runtime_subagents` is possible, create actual runtime handles for at least the minimum context and verifier roles.
 4. Add domain specialists only after the core council identifies the domain, using the latest `references/expert-capability-library.json`.
 5. Create task cards before implementation begins.
-6. Record each creation event in `subagents.jsonl`, including runtime handles or fallback reasons.
+6. Record each creation event in `subagents.jsonl`, including runtime handles or fallback reasons. For `auto_harness`, pass real handles to `init_auto_harness.py` with `--runtime-subagent "Role=runtime_agent_id"`.
 7. Let subagents run early context, verification, or failure-analysis passes.
 8. Stop or replace subagents quickly when they become stale, duplicate, or blocked.
 

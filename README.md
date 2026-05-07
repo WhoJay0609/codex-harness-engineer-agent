@@ -109,6 +109,21 @@ python scripts/run_auto_harness.py \
 Use `scripts/record_auto_iteration.py` directly when Codex or a custom runner
 performs the edit/verify step and only needs to append a keep/discard/crash row.
 
+For non-trivial harness tasks, create runtime subagents first and pass their
+handles into initialization so the artifacts show real parallel execution:
+
+```bash
+python scripts/init_auto_harness.py \
+  --run-dir runs/demo/001 \
+  --goal "improve the measured score" \
+  --scope src/ \
+  --metric score \
+  --direction higher \
+  --verify "python scripts/score.py" \
+  --baseline-metric 0 \
+  --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
+```
+
 Foreground is the default. No detached process is created unless the run is
 initialized with `--run-mode background` and launched through
 `scripts/harness_runtime_ctl.py`.

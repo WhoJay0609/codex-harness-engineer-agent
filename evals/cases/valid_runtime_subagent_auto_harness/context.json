@@ -1,0 +1,8 @@
+{
+  "artifact_root": "evals/cases/valid_runtime_subagent_auto_harness",
+  "primary_repo": "eval-fixture-repo",
+  "run_mode": "foreground",
+  "scope": "metric.txt",
+  "verify_cwd": "eval-fixture-repo",
+  "version": 1
+}

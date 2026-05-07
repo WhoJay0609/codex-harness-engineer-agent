@@ -134,4 +134,9 @@ python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --ite
 python scripts/harness_runtime_ctl.py launch --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
 
+After creating real runtime subagents, initialize with one or more
+`--runtime-subagent "Role=runtime_agent_id"` arguments. The helper then records
+`team_policy.subagent_execution_mode=runtime_subagents` and validates the run
+against runtime handle requirements.
+
 Background runs add `launch.json`, `runtime.json`, and `runtime.log`.

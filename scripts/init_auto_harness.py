@@ -25,6 +25,7 @@ DEFAULT_ROLES = [
     "Verifier / Evidence Auditor",
 ]
 FORBIDDEN_SKILLS = ["codex-autoresearch", "multi-agent", "expert-debate"]
+SUBAGENT_EXECUTION_MODES = ["auto", "runtime_subagents", "inline_expert_memos"]
 
 
 def parse_args() -> argparse.Namespace:
@@ -48,6 +49,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--baseline-commit", default=None)
     parser.add_argument("--baseline-description", default="baseline measurement")
     parser.add_argument("--terminal-status", default="user_decision_needed")
+    parser.add_argument(
+        "--subagent-execution-mode",
+        choices=SUBAGENT_EXECUTION_MODES,
+        default="auto",
+        help="auto chooses runtime_subagents when --runtime-subagent is present; otherwise inline_expert_memos",
+    )
+    parser.add_argument(
+        "--runtime-subagent",
+        action="append",
+        default=[],
+        metavar="ROLE=RUNTIME_ID",
+        help="record a real runtime subagent handle, e.g. 'Verifier / Evidence Auditor=019...' (repeatable)",
+    )
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
 
@@ -65,31 +79,69 @@ def write_empty_files(run_dir: Path) -> None:
         (run_dir / name).write_text("")
 
 
-def subagent_records(blocked_reason: str) -> list[dict[str, Any]]:
+def role_to_agent_id(role: str) -> str:
+    return role.lower().replace(" / ", "-").replace(" ", "-")
+
+
+def parse_runtime_subagents(values: list[str]) -> dict[str, str]:
+    specs: dict[str, str] = {}
+    for value in values:
+        if "=" not in value:
+            raise SystemExit("--runtime-subagent must use ROLE=RUNTIME_ID")
+        role, runtime_agent_id = (part.strip() for part in value.split("=", 1))
+        if not role or not runtime_agent_id:
+            raise SystemExit("--runtime-subagent requires non-empty ROLE and RUNTIME_ID")
+        if role in specs:
+            raise SystemExit(f"duplicate --runtime-subagent role: {role}")
+        specs[role] = runtime_agent_id
+    return specs
+
+
+def choose_subagent_execution_mode(args: argparse.Namespace, runtime_specs: dict[str, str]) -> str:
+    if args.subagent_execution_mode == "auto":
+        return "runtime_subagents" if runtime_specs else "inline_expert_memos"
+    if args.subagent_execution_mode == "runtime_subagents" and not runtime_specs:
+        raise SystemExit("--subagent-execution-mode runtime_subagents requires at least one --runtime-subagent")
+    if args.subagent_execution_mode == "inline_expert_memos" and runtime_specs:
+        raise SystemExit("--runtime-subagent requires --subagent-execution-mode runtime_subagents or auto")
+    return str(args.subagent_execution_mode)
+
+
+def subagent_records(
+    roles: list[str],
+    execution_mode: str,
+    runtime_specs: dict[str, str],
+    blocked_reason: str | None,
+) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
-    for role in DEFAULT_ROLES:
-        agent_id = role.lower().replace(" / ", "-").replace(" ", "-")
-        records.append(
-            {
-                "agent_id": agent_id,
-                "event": "created",
-                "role": role,
-                "reason": "auto_harness core role initialized by helper script",
-                "allowed_skills": ["harness-engineer"],
-                "forbidden_skills": FORBIDDEN_SKILLS,
-                "required_skill_check": True,
-                "runtime_agent_id": None,
-                "thread_id": None,
-                "runtime_blocked_reason": blocked_reason,
-            }
-        )
+    for role in roles:
+        agent_id = role_to_agent_id(role)
+        created = {
+            "agent_id": agent_id,
+            "event": "created",
+            "role": role,
+            "reason": "auto_harness core role initialized by helper script",
+            "allowed_skills": ["harness-engineer"],
+            "forbidden_skills": FORBIDDEN_SKILLS,
+            "required_skill_check": True,
+            "runtime_agent_id": runtime_specs.get(role),
+            "thread_id": None,
+            "runtime_blocked_reason": None if execution_mode == "runtime_subagents" else blocked_reason,
+        }
+        if execution_mode == "runtime_subagents":
+            created["status"] = "active"
+        records.append(created)
         records.append(
             {
                 "agent_id": agent_id,
                 "event": "stopped",
-                "status": "stopped",
+                "status": "completed" if execution_mode == "runtime_subagents" else "stopped",
                 "role": role,
-                "stop_reason": "initial helper records inline expert fallback; live execution stays in current session",
+                "stop_reason": (
+                    "runtime subagent completed assigned verification scope"
+                    if execution_mode == "runtime_subagents"
+                    else "initial helper records inline expert fallback; live execution stays in current session"
+                ),
             }
         )
     return records
@@ -117,6 +169,9 @@ def main() -> int:
     run_id = args.run_id or run_dir.name
     baseline_commit = args.baseline_commit or git_commit(primary_repo)
     blocked_reason = "auto_harness helper initialized without live runtime subagent handles"
+    runtime_specs = parse_runtime_subagents(args.runtime_subagent)
+    subagent_execution_mode = choose_subagent_execution_mode(args, runtime_specs)
+    initial_roles = list(runtime_specs.keys()) if subagent_execution_mode == "runtime_subagents" else DEFAULT_ROLES
 
     manifest = {
         "schema_version": 2,
@@ -130,10 +185,10 @@ def main() -> int:
             "task_class": "execution",
             "expert_library_version": "harness-experts.v3",
             "reason": "auto_harness loop needs execution and verification roles",
-            "initial_roles": DEFAULT_ROLES,
+            "initial_roles": initial_roles,
             "single_agent_exception": False,
-            "subagent_execution_mode": "inline_expert_memos",
-            "subagent_runtime_blocked_reason": blocked_reason,
+            "subagent_execution_mode": subagent_execution_mode,
+            "subagent_runtime_blocked_reason": None if subagent_execution_mode == "runtime_subagents" else blocked_reason,
             "skill_policy": "external_domain_allowed_by_allowlist",
             "reserved_orchestration_policy": "explicit_user_request_only",
         },
@@ -195,10 +250,10 @@ def main() -> int:
     write_json(run_dir / "metrics.json", metrics)
     write_empty_files(run_dir)
 
-    for record in subagent_records(blocked_reason):
+    for record in subagent_records(initial_roles, subagent_execution_mode, runtime_specs, blocked_reason):
         append_jsonl(run_dir / "subagents.jsonl", record)
-    for role in DEFAULT_ROLES:
-        agent_id = role.lower().replace(" / ", "-").replace(" ", "-")
+    for role in initial_roles:
+        agent_id = role_to_agent_id(role)
         append_jsonl(
             run_dir / "skill_invocations.jsonl",
             {
