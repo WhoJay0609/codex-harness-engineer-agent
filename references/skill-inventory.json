@@ -3,7 +3,7 @@
     "harness-engineer"
   ],
   "generated_by": "scripts/update_skill_inventory.py",
-  "inventory_hash": "b7ab03c3d0eb065383691bacc789d450c48651c6782883e49ad321f67eab58be",
+  "inventory_hash": "be4019d2c142b83d07b00c522aa87eb642c7892e47170f8a4109ddba163ce075",
   "reserved_orchestration_skills": [
     "codex-autoresearch",
     "expert-debate",
@@ -50,6 +50,21 @@
     },
     {
       "aliases": [
+        "ablation-planner"
+      ],
+      "category": "external_domain_skill",
+      "description": "Use when main results pass result-to-claim (`claim_supported = yes` or `partial`) and ablation studies are needed for paper submission. A secondary Codex agent designs ablations from a reviewer's perspective; the local executor reviews feasibility and implements.",
+      "id": "ablation-planner",
+      "name": "ablation-planner",
+      "path": "/home/hujie/.codex/skills/ablation-planner",
+      "relative_path": "ablation-planner",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/ablation-planner",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "academic-plotting"
       ],
       "category": "external_domain_skill",
@@ -90,7 +105,7 @@
         "algorithm-improvement-loop"
       ],
       "category": "external_domain_skill",
-      "description": ">",
+      "description": "Autonomously improve an algorithm project's measurable results toward a user-defined goal. Use when the user says \"optimize this algorithm\", \"keep iterating until the metric improves\", \"\u6301\u7eed\u4f18\u5316\", \"\u63d0\u9ad8\u7ed3\u679c\", \"hit this target\", or wants a loop that repeatedly edits, evaluates, compares, and keeps only real improvements.",
       "id": "algorithm-improvement-loop",
       "name": "algorithm-improvement-loop",
       "path": "/home/hujie/.codex/skills/algorithm-improvement-loop",
@@ -102,10 +117,25 @@
     },
     {
       "aliases": [
+        "alphaxiv"
+      ],
+      "category": "external_domain_skill",
+      "description": "Quick single-paper lookup via AlphaXiv LLM-optimized summaries with tiered source fallback. Use when user says \"explain this paper\", \"summarize paper\", pastes an arXiv/AlphaXiv URL, or provides a bare arXiv ID for quick understanding - not for broad literature search.",
+      "id": "alphaxiv",
+      "name": "alphaxiv",
+      "path": "/home/hujie/.codex/skills/alphaxiv",
+      "relative_path": "alphaxiv",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/alphaxiv",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "analyze-results"
       ],
       "category": "external_domain_skill",
-      "description": "Analyze ML experiment results, compute statistics, generate comparison tables and insights. Use when user says \\\"analyze results\\\", \\\"compare\\\", or needs to interpret experimental data.",
+      "description": "Analyze ML experiment results, compute statistics, generate comparison tables and insights. Use when user says \"analyze results\", \"compare\", or needs to interpret experimental data.",
       "id": "analyze-results",
       "name": "analyze-results",
       "path": "/home/hujie/.codex/skills/analyze-results",
@@ -120,7 +150,7 @@
         "arxiv"
       ],
       "category": "external_domain_skill",
-      "description": "Search, download, and summarize academic papers from arXiv. Use when user says \\\"search arxiv\\\", \\\"download paper\\\", \\\"fetch arxiv\\\", \\\"arxiv search\\\", \\\"get paper pdf\\\", or wants to find and save papers from arXiv to the local paper library.",
+      "description": "Search, download, and summarize academic papers from arXiv. Use when user says \"search arxiv\", \"download paper\", \"fetch arxiv\", \"arxiv search\", \"get paper pdf\", or wants to find and save papers from arXiv to the local paper library.",
       "id": "arxiv",
       "name": "arxiv",
       "path": "/home/hujie/.codex/skills/arxiv",
@@ -169,7 +199,7 @@
         "auto-paper-improvement-loop"
       ],
       "category": "external_domain_skill",
-      "description": "Autonomously improve a generated paper via GPT-5.4 xhigh review \\u2192 implement fixes \\u2192 recompile, for 2 rounds. Use when user says \\\\\\\"\\u6539\\u8bba\\u6587\\\\\\\", \\\\\\\"improve paper\\\\\\\", \\\\\\\"\\u8bba\\u6587\\u6da6\\u8272\\u5faa\\u73af\\\\\\\", \\\\\\\"auto improve\\\\\\\", or wants to iteratively polish a generated paper.",
+      "description": "Autonomously improve a generated paper via GPT-5.4 xhigh review \u2192 implement fixes \u2192 recompile, for 2 rounds. Use when user says \"\u6539\u8bba\u6587\", \"improve paper\", \"\u8bba\u6587\u6da6\u8272\u5faa\u73af\", \"auto improve\", or wants to iteratively polish a generated paper.",
       "id": "auto-paper-improvement-loop",
       "name": "auto-paper-improvement-loop",
       "path": "/home/hujie/.codex/skills/auto-paper-improvement-loop",
@@ -184,7 +214,7 @@
         "auto-review-loop"
       ],
       "category": "external_domain_skill",
-      "description": "Autonomous multi-round research review loop. Repeatedly reviews using a secondary Codex agent, implements fixes, and re-reviews until positive assessment or max rounds reached. Use when user says \\\"auto review loop\\\", \\\"review until it passes\\\", or wants autonomous iterative improvement.",
+      "description": "Autonomous multi-round research review loop. Repeatedly reviews using a secondary Codex agent, implements fixes, and re-reviews until positive assessment or max rounds reached. Use when user says \"auto review loop\", \"review until it passes\", or wants autonomous iterative improvement.",
       "id": "auto-review-loop",
       "name": "auto-review-loop",
       "path": "/home/hujie/.codex/skills/auto-review-loop",
@@ -199,7 +229,7 @@
         "auto-review-loop-llm"
       ],
       "category": "external_domain_skill",
-      "description": "Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with \\\"auto review loop llm\\\" or \\\"llm review\\\".",
+      "description": "Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with \"auto review loop llm\" or \"llm review\".",
       "id": "auto-review-loop-llm",
       "name": "auto-review-loop-llm",
       "path": "/home/hujie/.codex/skills/auto-review-loop-llm",
@@ -214,7 +244,7 @@
         "auto-review-loop-minimax"
       ],
       "category": "external_domain_skill",
-      "description": "Autonomous multi-round research review loop using MiniMax API. Use when you want to use MiniMax instead of Codex MCP for external review. Trigger with \\\"auto review loop minimax\\\" or \\\"minimax review\\\".",
+      "description": "Autonomous multi-round research review loop using MiniMax API. Use when you want to use MiniMax instead of Codex MCP for external review. Trigger with \"auto review loop minimax\" or \"minimax review\".",
       "id": "auto-review-loop-minimax",
       "name": "auto-review-loop-minimax",
       "path": "/home/hujie/.codex/skills/auto-review-loop-minimax",
@@ -390,6 +420,51 @@
     },
     {
       "aliases": [
+        "citation-audit"
+      ],
+      "category": "external_domain_skill",
+      "description": "Zero-context verification that every bibliographic entry in the paper is real, correctly attributed, and used in a context the cited paper actually supports. Uses a fresh cross-model reviewer with web/DBLP/arXiv lookup to catch hallucinated authors, wrong years, fabricated venues, version mismatches, and wrong-context citations (cite present but the cited paper does not establish the claim). Use when user says \"\u5ba1\u67e5\u5f15\u7528\", \"check citations\", \"citation audit\", \"verify references\", \"\u5f15\u7528\u6838\u5bf9\", or before submission to ensure bibliography integrity.",
+      "id": "citation-audit",
+      "name": "citation-audit",
+      "path": "/home/hujie/.codex/skills/citation-audit",
+      "relative_path": "citation-audit",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/citation-audit",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "claims-drafting"
+      ],
+      "category": "external_domain_skill",
+      "description": "Draft patent claims for an invention. Use when user says \"\u64b0\u5199\u6743\u5229\u8981\u6c42\", \"draft claims\", \"\u5199\u6743\u5229\u8981\u6c42\u4e66\", \"claim drafting\", or wants to create patent claims. The core skill of the patent pipeline.",
+      "id": "claims-drafting",
+      "name": "claims-drafting",
+      "path": "/home/hujie/.codex/skills/claims-drafting",
+      "relative_path": "claims-drafting",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/claims-drafting",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "claude-to-im"
+      ],
+      "category": "external_domain_skill",
+      "description": "Bridge THIS Claude Code or Codex session to Telegram, Discord, Feishu/Lark, QQ, or WeChat so the user can chat with Claude from their phone. Use for: setting up, starting, stopping, or diagnosing the claude-to-im bridge daemon; forwarding Claude replies to a messaging app; any phrase like \"claude-to-im\", \"bridge\", \"\u6d88\u606f\u63a8\u9001\", \"\u6d88\u606f\u8f6c\u53d1\", \"\u6865\u63a5\", \"\u8fde\u4e0a\u98de\u4e66\", \"\u624b\u673a\u4e0a\u770bclaude\", \"\u542f\u52a8\u540e\u53f0\u670d\u52a1\", \"\u8bca\u65ad\", \"\u67e5\u770b\u65e5\u5fd7\", \"\u914d\u7f6e\". Subcommands: setup, start, stop, status, logs, reconfigure, doctor. Do NOT use for: building standalone bots, webhook integrations, or coding with IM platform SDKs \u2014 those are regular programming tasks.",
+      "id": "claude-to-im",
+      "name": "claude-to-im",
+      "path": "/home/hujie/.codex/skills/claude-to-im",
+      "relative_path": "claude-to-im",
+      "reserved": false,
+      "resolved_path": "/home/hujie/code/Claude-to-IM-skill",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "cli-creator"
       ],
       "category": "external_domain_skill",
@@ -456,7 +531,7 @@
         "comm-lit-review"
       ],
       "category": "external_domain_skill",
-      "description": "Communications-domain literature review and related-work search with database-aware source control. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, prior art, a survey, related work, or a landscape summary. Prioritize IEEE Xplore and ScienceDirect, prefer formal publications over preprints, and separate foundational work from recent progress.",
+      "description": "Communications-domain literature review with Claude-style knowledge-base-first retrieval. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, related work, a survey, or a landscape summary. Search Zotero, Obsidian, and local paper folders first when available, then search IEEE Xplore, ScienceDirect, ACM Digital Library, and broader web in that order.",
       "id": "comm-lit-review",
       "name": "comm-lit-review",
       "path": "/home/hujie/.codex/skills/comm-lit-review",
@@ -575,6 +650,21 @@
     },
     {
       "aliases": [
+        "deepxiv"
+      ],
+      "category": "external_domain_skill",
+      "description": "Search and progressively read open-access academic papers through DeepXiv. Use when the user wants layered paper access, section-level reading, trending papers, or DeepXiv-backed literature retrieval.",
+      "id": "deepxiv",
+      "name": "deepxiv",
+      "path": "/home/hujie/.codex/skills/deepxiv",
+      "relative_path": "deepxiv",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/deepxiv",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "develop-web-game"
       ],
       "category": "external_domain_skill",
@@ -608,7 +698,7 @@
         "dse-loop"
       ],
       "category": "external_domain_skill",
-      "description": "Autonomous design space exploration loop for computer architecture and EDA. Runs a program, analyzes results, tunes parameters, and iterates until objective is met or timeout. Use when user says \\\\\\\"DSE\\\\\\\", \\\\\\\"design space exploration\\\\\\\", \\\\\\\"sweep parameters\\\\\\\", \\\\\\\"optimize\\\\\\\", \\\\\\\"find best config\\\\\\\", or wants iterative parameter tuning.",
+      "description": "Autonomous design space exploration loop for computer architecture and EDA. Runs a program, analyzes results, tunes parameters, and iterates until objective is met or timeout. Use when user says \\\"DSE\\\", \\\"design space exploration\\\", \\\"sweep parameters\\\", \\\"optimize\\\", \\\"find best config\\\", or wants iterative parameter tuning.",
       "id": "dse-loop",
       "name": "dse-loop",
       "path": "/home/hujie/.codex/skills/dse-loop",
@@ -638,10 +728,55 @@
     },
     {
       "aliases": [
+        "embodiment-description"
+      ],
+      "category": "external_domain_skill",
+      "description": "Write detailed embodiment descriptions for patent specifications. Use when user says \"\u64b0\u5199\u5b9e\u65bd\u4f8b\", \"write embodiment\", \"\u5b9e\u65bd\u4f8b\u63cf\u8ff0\", \"detailed description\", or wants to describe how to practice an invention.",
+      "id": "embodiment-description",
+      "name": "embodiment-description",
+      "path": "/home/hujie/.codex/skills/embodiment-description",
+      "relative_path": "embodiment-description",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/embodiment-description",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "exa-search"
+      ],
+      "category": "external_domain_skill",
+      "description": "AI-powered web search via Exa with content extraction. Use when user says \"exa search\", \"web search with content\", \"find similar pages\", or needs broad web results beyond academic databases (arXiv, Semantic Scholar).",
+      "id": "exa-search",
+      "name": "exa-search",
+      "path": "/home/hujie/.codex/skills/exa-search",
+      "relative_path": "exa-search",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/exa-search",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "experiment-audit"
+      ],
+      "category": "external_domain_skill",
+      "description": "Audit experiment integrity before claiming results. Uses cross-model review (GPT-5.4) to check for fake ground truth, score normalization fraud, phantom results, and insufficient scope. Use when user says \"\u5ba1\u8ba1\u5b9e\u9a8c\", \"check experiment integrity\", \"audit results\", \"\u5b9e\u9a8c\u8bda\u5b9e\u5ea6\", or after experiments complete before writing claims.",
+      "id": "experiment-audit",
+      "name": "experiment-audit",
+      "path": "/home/hujie/.codex/skills/experiment-audit",
+      "relative_path": "experiment-audit",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/experiment-audit",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "experiment-bridge"
       ],
       "category": "external_domain_skill",
-      "description": "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \\\"\u5b9e\u73b0\u5b9e\u9a8c\\\", \\\"implement experiments\\\", \\\"bridge\\\", \\\"\u4ece\u8ba1\u5212\u5230\u8dd1\u5b9e\u9a8c\\\", \\\"deploy the plan\\\", or has an experiment plan ready to execute.",
+      "description": "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \"\u5b9e\u73b0\u5b9e\u9a8c\", \"implement experiments\", \"bridge\", \"\u4ece\u8ba1\u5212\u5230\u8dd1\u5b9e\u9a8c\", \"deploy the plan\", or has an experiment plan ready to execute.",
       "id": "experiment-bridge",
       "name": "experiment-bridge",
       "path": "/home/hujie/.codex/skills/experiment-bridge",
@@ -663,6 +798,21 @@
       "relative_path": "experiment-plan",
       "reserved": false,
       "resolved_path": "/home/hujie/.codex/skills/experiment-plan",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "experiment-queue"
+      ],
+      "category": "external_domain_skill",
+      "description": "SSH job queue for multi-seed/multi-config ML experiments with OOM-aware retry, stale-screen cleanup, and wave-transition race prevention. Use when user says \"batch experiments\", \"\u961f\u5217\u5b9e\u9a8c\", \"run grid\", \"multi-seed sweep\", \"auto-chain experiments\", or when /run-experiment is insufficient for 10+ jobs that need orchestration.",
+      "id": "experiment-queue",
+      "name": "experiment-queue",
+      "path": "/home/hujie/.codex/skills/experiment-queue",
+      "relative_path": "experiment-queue",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/experiment-queue",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -704,7 +854,7 @@
         "feishu-notify"
       ],
       "category": "external_domain_skill",
-      "description": "Send notifications to Feishu/Lark. Internal utility used by other skills, or manually via /feishu-notify. Supports push-only (webhook) and interactive (bidirectional) modes. Use when user says \\\\\\\"\\u53d1\\u98de\\u4e66\\\\\\\", \\\\\\\"notify feishu\\\\\\\", or other skills need to send status updates.",
+      "description": "Send notifications to Feishu/Lark. Internal utility used by other skills, or manually via /feishu-notify. Supports push-only (webhook) and interactive (bidirectional) modes. Use when user says \\\"\u53d1\u98de\u4e66\\\", \\\"notify feishu\\\", or other skills need to send status updates.",
       "id": "feishu-notify",
       "name": "feishu-notify",
       "path": "/home/hujie/.codex/skills/feishu-notify",
@@ -836,6 +986,36 @@
     },
     {
       "aliases": [
+        "figure-description"
+      ],
+      "category": "external_domain_skill",
+      "description": "Process user-provided patent figures and generate formal drawing descriptions. Use when user says \"\u9644\u56fe\u5904\u7406\", \"figure description\", \"\u9644\u56fe\u8bf4\u660e\", \"drawings description\", or wants to describe patent figures with reference numerals.",
+      "id": "figure-description",
+      "name": "figure-description",
+      "path": "/home/hujie/.codex/skills/figure-description",
+      "relative_path": "figure-description",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figure-description",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "figure-spec"
+      ],
+      "category": "external_domain_skill",
+      "description": "Generate deterministic publication-quality architecture, workflow, and pipeline diagrams from structured JSON (FigureSpec) into editable SVG. Use when user says \"\u67b6\u6784\u56fe\", \"workflow \u56fe\", \"pipeline \u56fe\", \"\u786e\u5b9a\u6027\u77e2\u91cf\u56fe\", \"figure spec\", \"draw architecture\", or needs precise, editable, publication-ready vector diagrams. Preferred over AI illustration for formal architecture/workflow figures.",
+      "id": "figure-spec",
+      "name": "figure-spec",
+      "path": "/home/hujie/.codex/skills/figure-spec",
+      "relative_path": "figure-spec",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/figure-spec",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "flash-attention",
         "optimizing-attention-flash"
       ],
@@ -858,7 +1038,7 @@
         "formula-derivation"
       ],
       "category": "external_domain_skill",
-      "description": "Structure and derive research formulas when the user wants to \u63a8\u5bfc\u516c\u5f0f, derive a theory line, build equations from a problem statement, clarify assumptions, separate formal derivation from remarks, or turn messy theory notes into a paper-ready derivation skeleton. Use for research-style formula development, not for fully rigorous theorem proving once the claim is already fixed.",
+      "description": "Structures and derives research formulas when the user wants to \u63a8\u5bfc\u516c\u5f0f, build a theory line, organize assumptions, turn scattered equations into a coherent derivation, or rewrite theory notes into a paper-ready formula document. Use when the derivation target is not yet fully fixed, the main object still needs to be chosen, or the user needs a coherent derivation package rather than a finished theorem proof.",
       "id": "formula-derivation",
       "name": "formula-derivation",
       "path": "/home/hujie/.codex/skills/formula-derivation",
@@ -873,7 +1053,7 @@
         "frontend"
       ],
       "category": "external_domain_skill",
-      "description": "Use when building or polishing frontend experiences: visually strong landing pages, websites, apps, prototypes, demos, game UI, or existing React/Vue/Next/Vite UI screens. Supports build mode for new UI and polish mode for improving spacing, typography, hierarchy, responsiveness, states, forms, and accessibility while preserving business logic.",
+      "description": "",
       "id": "frontend",
       "name": "frontend",
       "path": "/home/hujie/.codex/skills/frontend",
@@ -970,7 +1150,7 @@
         "grant-proposal"
       ],
       "category": "external_domain_skill",
-      "description": "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including \u9762\u4e0a/\u9752\u5e74/\u4f18\u9752/\u6770\u9752/\u6d77\u5916\u4f18\u9752/\u91cd\u70b9), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \\\"write grant\\\", \\\"grant proposal\\\", \\\"\u7533\u8acb\u66f8\\\", \\\"write KAKENHI\\\", \\\"\u79d1\u7814\u8cbb\\\", \\\"\u57fa\u91d1\u7533\u8bf7\\\", \\\"\u5199\u57fa\u91d1\\\", \\\"NSF proposal\\\", or wants to turn research ideas into a funding application.",
+      "description": "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including \u9762\u4e0a/\u9752\u5e74/\u4f18\u9752/\u6770\u9752/\u6d77\u5916\u4f18\u9752/\u91cd\u70b9), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \"write grant\", \"grant proposal\", \"\u7533\u8acb\u66f8\", \"write KAKENHI\", \"\u79d1\u7814\u8cbb\", \"\u57fa\u91d1\u7533\u8bf7\", \"\u5199\u57fa\u91d1\", \"NSF proposal\", or wants to turn research ideas into a funding application.",
       "id": "grant-proposal",
       "name": "grant-proposal",
       "path": "/home/hujie/.codex/skills/grant-proposal",
@@ -1073,7 +1253,7 @@
         "idea-creator"
       ],
       "category": "external_domain_skill",
-      "description": "Generate and rank research ideas given a broad direction. Use when user says \\\"\\u627eidea\\\", \\\"brainstorm ideas\\\", \\\"generate research ideas\\\", \\\"what can we work on\\\", or wants to explore a research area for publishable directions.",
+      "description": "Generate and rank research ideas given a broad direction. Use when user says \"\u627eidea\", \"brainstorm ideas\", \"generate research ideas\", \"what can we work on\", or wants to explore a research area for publishable directions.",
       "id": "idea-creator",
       "name": "idea-creator",
       "path": "/home/hujie/.codex/skills/idea-creator",
@@ -1088,7 +1268,7 @@
         "idea-discovery"
       ],
       "category": "external_domain_skill",
-      "description": "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit \\u2192 idea-creator \\u2192 novelty-check \\u2192 research-review to go from a broad research direction to validated, pilot-tested ideas. Use when user says \\\\\\\"\\u627eidea\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"idea discovery pipeline\\\\\\\", \\\\\\\"\\u4ece\\u96f6\\u5f00\\u59cb\\u627e\\u65b9\\u5411\\\\\\\", or wants the complete idea exploration workflow.",
+      "description": "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit \u2192 idea-creator \u2192 novelty-check \u2192 research-review to go from a broad research direction to validated, pilot-tested ideas. Use when user says \\\"\u627eidea\u5168\u6d41\u7a0b\\\", \\\"idea discovery pipeline\\\", \\\"\u4ece\u96f6\u5f00\u59cb\u627e\u65b9\u5411\\\", or wants the complete idea exploration workflow.",
       "id": "idea-discovery",
       "name": "idea-discovery",
       "path": "/home/hujie/.codex/skills/idea-discovery",
@@ -1103,7 +1283,7 @@
         "idea-discovery-robot"
       ],
       "category": "external_domain_skill",
-      "description": "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \\\\\\\"robotics idea discovery\\\\\\\", \\\\\\\"\\u673a\\u5668\\u4eba\\u627eidea\\\\\\\", \\\\\\\"embodied AI idea\\\\\\\", \\\\\\\"\\u673a\\u5668\\u4eba\\u65b9\\u5411\\u63a2\\u7d22\\\\\\\", \\\\\\\"sim2real \\u9009\\u9898\\\\\\\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning.",
+      "description": "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \\\"robotics idea discovery\\\", \\\"\u673a\u5668\u4eba\u627eidea\\\", \\\"embodied AI idea\\\", \\\"\u673a\u5668\u4eba\u65b9\u5411\u63a2\u7d22\\\", \\\"sim2real \u9009\u9898\\\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning.",
       "id": "idea-discovery-robot",
       "name": "idea-discovery-robot",
       "path": "/home/hujie/.codex/skills/idea-discovery-robot",
@@ -1148,6 +1328,21 @@
     },
     {
       "aliases": [
+        "invention-structuring"
+      ],
+      "category": "external_domain_skill",
+      "description": "Structure a raw invention idea into a formal invention disclosure. Use when user says \"\u6784\u5efa\u53d1\u660e\", \"structure invention\", \"\u53d1\u660e\u6784\u5efa\", \"invention disclosure\", or wants to formalize a rough idea into a patent-ready structure.",
+      "id": "invention-structuring",
+      "name": "invention-structuring",
+      "path": "/home/hujie/.codex/skills/invention-structuring",
+      "relative_path": "invention-structuring",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/invention-structuring",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "jupyter-notebook"
       ],
       "category": "external_domain_skill",
@@ -1158,6 +1353,21 @@
       "relative_path": "jupyter-notebook",
       "reserved": false,
       "resolved_path": "/home/hujie/.codex/skills/jupyter-notebook",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "jurisdiction-format"
+      ],
+      "category": "external_domain_skill",
+      "description": "Compile patent application into jurisdiction-specific filing format. Use when user says \"\u683c\u5f0f\u8f6c\u6362\", \"jurisdiction format\", \"\u56fd\u5bb6\u683c\u5f0f\", \"compile patent\", or wants formatted patent documents for CN/US/EP filing.",
+      "id": "jurisdiction-format",
+      "name": "jurisdiction-format",
+      "path": "/home/hujie/.codex/skills/jurisdiction-format",
+      "relative_path": "jurisdiction-format",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/jurisdiction-format",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -1436,6 +1646,36 @@
     },
     {
       "aliases": [
+        "mermaid-diagram"
+      ],
+      "category": "external_domain_skill",
+      "description": "Generate Mermaid diagrams from user requirements. Save .mmd and .md files to figures/ with syntax verification. Supports flowcharts, sequence diagrams, class diagrams, ER diagrams, Gantt charts, and many more diagram types.",
+      "id": "mermaid-diagram",
+      "name": "mermaid-diagram",
+      "path": "/home/hujie/.codex/skills/mermaid-diagram",
+      "relative_path": "mermaid-diagram",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/mermaid-diagram",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "meta-optimize"
+      ],
+      "category": "external_domain_skill",
+      "description": "Analyze ARIS usage logs and propose optimizations to SKILL.md files, reviewer prompts, and workflow defaults. Outer-loop harness optimization inspired by Meta-Harness (Lee et al., 2026). Use when user says \"\u4f18\u5316\u6280\u80fd\", \"meta optimize\", \"improve skills\", \"\u5206\u6790\u4f7f\u7528\u8bb0\u5f55\", or wants to optimize ARIS's own harness components based on accumulated experience.",
+      "id": "meta-optimize",
+      "name": "meta-optimize",
+      "path": "/home/hujie/.codex/skills/meta-optimize",
+      "relative_path": "meta-optimize",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/meta-optimize",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "miles",
         "miles-rl-training"
       ],
@@ -1585,7 +1825,7 @@
         "monitor-experiment"
       ],
       "category": "external_domain_skill",
-      "description": "Monitor running experiments, check progress, collect results. Use when user says \\\"check results\\\", \\\"is it done\\\", \\\"monitor\\\", or wants experiment output.",
+      "description": "Monitor running experiments, check progress, collect results. Use when user says \"check results\", \"is it done\", \"monitor\", or wants experiment output.",
       "id": "monitor-experiment",
       "name": "monitor-experiment",
       "path": "/home/hujie/.codex/skills/monitor-experiment",
@@ -1782,7 +2022,7 @@
         "novelty-check"
       ],
       "category": "external_domain_skill",
-      "description": "Verify research idea novelty against recent literature. Use when user says \\\"\\u67e5\\u65b0\\\", \\\"novelty check\\\", \\\"\\u6709\\u6ca1\\u6709\\u4eba\\u505a\\u8fc7\\\", \\\"check novelty\\\", or wants to verify a research idea is novel before implementing.",
+      "description": "Verify research idea novelty against recent literature. Use when user says \"\u67e5\u65b0\", \"novelty check\", \"\u6709\u6ca1\u6709\u4eba\u505a\u8fc7\", \"check novelty\", or wants to verify a research idea is novel before implementing.",
       "id": "novelty-check",
       "name": "novelty-check",
       "path": "/home/hujie/.codex/skills/novelty-check",
@@ -1884,10 +2124,40 @@
     },
     {
       "aliases": [
+        "overleaf-sync"
+      ],
+      "category": "external_domain_skill",
+      "description": "Two-way sync between a local paper directory and an Overleaf project via the Overleaf Git bridge (Premium feature). Lets you keep ARIS audit/edit workflows on the local copy while collaborators edit in the Overleaf web UI. Token never touches the agent \u2014 user does the one-time auth via macOS Keychain. Use when user says \"\u540c\u6b65 overleaf\", \"overleaf sync\", \"\u63a8\u9001\u5230 overleaf\", \"connect overleaf\", \"Overleaf \u6865\u63a5\", \"pull overleaf\", \"push overleaf\", or wants to bridge their ARIS paper directory with an Overleaf project.",
+      "id": "overleaf-sync",
+      "name": "overleaf-sync",
+      "path": "/home/hujie/.codex/skills/overleaf-sync",
+      "relative_path": "overleaf-sync",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/overleaf-sync",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "paper-claim-audit"
+      ],
+      "category": "external_domain_skill",
+      "description": "Zero-context verification that every number, comparison, and scope claim in the paper matches raw result files. Uses a fresh cross-model reviewer with NO prior context to prevent confirmation bias. Use when user says \"\u5ba1\u67e5\u8bba\u6587\u6570\u636e\", \"check paper claims\", \"verify numbers\", \"\u8bba\u6587\u6570\u5b57\u6838\u5bf9\", or before submission to ensure paper-to-evidence fidelity.",
+      "id": "paper-claim-audit",
+      "name": "paper-claim-audit",
+      "path": "/home/hujie/.codex/skills/paper-claim-audit",
+      "relative_path": "paper-claim-audit",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/paper-claim-audit",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "paper-compile"
       ],
       "category": "external_domain_skill",
-      "description": "Compile LaTeX paper to PDF, fix errors, and verify output. Use when user says \\\\\\\"\\u7f16\\u8bd1\\u8bba\\u6587\\\\\\\", \\\\\\\"compile paper\\\\\\\", \\\\\\\"build PDF\\\\\\\", \\\\\\\"\\u751f\\u6210PDF\\\\\\\", or wants to compile LaTeX into a submission-ready PDF.",
+      "description": "Compile LaTeX paper to PDF, fix errors, and verify output. Use when user says \\\"\u7f16\u8bd1\u8bba\u6587\\\", \\\"compile paper\\\", \\\"build PDF\\\", \\\"\u751f\u6210PDF\\\", or wants to compile LaTeX into a submission-ready PDF.",
       "id": "paper-compile",
       "name": "paper-compile",
       "path": "/home/hujie/.codex/skills/paper-compile",
@@ -1902,7 +2172,7 @@
         "paper-figure"
       ],
       "category": "external_domain_skill",
-      "description": "Generate publication-quality figures and tables from experiment results. Use when user says \\\\\\\"\\u753b\\u56fe\\\\\\\", \\\\\\\"\\u4f5c\\u56fe\\\\\\\", \\\\\\\"generate figures\\\\\\\", \\\\\\\"paper figures\\\\\\\", or needs plots for a paper.",
+      "description": "Generate publication-quality figures and tables from experiment results. Use when user says \\\"\u753b\u56fe\\\", \\\"\u4f5c\u56fe\\\", \\\"generate figures\\\", \\\"paper figures\\\", or needs plots for a paper.",
       "id": "paper-figure",
       "name": "paper-figure",
       "path": "/home/hujie/.codex/skills/paper-figure",
@@ -1917,7 +2187,7 @@
         "paper-illustration"
       ],
       "category": "external_domain_skill",
-      "description": "Generate publication-quality AI illustrations for academic papers using Gemini image generation. Creates architecture diagrams, method illustrations with Codex-supervised iterative refinement loop. Use when user says \\\"\u751f\u6210\u56fe\u8868\\\", \\\"\u753b\u67b6\u6784\u56fe\\\", \\\"AI\u7ed8\u56fe\\\", \\\"paper illustration\\\", \\\"generate diagram\\\", or needs visual figures for papers.",
+      "description": "Generate publication-quality AI illustrations for academic papers using Gemini image generation. Creates architecture diagrams, method illustrations with Codex-supervised iterative refinement loop. Use when user says \"\u751f\u6210\u56fe\u8868\", \"\u753b\u67b6\u6784\u56fe\", \"AI\u7ed8\u56fe\", \"paper illustration\", \"generate diagram\", or needs visual figures for papers.",
       "id": "paper-illustration",
       "name": "paper-illustration",
       "path": "/home/hujie/.codex/skills/paper-illustration",
@@ -1932,7 +2202,7 @@
         "paper-plan"
       ],
       "category": "external_domain_skill",
-      "description": "Generate a structured paper outline from review conclusions and experiment results. Use when user says \\\\\\\"\\u5199\\u5927\\u7eb2\\\\\\\", \\\\\\\"paper outline\\\\\\\", \\\\\\\"plan the paper\\\\\\\", \\\\\\\"\\u8bba\\u6587\\u89c4\\u5212\\\\\\\", or wants to create a paper plan before writing.",
+      "description": "Generate a structured paper outline from review conclusions and experiment results. Use when user says \\\"\u5199\u5927\u7eb2\\\", \\\"paper outline\\\", \\\"plan the paper\\\", \\\"\u8bba\u6587\u89c4\u5212\\\", or wants to create a paper plan before writing.",
       "id": "paper-plan",
       "name": "paper-plan",
       "path": "/home/hujie/.codex/skills/paper-plan",
@@ -1947,7 +2217,7 @@
         "paper-poster"
       ],
       "category": "external_domain_skill",
-      "description": "Generate a conference poster (article + tcbposter LaTeX \u2192 A0/A1 PDF + editable PPTX + SVG) from a compiled paper. Use when user says \\\"\u505a\u6d77\u62a5\\\", \\\"\u5236\u4f5c\u6d77\u62a5\\\", \\\"conference poster\\\", \\\"make poster\\\", \\\"\u751f\u6210poster\\\", \\\"poster session\\\", or wants to create a poster for a conference presentation.",
+      "description": "Generate a conference poster (article + tcbposter LaTeX \u2192 A0/A1 PDF + editable PPTX + SVG) from a compiled paper. Use when user says \"\u505a\u6d77\u62a5\", \"\u5236\u4f5c\u6d77\u62a5\", \"conference poster\", \"make poster\", \"\u751f\u6210poster\", \"poster session\", or wants to create a poster for a conference presentation.",
       "id": "paper-poster",
       "name": "paper-poster",
       "path": "/home/hujie/.codex/skills/paper-poster",
@@ -1962,7 +2232,7 @@
         "paper-slides"
       ],
       "category": "external_domain_skill",
-      "description": "Generate conference presentation slides (beamer LaTeX \u2192 PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \\\"\u505aPPT\\\", \\\"\u505a\u5e7b\u706f\u7247\\\", \\\"make slides\\\", \\\"conference talk\\\", \\\"presentation slides\\\", \\\"\u751f\u6210slides\\\", \\\"\u5199\u6f14\u8bb2\u7a3f\\\", or wants beamer slides for a conference talk.",
+      "description": "Generate conference presentation slides (beamer LaTeX \u2192 PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \"\u505aPPT\", \"\u505a\u5e7b\u706f\u7247\", \"make slides\", \"conference talk\", \"presentation slides\", \"\u751f\u6210slides\", \"\u5199\u6f14\u8bb2\u7a3f\", or wants beamer slides for a conference talk.",
       "id": "paper-slides",
       "name": "paper-slides",
       "path": "/home/hujie/.codex/skills/paper-slides",
@@ -1977,7 +2247,7 @@
         "paper-write"
       ],
       "category": "external_domain_skill",
-      "description": "Draft LaTeX paper section by section from an outline. Use when user says \\\\\\\"\\u5199\\u8bba\\u6587\\\\\\\", \\\\\\\"write paper\\\\\\\", \\\\\\\"draft LaTeX\\\\\\\", \\\\\\\"\\u5f00\\u59cb\\u5199\\\\\\\", or wants to generate LaTeX content from a paper plan.",
+      "description": "Draft LaTeX paper section by section from an outline. Use when user says \\\"\u5199\u8bba\u6587\\\", \\\"write paper\\\", \\\"draft LaTeX\\\", \\\"\u5f00\u59cb\u5199\\\", or wants to generate LaTeX content from a paper plan.",
       "id": "paper-write",
       "name": "paper-write",
       "path": "/home/hujie/.codex/skills/paper-write",
@@ -1992,13 +2262,58 @@
         "paper-writing"
       ],
       "category": "external_domain_skill",
-      "description": "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan \\u2192 paper-figure \\u2192 paper-write \\u2192 paper-compile \\u2192 auto-paper-improvement-loop to go from a narrative report to a polished, submission-ready PDF. Use when user says \\\\\\\"\\u5199\\u8bba\\u6587\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"write paper pipeline\\\\\\\", \\\\\\\"\\u4ece\\u62a5\\u544a\\u5230PDF\\\\\\\", \\\\\\\"paper writing\\\\\\\", or wants the complete paper generation workflow.",
+      "description": "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan \u2192 paper-figure \u2192 figure-spec/paper-illustration/mermaid-diagram \u2192 paper-write \u2192 paper-compile \u2192 auto-paper-improvement-loop to go from a narrative report to a polished PDF. At `\u2014 effort: max | beast` (or explicit `\u2014 assurance: submission`), Phase 6 gates the Final Report on `tools/verify_paper_audits.sh`; the PDF is labelled `submission-ready` only when the external verifier is green. Use when user says \"\u5199\u8bba\u6587\u5168\u6d41\u7a0b\", \"write paper pipeline\", \"\u4ece\u62a5\u544a\u5230PDF\", \"paper writing\", or wants the complete paper generation workflow.",
       "id": "paper-writing",
       "name": "paper-writing",
       "path": "/home/hujie/.codex/skills/paper-writing",
       "relative_path": "paper-writing",
       "reserved": false,
       "resolved_path": "/home/hujie/.codex/skills/paper-writing",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "patent-novelty-check"
+      ],
+      "category": "external_domain_skill",
+      "description": "Assess patent novelty and non-obviousness against prior art. Use when user says \"\u4e13\u5229\u67e5\u65b0\", \"patent novelty\", \"\u53ef\u4e13\u5229\u6027\u8bc4\u4f30\", \"patentability check\", or wants to evaluate if an invention is patentable.",
+      "id": "patent-novelty-check",
+      "name": "patent-novelty-check",
+      "path": "/home/hujie/.codex/skills/patent-novelty-check",
+      "relative_path": "patent-novelty-check",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/patent-novelty-check",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "patent-pipeline"
+      ],
+      "category": "external_domain_skill",
+      "description": "Full patent drafting pipeline from invention description to jurisdiction-formatted filing documents. Supports CN (CNIPA), US (USPTO), EP (EPO). Supports invention patents and utility models. Use when user says \"\u5199\u4e13\u5229\", \"patent pipeline\", \"\u4e13\u5229\u7533\u8bf7\", \"draft patent\", \"\u5199\u6743\u5229\u8981\u6c42\u4e66\", or wants to draft a complete patent application.",
+      "id": "patent-pipeline",
+      "name": "patent-pipeline",
+      "path": "/home/hujie/.codex/skills/patent-pipeline",
+      "relative_path": "patent-pipeline",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/patent-pipeline",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "patent-review"
+      ],
+      "category": "external_domain_skill",
+      "description": "Get an external patent examiner review of a patent application. Use when user says \"\u4e13\u5229\u5ba1\u67e5\", \"patent review\", \"\u5ba1\u67e5\u610f\u89c1\", \"examiner review\", or wants critical feedback on patent claims and specification.",
+      "id": "patent-review",
+      "name": "patent-review",
+      "path": "/home/hujie/.codex/skills/patent-review",
+      "relative_path": "patent-review",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/patent-review",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -2078,7 +2393,7 @@
         "pixel-art"
       ],
       "category": "external_domain_skill",
-      "description": "Generate pixel art SVG illustrations for READMEs, docs, or slides. Use when user says \\\"\\u753b\\u50cf\\u7d20\\u56fe\\\", \\\"pixel art\\\", \\\"make an SVG illustration\\\", \\\"README hero image\\\", or wants a cute visual.",
+      "description": "Generate pixel art SVG illustrations for READMEs, docs, or slides. Use when user says \"\u753b\u50cf\u7d20\u56fe\", \"pixel art\", \"make an SVG illustration\", \"README hero image\", or wants a cute visual.",
       "id": "pixel-art",
       "name": "pixel-art",
       "path": "/home/hujie/.codex/skills/pixel-art",
@@ -2093,7 +2408,7 @@
         "planner"
       ],
       "category": "external_domain_skill",
-      "description": ">",
+      "description": "Create comprehensive, phased implementation plans with sprints and atomic tasks. Use when user says: \"make a plan\", \"create a plan\", \"plan this out\", \"plan the implementation\", \"help me plan\", \"design a plan\", \"draft a plan\", \"write a plan\", \"outline the steps\", \"break this down into tasks\", \"what's the plan for\", or any similar planning request. Also triggers on explicit \"/planner\" or \"/plan\" commands.",
       "id": "planner",
       "name": "planner",
       "path": "/home/hujie/.agents/skills/planner",
@@ -2168,6 +2483,21 @@
     },
     {
       "aliases": [
+        "prior-art-search"
+      ],
+      "category": "external_domain_skill",
+      "description": "Search patent databases and academic literature for prior art relevant to an invention. Use when user says \"\u73b0\u6709\u6280\u672f\u68c0\u7d22\", \"prior art search\", \"\u4e13\u5229\u68c0\u7d22\", \"check patents\", or wants to find relevant prior art.",
+      "id": "prior-art-search",
+      "name": "prior-art-search",
+      "path": "/home/hujie/.codex/skills/prior-art-search",
+      "relative_path": "prior-art-search",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/prior-art-search",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "project-phase-report"
       ],
       "category": "external_domain_skill",
@@ -2201,10 +2531,25 @@
     },
     {
       "aliases": [
+        "proof-checker"
+      ],
+      "category": "external_domain_skill",
+      "description": "Rigorous mathematical proof verification and fixing workflow. Reads a LaTeX proof, identifies gaps via cross-model review (Codex GPT-5.4 xhigh), fixes each gap with full derivations, re-reviews, and generates an audit report. Use when user says \"\u68c0\u67e5\u8bc1\u660e\", \"verify proof\", \"proof check\", \"\u5ba1\u8bc1\u660e\", \"check this proof\", or wants rigorous mathematical verification of a theory paper.",
+      "id": "proof-checker",
+      "name": "proof-checker",
+      "path": "/home/hujie/.codex/skills/proof-checker",
+      "relative_path": "proof-checker",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/proof-checker",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "proof-writer"
       ],
       "category": "external_domain_skill",
-      "description": "Writes rigorous mathematical proofs for ML/AI theory. Use when asked to prove a theorem, lemma, proposition, or corollary, fill in missing proof steps, formalize a proof sketch, \\u8865\\u5168\\u8bc1\\u660e, \\u5199\\u8bc1\\u660e, \\u8bc1\\u660e\\u67d0\\u4e2a\\u547d\\u9898, or determine whether a claimed proof can actually be completed under the stated assumptions.",
+      "description": "Writes rigorous mathematical proofs for ML/AI theory. Use when asked to prove a theorem, lemma, proposition, or corollary, fill in missing proof steps, formalize a proof sketch, \u8865\u5168\u8bc1\u660e, \u5199\u8bc1\u660e, \u8bc1\u660e\u67d0\u4e2a\u547d\u9898, or determine whether a claimed proof can actually be completed under the stated assumptions.",
       "id": "proof-writer",
       "name": "proof-writer",
       "path": "/home/hujie/.codex/skills/proof-writer",
@@ -2290,6 +2635,21 @@
     },
     {
       "aliases": [
+        "qzcli"
+      ],
+      "category": "external_domain_skill",
+      "description": "Manage GPU compute jobs on the Qizhi (\u542f\u667a) platform using qzcli \u2014 a kubectl-style CLI tool. Use when user says \"qzcli\", \"\u542f\u667a\u5e73\u53f0\", \"submit job\", \"stop job\", \"\u67e5\u8ba1\u7b97\u7ec4\", \"avail\", \"list jobs\", \"batch submit\", or needs to manage distributed training jobs on a Qizhi instance.",
+      "id": "qzcli",
+      "name": "qzcli",
+      "path": "/home/hujie/.codex/skills/qzcli",
+      "relative_path": "qzcli",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/qzcli",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "ray-data"
       ],
       "category": "external_domain_skill",
@@ -2321,6 +2681,21 @@
       "relative_path": "ray-train",
       "reserved": false,
       "resolved_path": "/home/hujie/.orchestra/skills/08-distributed-training/ray-train",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "rebuttal"
+      ],
+      "category": "external_domain_skill",
+      "description": "Workflow 4: Submission rebuttal pipeline. Parses external reviews, enforces coverage and grounding, drafts a safe text-only rebuttal under venue limits, and manages follow-up rounds. Use when user says \"rebuttal\", \"reply to reviewers\", \"ICML rebuttal\", \"OpenReview response\", or wants to answer external reviews safely.",
+      "id": "rebuttal",
+      "name": "rebuttal",
+      "path": "/home/hujie/.codex/skills/rebuttal",
+      "relative_path": "rebuttal",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/rebuttal",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -2359,7 +2734,7 @@
         "research-lit"
       ],
       "category": "external_domain_skill",
-      "description": "Search and analyze research papers, find related work, summarize key ideas. Use when user says \\\"find papers\\\", \\\"related work\\\", \\\"literature review\\\", \\\"what does this paper say\\\", or needs to understand academic papers.",
+      "description": "Search and analyze research papers, find related work, summarize key ideas. Use when user says \"find papers\", \"related work\", \"literature review\", \"what does this paper say\", or needs to understand academic papers.",
       "id": "research-lit",
       "name": "research-lit",
       "path": "/home/hujie/.codex/skills/research-lit",
@@ -2374,7 +2749,7 @@
         "research-pipeline"
       ],
       "category": "external_domain_skill",
-      "description": "Full research pipeline: Workflow 1 (idea discovery) \\u2192 implementation \\u2192 Workflow 2 (auto review loop). Goes from a broad research direction all the way to a submission-ready paper. Use when user says \\\\\\\"\\u5168\\u6d41\\u7a0b\\\\\\\", \\\\\\\"full pipeline\\\\\\\", \\\\\\\"\\u4ece\\u627eidea\\u5230\\u6295\\u7a3f\\\\\\\", \\\\\\\"end-to-end research\\\\\\\", or wants the complete autonomous research lifecycle.",
+      "description": "Full research pipeline: Workflow 1 (idea discovery) \u2192 implementation \u2192 Workflow 2 (auto review loop). Goes from a broad research direction all the way to a submission-ready paper. Use when user says \\\"\u5168\u6d41\u7a0b\\\", \\\"full pipeline\\\", \\\"\u4ece\u627eidea\u5230\u6295\u7a3f\\\", \\\"end-to-end research\\\", or wants the complete autonomous research lifecycle.",
       "id": "research-pipeline",
       "name": "research-pipeline",
       "path": "/home/hujie/.codex/skills/research-pipeline",
@@ -2389,7 +2764,7 @@
         "research-refine"
       ],
       "category": "external_domain_skill",
-      "description": "Turn a vague research direction into a problem-anchored, elegant, frontier-aware, implementation-oriented method plan via iterative GPT-5.4 review. Use when the user says \\\"refine my approach\\\", \\\"\\u5e2e\\u6211\\u7ec6\\u5316\\u65b9\\u6848\\\", \\\"decompose this problem\\\", \\\"\\u6253\\u78e8idea\\\", \\\"refine research plan\\\", \\\"\\u7ec6\\u5316\\u7814\\u7a76\\u65b9\\u6848\\\", or wants a concrete research method that stays simple, focused, and top-venue ready instead of a vague or overbuilt idea.",
+      "description": "Turn a vague research direction into a problem-anchored, elegant, frontier-aware, implementation-oriented method plan via iterative GPT-5.4 review. Use when the user says \"refine my approach\", \"\u5e2e\u6211\u7ec6\u5316\u65b9\u6848\", \"decompose this problem\", \"\u6253\u78e8idea\", \"refine research plan\", \"\u7ec6\u5316\u7814\u7a76\u65b9\u6848\", or wants a concrete research method that stays simple, focused, and top-venue ready instead of a vague or overbuilt idea.",
       "id": "research-refine",
       "name": "research-refine",
       "path": "/home/hujie/.codex/skills/research-refine",
@@ -2404,7 +2779,7 @@
         "research-refine-pipeline"
       ],
       "category": "external_domain_skill",
-      "description": "Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to \\\"\\u4e32\\u8d77\\u6765\\\", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.",
+      "description": "Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to \"\u4e32\u8d77\u6765\", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.",
       "id": "research-refine-pipeline",
       "name": "research-refine-pipeline",
       "path": "/home/hujie/.codex/skills/research-refine-pipeline",
@@ -2419,7 +2794,7 @@
         "research-review"
       ],
       "category": "external_domain_skill",
-      "description": "Get a deep critical review of research from GPT using a secondary Codex agent. Use when user says \\\"review my research\\\", \\\"help me review\\\", \\\"get external review\\\", or wants critical feedback on research ideas, papers, or experimental results.",
+      "description": "Get a deep critical review of research from GPT using a secondary Codex agent. Use when user says \"review my research\", \"help me review\", \"get external review\", or wants critical feedback on research ideas, papers, or experimental results.",
       "id": "research-review",
       "name": "research-review",
       "path": "/home/hujie/.codex/skills/research-review",
@@ -2446,10 +2821,55 @@
     },
     {
       "aliases": [
+        "research-wiki"
+      ],
+      "category": "external_domain_skill",
+      "description": "Persistent research knowledge base that accumulates papers, ideas, experiments, claims, and their relationships across the entire research lifecycle. Inspired by Karpathy's LLM Wiki pattern. Use when user says \"\u77e5\u8bc6\u5e93\", \"research wiki\", \"add paper\", \"wiki query\", \"\u67e5\u77e5\u8bc6\u5e93\", or wants to build/query a persistent field map.",
+      "id": "research-wiki",
+      "name": "research-wiki",
+      "path": "/home/hujie/.codex/skills/research-wiki",
+      "relative_path": "research-wiki",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/research-wiki",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "resubmit-pipeline"
+      ],
+      "category": "external_domain_skill",
+      "description": "Workflow 5: orchestrate a text-only resubmit of a polished paper to a different venue under hard constraints (no new experiments, no bib edits, no framework changes, never overwrite prior submissions). Phase 0 physical isolation, Phase 0.5 health + anonymity check, Phase 1 audit (proof / claim / citation), Phase 2 microedits via auto-loop with edit-whitelist + citation-audit --soft-only, Phase 3 kill-argument adversarial gate, Phase 4 final compile + Overleaf push via /overleaf-sync. Use when user says \"resubmit pipeline\", \"\u91cd\u6295\u6d41\u7a0b\", \"port paper to a new venue\", \"resubmit to a venue\", \"tighten paper for resubmission\", or has a rejected/withdrawn paper to move to a different top venue under tight time budget.",
+      "id": "resubmit-pipeline",
+      "name": "resubmit-pipeline",
+      "path": "/home/hujie/.codex/skills/resubmit-pipeline",
+      "relative_path": "resubmit-pipeline",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/resubmit-pipeline",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "result-to-claim"
+      ],
+      "category": "external_domain_skill",
+      "description": "Use when experiments complete to judge what claims the results support, what they don't, and what evidence is still missing. A secondary Codex agent evaluates results against intended claims and routes to next action (pivot, supplement, or confirm). Use after experiments finish \u2014 before writing the paper or running ablations.",
+      "id": "result-to-claim",
+      "name": "result-to-claim",
+      "path": "/home/hujie/.codex/skills/result-to-claim",
+      "relative_path": "result-to-claim",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/result-to-claim",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "run-experiment"
       ],
       "category": "external_domain_skill",
-      "description": "Deploy and run ML experiments on local or remote GPU servers. Use when user says \\\"run experiment\\\", \\\"deploy to server\\\", \\\"\\u8dd1\\u5b9e\\u9a8c\\\", or needs to launch training jobs.",
+      "description": "Deploy and run ML experiments on local or remote GPU servers. Use when user says \"run experiment\", \"deploy to server\", \"\u8dd1\u5b9e\u9a8c\", or needs to launch training jobs.",
       "id": "run-experiment",
       "name": "run-experiment",
       "path": "/home/hujie/.codex/skills/run-experiment",
@@ -2578,6 +2998,21 @@
     },
     {
       "aliases": [
+        "semantic-scholar"
+      ],
+      "category": "external_domain_skill",
+      "description": "Search published venue papers (IEEE, ACM, Springer, etc.) via Semantic Scholar API. Complements /arxiv (preprints) with citation counts, venue metadata, and TLDR. Use when user says \"search semantic scholar\", \"find IEEE papers\", \"find journal papers\", \"venue papers\", \"citation search\", or wants published literature beyond arXiv preprints.",
+      "id": "semantic-scholar",
+      "name": "semantic-scholar",
+      "path": "/home/hujie/.codex/skills/semantic-scholar",
+      "relative_path": "semantic-scholar",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/semantic-scholar",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "sentence-transformers"
       ],
       "category": "external_domain_skill",
@@ -2624,6 +3059,21 @@
       "relative_path": "sentry",
       "reserved": false,
       "resolved_path": "/home/hujie/.codex/skills/sentry",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "serverless-modal"
+      ],
+      "category": "external_domain_skill",
+      "description": "Run GPU workloads on Modal \u2014 training, fine-tuning, inference, batch processing. Zero-config serverless: no SSH, no Docker, auto scale-to-zero. Use when user says \"modal run\", \"modal training\", \"modal inference\", \"deploy to modal\", \"need a GPU\", \"run on modal\", \"serverless GPU\", or needs remote GPU compute.",
+      "id": "serverless-modal",
+      "name": "serverless-modal",
+      "path": "/home/hujie/.codex/skills/serverless-modal",
+      "relative_path": "serverless-modal",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/serverless-modal",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -2779,6 +3229,21 @@
     },
     {
       "aliases": [
+        "specification-writing"
+      ],
+      "category": "external_domain_skill",
+      "description": "Write the full patent specification from claims and invention disclosure. Use when user says \"\u64b0\u5199\u8bf4\u660e\u4e66\", \"write specification\", \"\u5199\u8bf4\u660e\u4e66\", \"patent description\", or wants to draft the complete patent specification.",
+      "id": "specification-writing",
+      "name": "specification-writing",
+      "path": "/home/hujie/.codex/skills/specification-writing",
+      "relative_path": "specification-writing",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/specification-writing",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "speculative-decoding"
       ],
       "category": "external_domain_skill",
@@ -2860,6 +3325,21 @@
       "relative_path": "swanlab",
       "reserved": false,
       "resolved_path": "/home/hujie/.orchestra/skills/13-mlops/swanlab",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "system-profile"
+      ],
+      "category": "external_domain_skill",
+      "description": "Profile a target (script, process, GPU, memory, interconnect) using external tools and code instrumentation. Produces structured performance reports with actionable recommendations. Use when user says \"profile\", \"benchmark\", \"bottleneck\", or wants performance analysis.",
+      "id": "system-profile",
+      "name": "system-profile",
+      "path": "/home/hujie/.codex/skills/system-profile",
+      "relative_path": "system-profile",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/system-profile",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -2957,6 +3437,21 @@
     },
     {
       "aliases": [
+        "training-check"
+      ],
+      "category": "external_domain_skill",
+      "description": "Interactively monitor training metrics from the current Codex session, periodically checking WandB or fallback logs for NaN, divergence, plateaus, and broken runs.",
+      "id": "training-check",
+      "name": "training-check",
+      "path": "/home/hujie/.codex/skills/training-check",
+      "relative_path": "training-check",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/training-check",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
         "transcribe"
       ],
       "category": "external_domain_skill",
@@ -3023,6 +3518,21 @@
       "relative_path": "unsloth",
       "reserved": false,
       "resolved_path": "/home/hujie/.orchestra/skills/03-fine-tuning/unsloth",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "vast-gpu"
+      ],
+      "category": "external_domain_skill",
+      "description": "Rent, manage, and destroy GPU instances on vast.ai. Use when user says \"rent gpu\", \"vast.ai\", \"rent a server\", \"cloud gpu\", or needs on-demand GPU without owning hardware.",
+      "id": "vast-gpu",
+      "name": "vast-gpu",
+      "path": "/home/hujie/.codex/skills/vast-gpu",
+      "relative_path": "vast-gpu",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/vast-gpu",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },
@@ -3142,6 +3652,21 @@
       "relative_path": "winui-app",
       "reserved": false,
       "resolved_path": "/home/hujie/.codex/skills/winui-app",
+      "source_root": "/home/hujie/.codex/skills",
+      "status": "installed"
+    },
+    {
+      "aliases": [
+        "writing-systems-papers"
+      ],
+      "category": "external_domain_skill",
+      "description": "Paragraph-level structural blueprint for 10-12 page systems papers targeting OSDI, SOSP, ASPLOS, NSDI, and EuroSys. Provides page allocation, paragraph templates, and writing patterns. Use when user says \"\u5199\u7cfb\u7edf\u8bba\u6587\", \"systems paper structure\", \"OSDI paper\", \"SOSP paper\", or wants fine-grained structural guidance for a systems conference submission.",
+      "id": "writing-systems-papers",
+      "name": "writing-systems-papers",
+      "path": "/home/hujie/.codex/skills/writing-systems-papers",
+      "relative_path": "writing-systems-papers",
+      "reserved": false,
+      "resolved_path": "/home/hujie/.codex/skills/writing-systems-papers",
       "source_root": "/home/hujie/.codex/skills",
       "status": "installed"
     },

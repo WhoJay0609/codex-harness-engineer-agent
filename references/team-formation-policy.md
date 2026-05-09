@@ -4,7 +4,13 @@ Use this reference at the start of a harness run.
 
 ## Default
 
-For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v3` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks. Prefer real runtime subagents whenever the active platform policy and user request permit delegation. If the task has independent context gathering, implementation, verification, or failure-analysis branches, start those branches as runtime subagents instead of waiting for the main thread to finish.
+For non-trivial harness work, the orchestrator should create a small core council and any required domain specialists from `harness-experts.v4` before main execution. The team can be lightweight, but it should exist early enough to shape context, verification, and failure handling rather than only after something breaks. Prefer real runtime subagents whenever the active platform policy and user request permit delegation. If the task has independent context gathering, implementation, verification, or failure-analysis branches, start those branches as runtime subagents instead of waiting for the main thread to finish.
+
+`harness-experts.v4` roles include capability profiles. Use
+`activation_criteria` before creating or replacing a role, and copy the
+role-specific `input_contract`, `deliverables`, `verification_focus`, and
+`risk_flags` into task cards when those fields are relevant. This keeps new
+or updated skills from becoming a flat allowlist with no operating contract.
 
 Use single-agent mode only for trivial inspection, tiny edits, or one-command checks. When using single-agent mode, record the reason in `manifest.json`. Inline expert memos are a fallback for blocked runtime subagent creation, not the default implementation of internal teams.
 
@@ -27,7 +33,7 @@ Every run manifest must include:
   "team_policy": {
     "mode": "internal_team",
     "task_class": "standard_harness",
-    "expert_library_version": "harness-experts.v3",
+    "expert_library_version": "harness-experts.v4",
     "reason": "non-trivial harness design needs context curation and independent verification",
     "initial_roles": ["Professor Orchestrator", "Intent Router", "Context Curator", "Verifier / Evidence Auditor"],
     "single_agent_exception": false,
@@ -46,7 +52,7 @@ For a single-agent exception:
   "team_policy": {
     "mode": "single_agent",
     "task_class": "trivial",
-    "expert_library_version": "harness-experts.v3",
+    "expert_library_version": "harness-experts.v4",
     "reason": "tiny read-only artifact inspection with no design or verification branch",
     "initial_roles": [],
     "single_agent_exception": true,
@@ -155,10 +161,11 @@ For high-risk or cross-domain work, use 5-7 experts. Domain specialists may call
 2. Choose the smallest preset that covers the task.
 3. Decide `subagent_execution_mode` before implementation. If `runtime_subagents` is possible, create actual runtime handles for at least the minimum context and verifier roles.
 4. Add domain specialists only after the core council identifies the domain, using the latest `references/expert-capability-library.json`.
-5. Create task cards before implementation begins.
-6. Record each creation event in `subagents.jsonl`, including runtime handles or fallback reasons. For `auto_harness`, pass real handles to `init_auto_harness.py` with `--runtime-subagent "Role=runtime_agent_id"`.
-7. Let subagents run early context, verification, or failure-analysis passes.
-8. Stop or replace subagents quickly when they become stale, duplicate, or blocked.
+5. Check each candidate role's `capability_profile.activation_criteria`; skip roles whose activation criteria do not match the current task.
+6. Create task cards before implementation begins, carrying forward the role's relevant capability profile fields.
+7. Record each creation event in `subagents.jsonl`, including runtime handles or fallback reasons. For `auto_harness`, pass real handles to `init_auto_harness.py` with `--runtime-subagent "Role=runtime_agent_id"`.
+8. Let subagents run early context, verification, or failure-analysis passes.
+9. Stop or replace subagents quickly when they become stale, duplicate, blocked, or their risk flags fire.
 
 ## Anti-Patterns
 

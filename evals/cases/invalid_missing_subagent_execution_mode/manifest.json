@@ -8,7 +8,7 @@
   "team_policy": {
     "mode": "internal_team",
     "task_class": "standard_harness",
-    "expert_library_version": "harness-experts.v3",
+    "expert_library_version": "harness-experts.v4",
     "reason": "eval case intentionally omits subagent_execution_mode",
     "initial_roles": ["Verifier / Evidence Auditor"],
     "single_agent_exception": false,

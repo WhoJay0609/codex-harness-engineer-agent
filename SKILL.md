@@ -18,8 +18,9 @@ Harness engineering has seven layers:
 
 1. Intent: goal, scope, budget, stop conditions, and success criteria.
 2. Context: repo map, prior runs, constraints, local instructions, and risks.
-3. Team: single-agent exception, inline expert fallback, or real runtime
-   subagents when the request and platform permit delegation.
+3. Team: role capability profiles, single-agent exception, inline expert
+   fallback, or real runtime subagents when the request and platform permit
+   delegation.
 4. Tools: skill allowlists, shell/browser/runtime access, and guard commands.
 5. Artifacts: manifests, traces, logs, metrics, replay, and summaries.
 6. Loop: baseline, change, verify, keep/discard, recover, and terminate.
@@ -51,9 +52,10 @@ and `references/auto-harness-mode.md`.
    real runtime subagents for parallelizable non-trivial work when the current
    request and platform policy permit delegation. Use inline expert memos only
    when runtime creation is blocked, and record the fallback reason.
-4. Route skills deliberately: use generated expert allowlists for domain work;
-   keep `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` explicit
-   request only.
+4. Route skills deliberately: before loading or invoking any skill, send a
+   concise user-visible note naming the skill(s) and why they apply; use
+   generated expert allowlists for domain work; keep `$codex-autoresearch`,
+   `$multi-agent`, and `$expert-debate` explicit request only.
 5. Record evidence: write Trace v2 events, tool observations, failures, metrics,
    skill decisions, runtime cleanup, and terminal status when producing a run.
 6. Iterate mechanically: measure a baseline, make one focused change or
@@ -91,8 +93,9 @@ Architecture:
 Team and runtime:
 
 - `references/expert-capability-library.md` and
-  `references/expert-capability-library.json`: generated `harness-experts.v3`
-  role library.
+  `references/expert-capability-library.json`: generated `harness-experts.v4`
+  role library with capability profiles, skill allowlists, and selection
+  fields.
 - `references/team-formation-policy.md`: proactive team selection and
   single-agent exceptions.
 - `references/subagent-runtime.md`: startup cleanup, runtime subagents, fallback

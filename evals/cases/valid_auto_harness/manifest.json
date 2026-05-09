@@ -14,7 +14,7 @@
     "validator accepts auto_harness artifacts"
   ],
   "team_policy": {
-    "expert_library_version": "harness-experts.v3",
+    "expert_library_version": "harness-experts.v4",
     "initial_roles": [
       "Professor Orchestrator",
       "Runner Coordinator",

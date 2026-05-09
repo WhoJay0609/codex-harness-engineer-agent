@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 
-EXPERT_LIBRARY_VERSION = "harness-experts.v3"
+EXPERT_LIBRARY_VERSION = "harness-experts.v4"
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INVENTORY = DEFAULT_ROOT / "references" / "skill-inventory.json"
 DEFAULT_JSON_OUTPUT = DEFAULT_ROOT / "references" / "expert-capability-library.json"
@@ -26,6 +26,419 @@ class RoleDefinition:
     keywords: tuple[str, ...] = ()
     preferred_skills: tuple[str, ...] = ()
     role_type: str = "domain_specialist"
+
+
+@dataclass(frozen=True)
+class CapabilityProfile:
+    activation_criteria: tuple[str, ...] = ()
+    input_contract: tuple[str, ...] = ()
+    deliverables: tuple[str, ...] = ()
+    verification_focus: tuple[str, ...] = ()
+    risk_flags: tuple[str, ...] = ()
+    collaboration: tuple[str, ...] = ()
+
+
+CORE_ROLE_CAPABILITIES: dict[str, CapabilityProfile] = {
+    "Professor Orchestrator": CapabilityProfile(
+        activation_criteria=(
+            "Use for every non-trivial harness run that needs final judgment, team lifecycle control, or closeout.",
+            "Use when multiple specialists produce conflicting findings or when stop/continue decisions affect scope.",
+        ),
+        input_contract=(
+            "User goal, scope, constraints, acceptance criteria, and budget.",
+            "Current team state, task cards, trace artifacts, and open escalations.",
+        ),
+        deliverables=(
+            "A final orchestrator decision with selected path, rationale, accepted evidence, and terminal status.",
+            "Team additions, stops, replacements, and reserved-skill decisions recorded in harness artifacts.",
+        ),
+        verification_focus=(
+            "Success is backed by artifacts rather than consensus or intent.",
+            "The chosen terminal status matches the evidence and remaining blockers.",
+        ),
+        risk_flags=(
+            "Unresolved specialist disagreement.",
+            "A claim of completion without verifier evidence.",
+            "Implicit use of reserved orchestration skills.",
+        ),
+        collaboration=(
+            "Receives context packets and verifier reports.",
+            "Assigns or updates specialist task cards and owns the final synthesis.",
+        ),
+    ),
+    "Intent Router": CapabilityProfile(
+        activation_criteria=(
+            "Use at startup when task class, success criteria, domains, or approval boundaries are unclear.",
+            "Use again when new evidence changes the domain or risk profile.",
+        ),
+        input_contract=(
+            "Latest user request, local guidance, project constraints, and available skill inventory.",
+            "Known budget, risk tolerance, and whether the user explicitly requested external orchestration skills.",
+        ),
+        deliverables=(
+            "A task classification with required roles, explicit assumptions, and approval boundaries.",
+            "A routing note that explains which domain specialists should be added or skipped.",
+        ),
+        verification_focus=(
+            "The route is specific enough to create task cards.",
+            "Reserved orchestration skills remain blocked unless explicitly requested.",
+        ),
+        risk_flags=(
+            "Ambiguous user intent that would make implementation risky.",
+            "Task treated as trivial despite behavior, data, or workflow impact.",
+        ),
+        collaboration=(
+            "Feeds Task Decomposer and Professor Orchestrator.",
+            "Receives stale-context warnings from Context Curator.",
+        ),
+    ),
+    "Context Curator": CapabilityProfile(
+        activation_criteria=(
+            "Use when repo, paper, artifact, or prior-run context must be summarized before execution.",
+            "Use when a dirty tree, stale docs, or generated outputs may affect the task.",
+        ),
+        input_contract=(
+            "Repo map, relevant files, memory notes, prior run artifacts, and local instructions.",
+            "Known source-of-truth files and any artifacts that must not be modified.",
+        ),
+        deliverables=(
+            "A compact context packet with authoritative files, risks, stale areas, and unknowns.",
+            "Pointers to evidence paths that downstream specialists should read first.",
+        ),
+        verification_focus=(
+            "Context cites current files or explicitly marks memory-derived facts as stale-risk.",
+            "Unrelated user work is identified and preserved.",
+        ),
+        risk_flags=(
+            "Relying on old summaries when current files are cheap to inspect.",
+            "Confusing generated artifacts with source-of-truth files.",
+        ),
+        collaboration=(
+            "Hands context packets to all specialists.",
+            "Asks Entropy Gardener or Verifier to inspect drift when needed.",
+        ),
+    ),
+    "Task Decomposer": CapabilityProfile(
+        activation_criteria=(
+            "Use when the goal needs multiple tasks, dependencies, budgets, or acceptance checks.",
+            "Use before creating runtime subagents or long-running loops.",
+        ),
+        input_contract=(
+            "Goal, scope, role set, known dependencies, constraints, and stop conditions.",
+            "Available commands, expected artifacts, and validation gates.",
+        ),
+        deliverables=(
+            "Task cards with scope, inputs, outputs, allowed skills, budgets, and escalation triggers.",
+            "A dependency order that separates blocking and parallel work.",
+        ),
+        verification_focus=(
+            "Each task card has a measurable output and a stop condition.",
+            "No two specialists own the same write scope unless coordination is explicit.",
+        ),
+        risk_flags=(
+            "Duplicated work across specialists.",
+            "A task card that cannot be verified mechanically or by artifact review.",
+        ),
+        collaboration=(
+            "Uses Intent Router classification and expert library profiles.",
+            "Hands task cards to Professor Orchestrator for creation decisions.",
+        ),
+    ),
+    "Debate Moderator": CapabilityProfile(
+        activation_criteria=(
+            "Use when there are credible alternative approaches or high-risk assumptions.",
+            "Use when the user requested adversarial or expert-style deliberation inside the harness.",
+        ),
+        input_contract=(
+            "Candidate approaches, evidence constraints, decision criteria, and debate mode.",
+            "Independent specialist findings when available.",
+        ),
+        deliverables=(
+            "A structured deliberation summary with positions, critiques, revisions, and moderator conclusion.",
+            "A decision-ready shortlist with reasons to accept or reject each option.",
+        ),
+        verification_focus=(
+            "Critiques target assumptions and evidence, not personalities or preferences.",
+            "Moderator synthesis preserves unresolved uncertainty.",
+        ),
+        risk_flags=(
+            "False consensus.",
+            "Unbounded debate that delays a measurable next step.",
+        ),
+        collaboration=(
+            "Coordinates Red Team Critic and domain specialists.",
+            "Returns the synthesized decision to Professor Orchestrator.",
+        ),
+    ),
+    "Red Team Critic": CapabilityProfile(
+        activation_criteria=(
+            "Use for high-risk changes, paper claims, irreversible operations, or weak evidence.",
+            "Use when the apparent solution may hide simpler alternatives or invalid assumptions.",
+        ),
+        input_contract=(
+            "Proposed plan, evidence, assumptions, constraints, and rollback path.",
+            "Known failure modes and acceptance criteria.",
+        ),
+        deliverables=(
+            "A risk report with blocking issues, non-blocking caveats, and safer alternatives.",
+            "Specific checks or edits needed before claiming success.",
+        ),
+        verification_focus=(
+            "Every blocking concern ties to concrete evidence or plausible failure impact.",
+            "Recommendations are actionable within current scope.",
+        ),
+        risk_flags=(
+            "Overclaiming beyond measured evidence.",
+            "Hidden destructive action or undocumented behavior change.",
+        ),
+        collaboration=(
+            "Reviews plans from Professor Orchestrator and domain specialists.",
+            "Hands concrete guard suggestions to Verifier or Mechanical Gatekeeper.",
+        ),
+    ),
+    "Harness Architect": CapabilityProfile(
+        activation_criteria=(
+            "Use when artifact contracts, schemas, validators, run layout, or team protocols change.",
+            "Use when the harness needs a new repeatable workflow rather than a one-off fix.",
+        ),
+        input_contract=(
+            "Current references, scripts, schema contracts, validation failures, and target behavior.",
+            "Compatibility constraints for existing run artifacts.",
+        ),
+        deliverables=(
+            "A harness design with artifact ownership, schema changes, and validation strategy.",
+            "Updated references or scripts when the design is implemented.",
+        ),
+        verification_focus=(
+            "New behavior is documented in the owning reference.",
+            "Generated files are regenerated rather than hand-edited.",
+        ),
+        risk_flags=(
+            "New required field without validator support.",
+            "Policy duplicated across references with divergent wording.",
+        ),
+        collaboration=(
+            "Works with Mechanical Gatekeeper on enforceable checks.",
+            "Uses Verifier to confirm generated artifacts and evals.",
+        ),
+    ),
+    "Runner Coordinator": CapabilityProfile(
+        activation_criteria=(
+            "Use when baseline, candidate, guard, or background execution must be coordinated.",
+            "Use when command provenance and runtime state determine the decision.",
+        ),
+        input_contract=(
+            "Run command, verify command, guard command, working directory, budget, and metric direction.",
+            "Current dirty-tree state and isolation requirements.",
+        ),
+        deliverables=(
+            "Run coordination report with commands, outputs, metrics, and keep/discard recommendation.",
+            "Updated run artifacts for baseline and candidate iterations.",
+        ),
+        verification_focus=(
+            "Commands ran in the intended environment and directory.",
+            "Metrics and guard results are recorded before any keep decision.",
+        ),
+        risk_flags=(
+            "Comparing runs from different environments or datasets.",
+            "Leaving long-running sessions active after closeout.",
+        ),
+        collaboration=(
+            "Receives task cards from Task Decomposer.",
+            "Hands logs and metrics to Verifier and Failure Analyst.",
+        ),
+    ),
+    "Verifier / Evidence Auditor": CapabilityProfile(
+        activation_criteria=(
+            "Use before claiming success on any non-trivial change, result, or document update.",
+            "Use when evidence freshness, metric validity, or source alignment matters.",
+        ),
+        input_contract=(
+            "Acceptance criteria, changed files, command logs, metrics, generated artifacts, and source references.",
+            "Known skipped checks and reasons.",
+        ),
+        deliverables=(
+            "A verification report listing passed checks, failed checks, skipped checks, and residual risk.",
+            "Concrete evidence paths or command summaries that support the final claim.",
+        ),
+        verification_focus=(
+            "Every success claim maps to a command, file, metric, or cited source.",
+            "Skipped validation is explicit and not silently treated as pass.",
+        ),
+        risk_flags=(
+            "Freshness gap between source data and written claims.",
+            "Passing smoke check used as proof of broad behavior.",
+        ),
+        collaboration=(
+            "Audits Runner Coordinator outputs and domain specialist claims.",
+            "Reports blockers to Professor Orchestrator before closeout.",
+        ),
+    ),
+    "Failure Analyst": CapabilityProfile(
+        activation_criteria=(
+            "Use after failed commands, inconsistent metrics, blocked tools, or repeated recovery attempts.",
+            "Use when the root cause may be code, environment, data, context, policy, or metric design.",
+        ),
+        input_contract=(
+            "Failure logs, commands, expected behavior, recent changes, environment details, and retry history.",
+            "Any partial outputs or artifacts produced before failure.",
+        ),
+        deliverables=(
+            "A failure classification with root-cause hypothesis, evidence, and next recovery action.",
+            "A record of environment or policy blockers when recovery is not possible.",
+        ),
+        verification_focus=(
+            "Hypotheses are tied to observed logs or reproduced behavior.",
+            "Recovery actions are bounded and do not hide invalid state.",
+        ),
+        risk_flags=(
+            "Retrying without changing evidence or hypothesis.",
+            "Adding fallback paths that make invalid state appear valid.",
+        ),
+        collaboration=(
+            "Receives logs from Runner Coordinator and Verifier.",
+            "Hands recurrent gaps to Mechanical Gatekeeper.",
+        ),
+    ),
+    "Mechanical Gatekeeper": CapabilityProfile(
+        activation_criteria=(
+            "Use when a repeated rule, artifact contract, or review comment can become an executable check.",
+            "Use when validation should reject stale generated files or invalid traces.",
+        ),
+        input_contract=(
+            "Policy text, examples of valid/invalid state, expected error messages, and target command.",
+            "Existing validators, schemas, and eval fixtures.",
+        ),
+        deliverables=(
+            "A gate proposal or implementation with command, scope, failure mode, and maintenance owner.",
+            "Updated eval fixture when validator behavior changes.",
+        ),
+        verification_focus=(
+            "Gate fails on a representative bad case and passes on a representative good case.",
+            "Error messages identify the actionable fix.",
+        ),
+        risk_flags=(
+            "Check is too broad and blocks unrelated local work.",
+            "Validator enforces undocumented policy.",
+        ),
+        collaboration=(
+            "Works with Harness Architect on schema and policy ownership.",
+            "Asks Verifier to run the full validation set.",
+        ),
+    ),
+    "Trace Auditor": CapabilityProfile(
+        activation_criteria=(
+            "Use when run replayability, trace completeness, or skill invocation records are central.",
+            "Use before trusting a harness run as evidence.",
+        ),
+        input_contract=(
+            "manifest.json, subagents.jsonl, skill_invocations.jsonl, events.jsonl, tool_calls.jsonl, failures.jsonl, metrics.json, and replay.md.",
+            "Expected team policy and terminal status.",
+        ),
+        deliverables=(
+            "A trace audit listing missing, stale, inconsistent, or unverifiable artifacts.",
+            "Replayability verdict and required repair steps.",
+        ),
+        verification_focus=(
+            "Each tool call has a matching observation when required.",
+            "Subagents have creation and terminal events.",
+        ),
+        risk_flags=(
+            "Terminal success without trace evidence.",
+            "Skill use outside allowlist or missing skill decision record.",
+        ),
+        collaboration=(
+            "Feeds Verifier and Professor Orchestrator.",
+            "Hands repeated trace defects to Mechanical Gatekeeper.",
+        ),
+    ),
+    "Entropy Gardener": CapabilityProfile(
+        activation_criteria=(
+            "Use when docs, generated files, duplicate helpers, or skill allowlists may have drifted.",
+            "Use during maintenance or repository cleanup before broad edits.",
+        ),
+        input_contract=(
+            "Repo or skill package map, generated-file policy, ignore rules, validators, and current status.",
+            "Known user-owned or unrelated changes to preserve.",
+        ),
+        deliverables=(
+            "An entropy report ranking drift, duplication, stale docs, and cleanup candidates by risk.",
+            "A bounded cleanup plan that separates source changes from generated artifacts.",
+        ),
+        verification_focus=(
+            "Cleanup recommendations are additive or explicitly scoped.",
+            "Generated files are refreshed by their owner scripts.",
+        ),
+        risk_flags=(
+            "Deleting useful local state.",
+            "Changing behavior while claiming repository hygiene only.",
+        ),
+        collaboration=(
+            "Supplies drift findings to Context Curator and Harness Architect.",
+            "Asks Verifier to confirm cleanup gates.",
+        ),
+    ),
+}
+
+
+DOMAIN_CAPABILITY_HINTS: dict[str, CapabilityProfile] = {
+    "research": CapabilityProfile(
+        activation_criteria=("Use when novelty, literature, research workflow, or claim boundaries shape the next step.",),
+        input_contract=("Research question, target venue or audience, seed papers, known baselines, and evidence constraints.",),
+        deliverables=("A research-facing artifact with assumptions, related work boundaries, and next validation step.",),
+        verification_focus=("Separate published evidence from engineering inference and untested hypotheses.",),
+        risk_flags=("Novelty or claim wording exceeds the evidence gathered.",),
+        collaboration=("Coordinate with Verifier / Evidence Auditor before paper or result claims are finalized.",),
+    ),
+    "paper": CapabilityProfile(
+        activation_criteria=("Use when paper text, LaTeX, figures, tables, claims, or submission material is the work product.",),
+        input_contract=("Manuscript sources, result artifacts, venue constraints, figure/table inputs, and compile command.",),
+        deliverables=("Publication-ready text or assets tied to exact source files and result evidence.",),
+        verification_focus=("Claims, numbers, captions, and tables match current artifacts and compile cleanly when applicable.",),
+        risk_flags=("Invented results, stale tables, or venue/template drift.",),
+        collaboration=("Coordinate with Literature / Novelty Expert and Verifier / Evidence Auditor for claim safety.",),
+    ),
+    "experiment": CapabilityProfile(
+        activation_criteria=("Use when metrics, ablations, training/evaluation runs, or result interpretation drives the task.",),
+        input_contract=("Baseline, metric definition, dataset/config, run commands, environment, and output root.",),
+        deliverables=("Experiment matrix, run plan, analysis, or monitoring report with reproducible commands.",),
+        verification_focus=("Compare like with like: same dataset, environment, metric direction, and source artifacts.",),
+        risk_flags=("Partial runs treated as final, environment mismatch, or metric normalization errors.",),
+        collaboration=("Coordinate with Runner Coordinator for execution and Verifier / Evidence Auditor for result trust.",),
+    ),
+    "software": CapabilityProfile(
+        activation_criteria=("Use when code, APIs, UI, deployment, CI, security, or repository structure must change.",),
+        input_contract=("Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints.",),
+        deliverables=("A scoped implementation or review artifact with changed files, tests, and residual risk.",),
+        verification_focus=("Behavior changes are documented, tested, and aligned with existing project conventions.",),
+        risk_flags=("Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state.",),
+        collaboration=("Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout.",),
+    ),
+    "ml": CapabilityProfile(
+        activation_criteria=("Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central.",),
+        input_contract=("Model, data, hardware, environment, config, checkpoint, metric, and budget constraints.",),
+        deliverables=("Model workflow plan, code change, run config, or evaluation report with provenance.",),
+        verification_focus=("Runtime provenance, model semantics, and metric interpretation are explicit and reproducible.",),
+        risk_flags=("Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states.",),
+        collaboration=("Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor.",),
+    ),
+    "data": CapabilityProfile(
+        activation_criteria=("Use when retrieval, data prep, tokenization, documents, or knowledge capture is central.",),
+        input_contract=("Data sources, schema, access constraints, freshness requirements, and output format.",),
+        deliverables=("Prepared data, retrieval plan, document artifact, or knowledge record with source provenance.",),
+        verification_focus=("Source freshness, schema validity, and downstream consumption are checked.",),
+        risk_flags=("Stale data, lossy conversion, missing provenance, or private data leakage.",),
+        collaboration=("Coordinate with Context Curator and Verifier / Evidence Auditor.",),
+    ),
+    "ops": CapabilityProfile(
+        activation_criteria=("Use when operations, notification, deployment, project reporting, or runtime reliability is central.",),
+        input_contract=("Target service or workflow, credentials/connectors available, status, rollback plan, and audience.",),
+        deliverables=("Operational action plan, deployment summary, notification, or project report with status and risk.",),
+        verification_focus=("External actions are confirmed through their authoritative system when available.",),
+        risk_flags=("Assuming remote state from local output alone, or performing irreversible operations without explicit scope.",),
+        collaboration=("Coordinate with Professor Orchestrator for approval boundaries and Verifier for final state checks.",),
+    ),
+}
 
 
 CORE_ROLES: tuple[RoleDefinition, ...] = (
@@ -320,7 +733,23 @@ DOMAIN_ROLES: tuple[RoleDefinition, ...] = (
         "Notification / Ops Expert",
         "Handles Feishu notifications, Linear issue workflows, Sentry summaries, and operational reporting.",
         "ops_plan",
-        keywords=("notify", "notification", "feishu", "linear", "ops", "sentry"),
+        keywords=(
+            "notify",
+            "notification",
+            "message",
+            "messaging",
+            "bridge",
+            "telegram",
+            "discord",
+            "feishu",
+            "lark",
+            "qq",
+            "wechat",
+            "weixin",
+            "linear",
+            "ops",
+            "sentry",
+        ),
     ),
 )
 
@@ -556,7 +985,44 @@ DOMAIN_ROLE_PREFERRED_SKILLS: dict[str, tuple[str, ...]] = {
         "slides",
         "spreadsheet",
     ),
-    "Notification / Ops Expert": ("feishu-notify", "linear", "sentry", "project-phase-report"),
+    "Notification / Ops Expert": ("feishu-notify", "claude-to-im", "linear", "sentry", "project-phase-report"),
+}
+
+
+DOMAIN_ROLE_CAPABILITY_CATEGORY: dict[str, str] = {
+    "Research Ideation Expert": "research",
+    "Literature / Novelty Expert": "research",
+    "Research Pipeline Expert": "research",
+    "Theory Expert": "research",
+    "Paper-to-Code Expert": "software",
+    "Paper Writing Expert": "paper",
+    "Paper Figures / Talks Expert": "paper",
+    "Experiment / Metrics Expert": "experiment",
+    "Algorithm Expert": "experiment",
+    "ML Training Expert": "ml",
+    "LLM Fine-Tuning Expert": "ml",
+    "LLM Serving Expert": "ml",
+    "Compression Expert": "ml",
+    "Model Architecture Expert": "ml",
+    "Interpretability Expert": "ml",
+    "Evaluation / Benchmark Expert": "experiment",
+    "RAG / Agents Expert": "data",
+    "Retrieval / Vector DB Expert": "data",
+    "Tokenizer / Data Expert": "data",
+    "Multimodal / Vision Expert": "ml",
+    "Robotics / Embodied Expert": "ml",
+    "Audio / Speech Expert": "ml",
+    "Safety / Guardrails Expert": "software",
+    "Frontend / Design Expert": "software",
+    "Backend / API Expert": "software",
+    "Game / Desktop Expert": "software",
+    "Security / Reliability Expert": "software",
+    "CI / PR Expert": "software",
+    "Deploy Expert": "ops",
+    "Documents / Materials Expert": "data",
+    "Knowledge / Notion Expert": "data",
+    "Project Delivery Expert": "ops",
+    "Notification / Ops Expert": "ops",
 }
 
 
@@ -565,6 +1031,33 @@ FALLBACK_ROLE = RoleDefinition(
     "Routes installed skills that do not yet match a domain taxonomy rule and reports taxonomy gaps.",
     "unclassified_skill_routing",
     role_type="domain_specialist",
+)
+
+FALLBACK_CAPABILITY = CapabilityProfile(
+    activation_criteria=(
+        "Use when installed skills do not yet match the deterministic domain taxonomy.",
+        "Use as a temporary routing bridge while recording taxonomy gaps for later generator refinement.",
+    ),
+    input_contract=(
+        "Unclassified skill ids, descriptions, user request, and the nearest candidate expert roles.",
+        "Reason the existing taxonomy did not match with enough confidence.",
+    ),
+    deliverables=(
+        "A routing recommendation for the current run.",
+        "A taxonomy gap note that can be converted into generator keywords or a new specialist role.",
+    ),
+    verification_focus=(
+        "Unclassified skills are still installed and non-reserved.",
+        "The temporary route does not silently bypass allowlists or reserved-skill policy.",
+    ),
+    risk_flags=(
+        "Stable repeated routing through fallback instead of updating the taxonomy.",
+        "Using fallback as a broad permission bucket.",
+    ),
+    collaboration=(
+        "Reports stable gaps to Harness Architect and Entropy Gardener.",
+        "Asks Professor Orchestrator before expanding any allowlist.",
+    ),
 )
 
 
@@ -662,11 +1155,33 @@ def assign_domain_skills(skills: list[dict[str, Any]]) -> dict[str, list[str]]:
     return assignments
 
 
+def profile_to_record(profile: CapabilityProfile) -> dict[str, list[str]]:
+    return {
+        "activation_criteria": list(profile.activation_criteria),
+        "input_contract": list(profile.input_contract),
+        "deliverables": list(profile.deliverables),
+        "verification_focus": list(profile.verification_focus),
+        "risk_flags": list(profile.risk_flags),
+        "collaboration": list(profile.collaboration),
+    }
+
+
+def capability_profile_for_role(role: RoleDefinition) -> CapabilityProfile:
+    if role.role in CORE_ROLE_CAPABILITIES:
+        return CORE_ROLE_CAPABILITIES[role.role]
+    if role.role == FALLBACK_ROLE.role:
+        return FALLBACK_CAPABILITY
+    category = DOMAIN_ROLE_CAPABILITY_CATEGORY.get(role.role, "software")
+    return DOMAIN_CAPABILITY_HINTS[category]
+
+
 def make_role_record(role: RoleDefinition, allowed_skills: list[str], generated_from: str) -> dict[str, Any]:
+    capability_profile = capability_profile_for_role(role)
     return {
         "role": role.role,
         "type": role.role_type,
         "capability": role.capability,
+        "capability_profile": profile_to_record(capability_profile),
         "allowed_skills": allowed_skills,
         "forbidden_skills": ["codex-autoresearch", "multi-agent", "expert-debate"],
         "required_skill_check": True,
@@ -731,7 +1246,8 @@ def build_expert_library(inventory: dict[str, Any]) -> dict[str, Any]:
     coverage_missing = sorted(set(external_skills) - set(covered_skills))
 
     return {
-        "version": 3,
+        "version": 4,
+        "capability_schema_version": 1,
         "generated_by": "scripts/update_expert_library.py",
         "expert_library_version": EXPERT_LIBRARY_VERSION,
         "source_inventory_hash": inventory.get("inventory_hash"),
@@ -751,6 +1267,13 @@ def format_skill_list(skills: list[str]) -> str:
     if not skills:
         return "`none`"
     return ", ".join(f"`{skill}`" for skill in skills)
+
+
+def format_profile_field(profile: dict[str, Any], field: str) -> str:
+    values = profile.get(field, [])
+    if not isinstance(values, list) or not values:
+        return "`none`"
+    return " | ".join(str(value) for value in values)
 
 
 def render_markdown(library: dict[str, Any]) -> str:
@@ -779,6 +1302,8 @@ def render_markdown(library: dict[str, Any]) -> str:
         "- `Harness Core Council`: stable experts that plan, orchestrate, debate, verify, route skills, and manage runs.",
         "- `Domain Specialists`: experts generated from the installed skill inventory and a deterministic taxonomy.",
         "",
+        "Each role includes a machine-readable `capability_profile` with activation criteria, input contract, deliverables, verification focus, risk flags, and collaboration expectations. Use those fields when creating task cards or deciding whether to add, stop, or replace a specialist.",
+        "",
         "Reserved orchestration skills (`codex-autoresearch`, `multi-agent`, `expert-debate`) are not automatically added to ordinary expert allowlists and remain explicit-request-only.",
         "",
         "## Coverage",
@@ -791,10 +1316,17 @@ def render_markdown(library: dict[str, Any]) -> str:
     ]
 
     for role in core_roles:
+        profile = role.get("capability_profile", {})
         lines.extend(
             [
                 f"### {role['role']}",
                 f"Capability: {role['capability']}",
+                f"Activation: {format_profile_field(profile, 'activation_criteria')}",
+                f"Inputs: {format_profile_field(profile, 'input_contract')}",
+                f"Deliverables: {format_profile_field(profile, 'deliverables')}",
+                f"Verification focus: {format_profile_field(profile, 'verification_focus')}",
+                f"Risk flags: {format_profile_field(profile, 'risk_flags')}",
+                f"Collaboration: {format_profile_field(profile, 'collaboration')}",
                 f"Allowed skills: {format_skill_list(role.get('allowed_skills', []))}",
                 f"Output schema: `{role['output_schema']}`",
                 "",
@@ -803,10 +1335,17 @@ def render_markdown(library: dict[str, Any]) -> str:
 
     lines.extend(["## Domain Specialists", ""])
     for role in domain_roles:
+        profile = role.get("capability_profile", {})
         lines.extend(
             [
                 f"### {role['role']}",
                 f"Capability: {role['capability']}",
+                f"Activation: {format_profile_field(profile, 'activation_criteria')}",
+                f"Inputs: {format_profile_field(profile, 'input_contract')}",
+                f"Deliverables: {format_profile_field(profile, 'deliverables')}",
+                f"Verification focus: {format_profile_field(profile, 'verification_focus')}",
+                f"Risk flags: {format_profile_field(profile, 'risk_flags')}",
+                f"Collaboration: {format_profile_field(profile, 'collaboration')}",
                 f"Allowed skills: {format_skill_list(role.get('allowed_skills', []))}",
                 f"Output schema: `{role['output_schema']}`",
                 "",
@@ -819,6 +1358,8 @@ def render_markdown(library: dict[str, Any]) -> str:
             "",
             "- Always start with the smallest complete Harness Core Council for the task.",
             "- Add Domain Specialists only after intent routing identifies the domain.",
+            "- Use each role's `capability_profile.activation_criteria` before creating or replacing that specialist.",
+            "- Copy each role's input contract, deliverables, verification focus, and risk flags into the task card when they are relevant.",
             "- Domain Specialists use their generated `allowed_skills` as hard boundaries.",
             "- If a needed skill is outside the allowlist, the subagent reports `needed_skill`; the orchestrator records the route decision before expanding the allowlist.",
             "- If a skill lands in `General / Unclassified Skills Expert`, treat it as a taxonomy gap and refine the generator when the routing becomes stable.",

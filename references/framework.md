@@ -26,16 +26,16 @@ Every harness decision should fit one layer:
    confirmation.
 2. Context layer: repo map, local instructions, prior run artifacts, dirty tree,
    and constraints.
-3. Team layer: core council, domain specialists, runtime subagent handles,
-   inline fallback, and single-agent exceptions.
+3. Team layer: core council, domain specialists, role capability profiles,
+   runtime subagent handles, inline fallback, and single-agent exceptions.
 4. Tool layer: skill allowlists, reserved orchestration policy, shell commands,
    browser/runtime access, and guard commands.
 5. Artifact layer: manifest, event trace, tool observations, failures, metrics,
    replay, and summary.
 6. Feedback layer: baseline, hypothesis, focused change, verify, guard,
    keep/discard, repair, and terminal state.
-7. Maintenance layer: inventory refresh, expert library generation, schema
-   validation, eval fixtures, README, and publish sync.
+7. Maintenance layer: inventory refresh, expert library generation, capability
+   profile schema, validation, eval fixtures, README, and publish sync.
 
 If a new rule cannot be assigned to one layer, the rule is probably too vague.
 

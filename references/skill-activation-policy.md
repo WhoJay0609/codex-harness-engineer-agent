@@ -11,9 +11,11 @@ Required sequence:
 1. Read the task card.
 2. Inspect `allowed_skills`.
 3. Decide which allowed skills match the task.
-4. Load and follow matching skill instructions when available.
-5. Record each decision in `skill_invocations.jsonl`.
-6. If a needed skill is outside the allowlist, report `needed_skill` to the orchestrator instead of using it.
+4. Announce the matching skill(s) and the reason for using them in the
+   user-visible channel before loading or invoking them.
+5. Load and follow matching skill instructions when available.
+6. Record each decision in `skill_invocations.jsonl`.
+7. If a needed skill is outside the allowlist, report `needed_skill` to the orchestrator instead of using it.
 
 ## Invocation Record
 
@@ -49,6 +51,8 @@ If no skill applies, record:
 
 - `allowed_skills` is a hard boundary for subagents.
 - `required_skill_check: true` means the run is invalid unless a skill decision is logged.
+- User-visible skill disclosure is required whenever an interactive channel is
+  available.
 - Allowlist misses are harness gaps. Record them in `harness_gap_log.jsonl`.
 - The orchestrator may expand an allowlist only after recording why the expansion is necessary.
 - External domain skills are allowed when present in `allowed_skills`; they do not require `user_explicit_request=true`.

@@ -57,6 +57,21 @@ Every subagent gets a task card:
   "agent_id": "verifier-1",
   "role": "Verifier / Evidence Auditor",
   "scope": "verify candidate run against acceptance criteria",
+  "activation_criteria": [
+    "Use before claiming success on any non-trivial change, result, or document update."
+  ],
+  "input_contract": [
+    "Acceptance criteria, changed files, command logs, metrics, generated artifacts, and source references."
+  ],
+  "deliverables": [
+    "A verification report listing passed checks, failed checks, skipped checks, and residual risk."
+  ],
+  "verification_focus": [
+    "Every success claim maps to a command, file, metric, or cited source."
+  ],
+  "risk_flags": [
+    "Freshness gap between source data and written claims."
+  ],
   "allowed_skills": ["software-engineer", "run-experiment", "analyze-results"],
   "forbidden_skills": ["codex-autoresearch", "multi-agent", "expert-debate"],
   "required_skill_check": true,
@@ -73,6 +88,13 @@ Every subagent gets a task card:
   "escalation_triggers": ["unclear_root_cause", "conflicting_agent_findings"]
 }
 ```
+
+Copy these capability fields from
+`references/expert-capability-library.json` when creating a task card. They are
+the role contract: `activation_criteria` explains why the role exists,
+`input_contract` states what context the role needs, `deliverables` names the
+expected output, `verification_focus` defines what the role must check, and
+`risk_flags` identify conditions that should trigger escalation or replacement.
 
 ## Role Templates
 

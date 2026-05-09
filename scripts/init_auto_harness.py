@@ -183,7 +183,7 @@ def main() -> int:
         "team_policy": {
             "mode": "internal_team",
             "task_class": "execution",
-            "expert_library_version": "harness-experts.v3",
+            "expert_library_version": "harness-experts.v4",
             "reason": "auto_harness loop needs execution and verification roles",
             "initial_roles": initial_roles,
             "single_agent_exception": False,

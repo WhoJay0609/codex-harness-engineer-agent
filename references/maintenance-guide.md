@@ -27,6 +27,9 @@ Do not edit generated caches or run outputs into either tree.
   validators when enforceable, and add eval fixtures when behavior changes.
 - Skill-inventory change: run `scripts/update_skill_inventory.py` and then
   `scripts/update_expert_library.py`.
+- Expert capability change: update `scripts/update_expert_library.py` role
+  templates or capability profiles, regenerate the expert library, and keep the
+  consistency checker aligned with the generated schema.
 - Script or validator change: update or add eval cases under `evals/cases/`.
 - Auto-harness execution change: update helper scripts, `auto-harness-mode.md`,
   `code-autoresearch-integration.md`, and at least one `auto_harness` eval case.

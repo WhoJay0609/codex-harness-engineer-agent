@@ -12,14 +12,25 @@ Code Auto Research as a design pattern is internalized in `auto_harness`. The ex
 
 The installed inventory lives in `references/skill-inventory.json`. A skill reference may match either a skill directory `id` or SKILL frontmatter `name`.
 
+## User-Visible Disclosure
+
+Before the orchestrator or a subagent loads or invokes a skill, emit a concise
+user-visible note naming the skill and the reason it applies. When several
+skills are needed, one grouped note is sufficient.
+
+Disclosure is informational only: it does not grant permission to use reserved
+orchestration skills, bypass allowlists, or replace the required
+`skill_invocations.jsonl` record.
+
 ## Subagent Rules
 
 1. A subagent reads its task card before substantive work.
 2. It may use only skills listed in `allowed_skills`.
-3. Every skill decision is recorded in `skill_invocations.jsonl`, including no-op decisions.
-4. External domain skills do not require `user_explicit_request=true` when they are in `allowed_skills`.
-5. Reserved orchestration skills require `user_explicit_request=true` and an `escalations.jsonl` record.
-6. If a needed skill is outside the allowlist, the subagent returns `needed_skill` and stops or continues without that skill.
+3. It announces any skill it will use before loading or invoking that skill.
+4. Every skill decision is recorded in `skill_invocations.jsonl`, including no-op decisions.
+5. External domain skills do not require `user_explicit_request=true` when they are in `allowed_skills`.
+6. Reserved orchestration skills require `user_explicit_request=true` and an `escalations.jsonl` record.
+7. If a needed skill is outside the allowlist, the subagent returns `needed_skill` and stops or continues without that skill.
 
 ## Allowlist Expansion
 
@@ -48,6 +59,8 @@ Validators should reject:
 
 - unknown skills in task cards or skill invocations;
 - used skills that are not in the subagent's `allowed_skills`;
+- missing user-visible disclosure for a used skill when an interactive channel
+  was available;
 - reserved orchestration skills without `user_explicit_request=true`;
 - `needed_skill` requests that have no routing decision;
 - allowlist expansion without an orchestrator decision.

@@ -1,11 +1,12 @@
 {
+  "capability_schema_version": 1,
   "coverage": {
-    "covered_external_skill_count": 184,
-    "external_skill_count": 184,
+    "covered_external_skill_count": 219,
+    "external_skill_count": 219,
     "fallback_skill_count": 0,
     "missing_external_skills": []
   },
-  "expert_library_version": "harness-experts.v3",
+  "expert_library_version": "harness-experts.v4",
   "generated_by": "scripts/update_expert_library.py",
   "reserved_orchestration_skills": [
     "codex-autoresearch",
@@ -22,6 +23,33 @@
         "project-phase-report"
       ],
       "capability": "Owns final judgment, pipeline choice, expert creation/stop/replacement, approval gates, and execution closeout.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use for every non-trivial harness run that needs final judgment, team lifecycle control, or closeout.",
+          "Use when multiple specialists produce conflicting findings or when stop/continue decisions affect scope."
+        ],
+        "collaboration": [
+          "Receives context packets and verifier reports.",
+          "Assigns or updates specialist task cards and owns the final synthesis."
+        ],
+        "deliverables": [
+          "A final orchestrator decision with selected path, rationale, accepted evidence, and terminal status.",
+          "Team additions, stops, replacements, and reserved-skill decisions recorded in harness artifacts."
+        ],
+        "input_contract": [
+          "User goal, scope, constraints, acceptance criteria, and budget.",
+          "Current team state, task cards, trace artifacts, and open escalations."
+        ],
+        "risk_flags": [
+          "Unresolved specialist disagreement.",
+          "A claim of completion without verifier evidence.",
+          "Implicit use of reserved orchestration skills."
+        ],
+        "verification_focus": [
+          "Success is backed by artifacts rather than consensus or intent.",
+          "The chosen terminal status matches the evidence and remaining blockers."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -43,6 +71,32 @@
         "doc"
       ],
       "capability": "Classifies user intent, task class, success criteria, required domain specialists, and whether execution needs approval first.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use at startup when task class, success criteria, domains, or approval boundaries are unclear.",
+          "Use again when new evidence changes the domain or risk profile."
+        ],
+        "collaboration": [
+          "Feeds Task Decomposer and Professor Orchestrator.",
+          "Receives stale-context warnings from Context Curator."
+        ],
+        "deliverables": [
+          "A task classification with required roles, explicit assumptions, and approval boundaries.",
+          "A routing note that explains which domain specialists should be added or skipped."
+        ],
+        "input_contract": [
+          "Latest user request, local guidance, project constraints, and available skill inventory.",
+          "Known budget, risk tolerance, and whether the user explicitly requested external orchestration skills."
+        ],
+        "risk_flags": [
+          "Ambiguous user intent that would make implementation risky.",
+          "Task treated as trivial despite behavior, data, or workflow impact."
+        ],
+        "verification_focus": [
+          "The route is specific enough to create task cards.",
+          "Reserved orchestration skills remain blocked unless explicitly requested."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -65,6 +119,32 @@
         "jupyter-notebook"
       ],
       "capability": "Builds repo, paper, material, data, and artifact context packets for downstream experts.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when repo, paper, artifact, or prior-run context must be summarized before execution.",
+          "Use when a dirty tree, stale docs, or generated outputs may affect the task."
+        ],
+        "collaboration": [
+          "Hands context packets to all specialists.",
+          "Asks Entropy Gardener or Verifier to inspect drift when needed."
+        ],
+        "deliverables": [
+          "A compact context packet with authoritative files, risks, stale areas, and unknowns.",
+          "Pointers to evidence paths that downstream specialists should read first."
+        ],
+        "input_contract": [
+          "Repo map, relevant files, memory notes, prior run artifacts, and local instructions.",
+          "Known source-of-truth files and any artifacts that must not be modified."
+        ],
+        "risk_flags": [
+          "Relying on old summaries when current files are cheap to inspect.",
+          "Confusing generated artifacts with source-of-truth files."
+        ],
+        "verification_focus": [
+          "Context cites current files or explicitly marks memory-derived facts as stale-risk.",
+          "Unrelated user work is identified and preserved."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -85,6 +165,32 @@
         "project-phase-report"
       ],
       "capability": "Converts goals into task cards, dependencies, budgets, stop conditions, and acceptance checks.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when the goal needs multiple tasks, dependencies, budgets, or acceptance checks.",
+          "Use before creating runtime subagents or long-running loops."
+        ],
+        "collaboration": [
+          "Uses Intent Router classification and expert library profiles.",
+          "Hands task cards to Professor Orchestrator for creation decisions."
+        ],
+        "deliverables": [
+          "Task cards with scope, inputs, outputs, allowed skills, budgets, and escalation triggers.",
+          "A dependency order that separates blocking and parallel work."
+        ],
+        "input_contract": [
+          "Goal, scope, role set, known dependencies, constraints, and stop conditions.",
+          "Available commands, expected artifacts, and validation gates."
+        ],
+        "risk_flags": [
+          "Duplicated work across specialists.",
+          "A task card that cannot be verified mechanically or by artifact review."
+        ],
+        "verification_focus": [
+          "Each task card has a measurable output and a stop condition.",
+          "No two specialists own the same write scope unless coordination is explicit."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -105,6 +211,32 @@
         "deep-interview"
       ],
       "capability": "Runs internal deliberation: independent positions, rebuttals, revisions, and moderator synthesis.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when there are credible alternative approaches or high-risk assumptions.",
+          "Use when the user requested adversarial or expert-style deliberation inside the harness."
+        ],
+        "collaboration": [
+          "Coordinates Red Team Critic and domain specialists.",
+          "Returns the synthesized decision to Professor Orchestrator."
+        ],
+        "deliverables": [
+          "A structured deliberation summary with positions, critiques, revisions, and moderator conclusion.",
+          "A decision-ready shortlist with reasons to accept or reject each option."
+        ],
+        "input_contract": [
+          "Candidate approaches, evidence constraints, decision criteria, and debate mode.",
+          "Independent specialist findings when available."
+        ],
+        "risk_flags": [
+          "False consensus.",
+          "Unbounded debate that delays a measurable next step."
+        ],
+        "verification_focus": [
+          "Critiques target assumptions and evidence, not personalities or preferences.",
+          "Moderator synthesis preserves unresolved uncertainty."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -125,6 +257,32 @@
         "analyze-results"
       ],
       "capability": "Challenges assumptions, hidden risks, overclaiming, missing baselines, irreversible actions, and simpler alternatives.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use for high-risk changes, paper claims, irreversible operations, or weak evidence.",
+          "Use when the apparent solution may hide simpler alternatives or invalid assumptions."
+        ],
+        "collaboration": [
+          "Reviews plans from Professor Orchestrator and domain specialists.",
+          "Hands concrete guard suggestions to Verifier or Mechanical Gatekeeper."
+        ],
+        "deliverables": [
+          "A risk report with blocking issues, non-blocking caveats, and safer alternatives.",
+          "Specific checks or edits needed before claiming success."
+        ],
+        "input_contract": [
+          "Proposed plan, evidence, assumptions, constraints, and rollback path.",
+          "Known failure modes and acceptance criteria."
+        ],
+        "risk_flags": [
+          "Overclaiming beyond measured evidence.",
+          "Hidden destructive action or undocumented behavior change."
+        ],
+        "verification_focus": [
+          "Every blocking concern ties to concrete evidence or plausible failure impact.",
+          "Recommendations are actionable within current scope."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -146,6 +304,32 @@
         "waterfall-delivery"
       ],
       "capability": "Designs artifact contracts, state schema, run layout, subagent protocols, and mechanical gates.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when artifact contracts, schemas, validators, run layout, or team protocols change.",
+          "Use when the harness needs a new repeatable workflow rather than a one-off fix."
+        ],
+        "collaboration": [
+          "Works with Mechanical Gatekeeper on enforceable checks.",
+          "Uses Verifier to confirm generated artifacts and evals."
+        ],
+        "deliverables": [
+          "A harness design with artifact ownership, schema changes, and validation strategy.",
+          "Updated references or scripts when the design is implemented."
+        ],
+        "input_contract": [
+          "Current references, scripts, schema contracts, validation failures, and target behavior.",
+          "Compatibility constraints for existing run artifacts."
+        ],
+        "risk_flags": [
+          "New required field without validator support.",
+          "Policy duplicated across references with divergent wording."
+        ],
+        "verification_focus": [
+          "New behavior is documented in the owning reference.",
+          "Generated files are regenerated rather than hand-edited."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -166,6 +350,32 @@
         "software-engineer"
       ],
       "capability": "Coordinates baseline, candidate execution, auto-loop iterations, worktree isolation, and command evidence.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when baseline, candidate, guard, or background execution must be coordinated.",
+          "Use when command provenance and runtime state determine the decision."
+        ],
+        "collaboration": [
+          "Receives task cards from Task Decomposer.",
+          "Hands logs and metrics to Verifier and Failure Analyst."
+        ],
+        "deliverables": [
+          "Run coordination report with commands, outputs, metrics, and keep/discard recommendation.",
+          "Updated run artifacts for baseline and candidate iterations."
+        ],
+        "input_contract": [
+          "Run command, verify command, guard command, working directory, budget, and metric direction.",
+          "Current dirty-tree state and isolation requirements."
+        ],
+        "risk_flags": [
+          "Comparing runs from different environments or datasets.",
+          "Leaving long-running sessions active after closeout."
+        ],
+        "verification_focus": [
+          "Commands ran in the intended environment and directory.",
+          "Metrics and guard results are recorded before any keep decision."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -188,6 +398,32 @@
         "software-engineer"
       ],
       "capability": "Checks acceptance criteria, metrics, logs, tests, paper evidence, document evidence, and source freshness.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use before claiming success on any non-trivial change, result, or document update.",
+          "Use when evidence freshness, metric validity, or source alignment matters."
+        ],
+        "collaboration": [
+          "Audits Runner Coordinator outputs and domain specialist claims.",
+          "Reports blockers to Professor Orchestrator before closeout."
+        ],
+        "deliverables": [
+          "A verification report listing passed checks, failed checks, skipped checks, and residual risk.",
+          "Concrete evidence paths or command summaries that support the final claim."
+        ],
+        "input_contract": [
+          "Acceptance criteria, changed files, command logs, metrics, generated artifacts, and source references.",
+          "Known skipped checks and reasons."
+        ],
+        "risk_flags": [
+          "Freshness gap between source data and written claims.",
+          "Passing smoke check used as proof of broad behavior."
+        ],
+        "verification_focus": [
+          "Every success claim maps to a command, file, metric, or cited source.",
+          "Skipped validation is explicit and not silently treated as pass."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -209,6 +445,32 @@
         "gh-fix-ci"
       ],
       "capability": "Classifies failures as code, context, tool, constraint, metric, environment, team, or policy gaps.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use after failed commands, inconsistent metrics, blocked tools, or repeated recovery attempts.",
+          "Use when the root cause may be code, environment, data, context, policy, or metric design."
+        ],
+        "collaboration": [
+          "Receives logs from Runner Coordinator and Verifier.",
+          "Hands recurrent gaps to Mechanical Gatekeeper."
+        ],
+        "deliverables": [
+          "A failure classification with root-cause hypothesis, evidence, and next recovery action.",
+          "A record of environment or policy blockers when recovery is not possible."
+        ],
+        "input_contract": [
+          "Failure logs, commands, expected behavior, recent changes, environment details, and retry history.",
+          "Any partial outputs or artifacts produced before failure."
+        ],
+        "risk_flags": [
+          "Retrying without changing evidence or hypothesis.",
+          "Adding fallback paths that make invalid state appear valid."
+        ],
+        "verification_focus": [
+          "Hypotheses are tied to observed logs or reproduced behavior.",
+          "Recovery actions are bounded and do not hide invalid state."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -229,6 +491,32 @@
         "security-best-practices"
       ],
       "capability": "Converts repeated guidance into scripts, schemas, validators, lint checks, CI checks, and artifact gates.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when a repeated rule, artifact contract, or review comment can become an executable check.",
+          "Use when validation should reject stale generated files or invalid traces."
+        ],
+        "collaboration": [
+          "Works with Harness Architect on schema and policy ownership.",
+          "Asks Verifier to run the full validation set."
+        ],
+        "deliverables": [
+          "A gate proposal or implementation with command, scope, failure mode, and maintenance owner.",
+          "Updated eval fixture when validator behavior changes."
+        ],
+        "input_contract": [
+          "Policy text, examples of valid/invalid state, expected error messages, and target command.",
+          "Existing validators, schemas, and eval fixtures."
+        ],
+        "risk_flags": [
+          "Check is too broad and blocks unrelated local work.",
+          "Validator enforces undocumented policy."
+        ],
+        "verification_focus": [
+          "Gate fails on a representative bad case and passes on a representative good case.",
+          "Error messages identify the actionable fix."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -248,6 +536,32 @@
         "repo-refactor-governance"
       ],
       "capability": "Checks trace completeness, task-card closure, skill invocation records, escalation records, and replayability.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when run replayability, trace completeness, or skill invocation records are central.",
+          "Use before trusting a harness run as evidence."
+        ],
+        "collaboration": [
+          "Feeds Verifier and Professor Orchestrator.",
+          "Hands repeated trace defects to Mechanical Gatekeeper."
+        ],
+        "deliverables": [
+          "A trace audit listing missing, stale, inconsistent, or unverifiable artifacts.",
+          "Replayability verdict and required repair steps."
+        ],
+        "input_contract": [
+          "manifest.json, subagents.jsonl, skill_invocations.jsonl, events.jsonl, tool_calls.jsonl, failures.jsonl, metrics.json, and replay.md.",
+          "Expected team policy and terminal status."
+        ],
+        "risk_flags": [
+          "Terminal success without trace evidence.",
+          "Skill use outside allowlist or missing skill decision record."
+        ],
+        "verification_focus": [
+          "Each tool call has a matching observation when required.",
+          "Subagents have creation and terminal events."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -268,6 +582,32 @@
         "project-phase-report"
       ],
       "capability": "Finds stale docs, duplicate helpers, invalid fallbacks, bloated files, drifted skill allowlists, and repo hygiene gaps.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when docs, generated files, duplicate helpers, or skill allowlists may have drifted.",
+          "Use during maintenance or repository cleanup before broad edits."
+        ],
+        "collaboration": [
+          "Supplies drift findings to Context Curator and Harness Architect.",
+          "Asks Verifier to confirm cleanup gates."
+        ],
+        "deliverables": [
+          "An entropy report ranking drift, duplication, stale docs, and cleanup candidates by risk.",
+          "A bounded cleanup plan that separates source changes from generated artifacts."
+        ],
+        "input_contract": [
+          "Repo or skill package map, generated-file policy, ignore rules, validators, and current status.",
+          "Known user-owned or unrelated changes to preserve."
+        ],
+        "risk_flags": [
+          "Deleting useful local state.",
+          "Changing behavior while claiming repository hygiene only."
+        ],
+        "verification_focus": [
+          "Cleanup recommendations are additive or explicitly scoped.",
+          "Generated files are refreshed by their owner scripts."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -286,9 +626,30 @@
         "creative-thinking-for-research",
         "idea-creator",
         "idea-discovery",
+        "invention-structuring",
         "research-refine-pipeline"
       ],
       "capability": "Generates and refines research ideas with creativity, novelty pressure, and implementation awareness.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when novelty, literature, research workflow, or claim boundaries shape the next step."
+        ],
+        "collaboration": [
+          "Coordinate with Verifier / Evidence Auditor before paper or result claims are finalized."
+        ],
+        "deliverables": [
+          "A research-facing artifact with assumptions, related work boundaries, and next validation step."
+        ],
+        "input_contract": [
+          "Research question, target venue or audience, seed papers, known baselines, and evidence constraints."
+        ],
+        "risk_flags": [
+          "Novelty or claim wording exceeds the evidence gathered."
+        ],
+        "verification_focus": [
+          "Separate published evidence from engineering inference and untested hypotheses."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -308,14 +669,43 @@
     },
     {
       "allowed_skills": [
+        "alphaxiv",
         "arxiv",
+        "citation-audit",
         "comm-lit-review",
+        "deepxiv",
+        "exa-search",
+        "experiment-audit",
         "novelty-check",
+        "patent-novelty-check",
+        "patent-review",
+        "prior-art-search",
         "research-lit",
         "research-review",
-        "research-survey"
+        "research-survey",
+        "semantic-scholar"
       ],
       "capability": "Searches related work, closest prior art, novelty gaps, and claim boundaries.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when novelty, literature, research workflow, or claim boundaries shape the next step."
+        ],
+        "collaboration": [
+          "Coordinate with Verifier / Evidence Auditor before paper or result claims are finalized."
+        ],
+        "deliverables": [
+          "A research-facing artifact with assumptions, related work boundaries, and next validation step."
+        ],
+        "input_contract": [
+          "Research question, target venue or audience, seed papers, known baselines, and evidence constraints."
+        ],
+        "risk_flags": [
+          "Novelty or claim wording exceeds the evidence gathered."
+        ],
+        "verification_focus": [
+          "Separate published evidence from engineering inference and untested hypotheses."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -343,11 +733,34 @@
         "auto-review-loop",
         "auto-review-loop-llm",
         "auto-review-loop-minimax",
+        "claims-drafting",
         "experiment-bridge",
         "experiment-plan",
+        "patent-pipeline",
+        "rebuttal",
         "research-pipeline"
       ],
       "capability": "Plans research ideation, experiment bridging, autonomous review loops, and research workflow handoffs.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when novelty, literature, research workflow, or claim boundaries shape the next step."
+        ],
+        "collaboration": [
+          "Coordinate with Verifier / Evidence Auditor before paper or result claims are finalized."
+        ],
+        "deliverables": [
+          "A research-facing artifact with assumptions, related work boundaries, and next validation step."
+        ],
+        "input_contract": [
+          "Research question, target venue or audience, seed papers, known baselines, and evidence constraints."
+        ],
+        "risk_flags": [
+          "Novelty or claim wording exceeds the evidence gathered."
+        ],
+        "verification_focus": [
+          "Separate published evidence from engineering inference and untested hypotheses."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -369,10 +782,31 @@
     {
       "allowed_skills": [
         "formula-derivation",
+        "proof-checker",
         "proof-writer",
         "research-refine"
       ],
       "capability": "Formalizes assumptions, formulas, proofs, lemmas, theorem wording, and rigor boundaries.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when novelty, literature, research workflow, or claim boundaries shape the next step."
+        ],
+        "collaboration": [
+          "Coordinate with Verifier / Evidence Auditor before paper or result claims are finalized."
+        ],
+        "deliverables": [
+          "A research-facing artifact with assumptions, related work boundaries, and next validation step."
+        ],
+        "input_contract": [
+          "Research question, target venue or audience, seed papers, known baselines, and evidence constraints."
+        ],
+        "risk_flags": [
+          "Novelty or claim wording exceeds the evidence gathered."
+        ],
+        "verification_focus": [
+          "Separate published evidence from engineering inference and untested hypotheses."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -401,6 +835,26 @@
         "software-engineer"
       ],
       "capability": "Converts a paper method into implementable modules, pseudocode, configs, minimal trials, and tests.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -420,15 +874,43 @@
     },
     {
       "allowed_skills": [
+        "ablation-planner",
         "auto-paper-improvement-loop",
+        "jurisdiction-format",
         "ml-paper-writing",
+        "paper-claim-audit",
         "paper-compile",
         "paper-plan",
         "paper-write",
         "paper-writing",
-        "systems-paper-writing"
+        "research-wiki",
+        "resubmit-pipeline",
+        "result-to-claim",
+        "specification-writing",
+        "systems-paper-writing",
+        "writing-systems-papers"
       ],
       "capability": "Structures papers, writes sections, compiles LaTeX, and improves submission narratives.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when paper text, LaTeX, figures, tables, claims, or submission material is the work product."
+        ],
+        "collaboration": [
+          "Coordinate with Literature / Novelty Expert and Verifier / Evidence Auditor for claim safety."
+        ],
+        "deliverables": [
+          "Publication-ready text or assets tied to exact source files and result evidence."
+        ],
+        "input_contract": [
+          "Manuscript sources, result artifacts, venue constraints, figure/table inputs, and compile command."
+        ],
+        "risk_flags": [
+          "Invented results, stale tables, or venue/template drift."
+        ],
+        "verification_focus": [
+          "Claims, numbers, captions, and tables match current artifacts and compile cleanly when applicable."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -451,6 +933,9 @@
     {
       "allowed_skills": [
         "academic-plotting",
+        "figure-description",
+        "figure-spec",
+        "mermaid-diagram",
         "paper-figure",
         "paper-illustration",
         "paper-poster",
@@ -459,6 +944,26 @@
         "slides"
       ],
       "capability": "Creates paper figures, tables, posters, slides, captions, and conference talk material.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when paper text, LaTeX, figures, tables, claims, or submission material is the work product."
+        ],
+        "collaboration": [
+          "Coordinate with Literature / Novelty Expert and Verifier / Evidence Auditor for claim safety."
+        ],
+        "deliverables": [
+          "Publication-ready text or assets tied to exact source files and result evidence."
+        ],
+        "input_contract": [
+          "Manuscript sources, result artifacts, venue constraints, figure/table inputs, and compile command."
+        ],
+        "risk_flags": [
+          "Invented results, stale tables, or venue/template drift."
+        ],
+        "verification_focus": [
+          "Claims, numbers, captions, and tables match current artifacts and compile cleanly when applicable."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -484,14 +989,37 @@
       "allowed_skills": [
         "analyze-results",
         "experiment-plan",
+        "experiment-queue",
         "jupyter-notebook",
+        "meta-optimize",
         "monitor-experiment",
         "repo-refactor-governance",
         "run-experiment",
         "spreadsheet",
-        "swanlab"
+        "swanlab",
+        "training-check"
       ],
       "capability": "Designs experiments, ablations, metrics, analysis tables, and reproducibility checks.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when metrics, ablations, training/evaluation runs, or result interpretation drives the task."
+        ],
+        "collaboration": [
+          "Coordinate with Runner Coordinator for execution and Verifier / Evidence Auditor for result trust."
+        ],
+        "deliverables": [
+          "Experiment matrix, run plan, analysis, or monitoring report with reproducible commands."
+        ],
+        "input_contract": [
+          "Baseline, metric definition, dataset/config, run commands, environment, and output root."
+        ],
+        "risk_flags": [
+          "Partial runs treated as final, environment mismatch, or metric normalization errors."
+        ],
+        "verification_focus": [
+          "Compare like with like: same dataset, environment, metric direction, and source artifacts."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -519,9 +1047,30 @@
         "dse-loop",
         "formula-derivation",
         "proof-writer",
-        "software-engineer"
+        "software-engineer",
+        "system-profile"
       ],
       "capability": "Diagnoses algorithms, proposes variants, tunes objectives, and designs benchmark-driven improvement loops.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when metrics, ablations, training/evaluation runs, or result interpretation drives the task."
+        ],
+        "collaboration": [
+          "Coordinate with Runner Coordinator for execution and Verifier / Evidence Auditor for result trust."
+        ],
+        "deliverables": [
+          "Experiment matrix, run plan, analysis, or monitoring report with reproducible commands."
+        ],
+        "input_contract": [
+          "Baseline, metric definition, dataset/config, run commands, environment, and output root."
+        ],
+        "risk_flags": [
+          "Partial runs treated as final, environment mismatch, or metric normalization errors."
+        ],
+        "verification_focus": [
+          "Compare like with like: same dataset, environment, metric direction, and source artifacts."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -549,10 +1098,31 @@
         "ml-training-recipes",
         "pytorch-fsdp2",
         "pytorch-lightning",
+        "qzcli",
         "ray-train",
         "torchtitan"
       ],
       "capability": "Designs model training, distributed training, debugging, throughput optimization, and experiment tracking.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -591,6 +1161,26 @@
         "verl"
       ],
       "capability": "Designs supervised fine-tuning, preference optimization, RLHF/GRPO/PPO, LoRA/QLoRA, and post-training.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -621,13 +1211,35 @@
         "lambda-labs",
         "llama-cpp",
         "modal",
+        "serverless-modal",
         "sglang",
         "skypilot",
         "speculative-decoding",
         "tensorrt-llm",
+        "vast-gpu",
         "vllm"
       ],
       "capability": "Designs inference serving, quantized deployment, throughput/latency tuning, and cloud execution.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -664,6 +1276,26 @@
         "model-pruning"
       ],
       "capability": "Designs quantization, pruning, distillation, sparsity, and model merging plans.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -698,6 +1330,26 @@
         "rwkv"
       ],
       "capability": "Designs or analyzes LLM architectures, long context, MoE, attention optimization, and model internals.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -728,6 +1380,26 @@
         "transformer-lens"
       ],
       "capability": "Performs mechanistic interpretability, activation interventions, sparse autoencoder analysis, and causal tracing.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -763,6 +1435,26 @@
         "weights-and-biases"
       ],
       "capability": "Designs benchmark harnesses, LLM evaluation, BigCode evaluation, run tracking, and result dashboards.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when metrics, ablations, training/evaluation runs, or result interpretation drives the task."
+        ],
+        "collaboration": [
+          "Coordinate with Runner Coordinator for execution and Verifier / Evidence Auditor for result trust."
+        ],
+        "deliverables": [
+          "Experiment matrix, run plan, analysis, or monitoring report with reproducible commands."
+        ],
+        "input_contract": [
+          "Baseline, metric definition, dataset/config, run commands, environment, and output root."
+        ],
+        "risk_flags": [
+          "Partial runs treated as final, environment mismatch, or metric normalization errors."
+        ],
+        "verification_focus": [
+          "Compare like with like: same dataset, environment, metric direction, and source artifacts."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -799,6 +1491,26 @@
         "outlines"
       ],
       "capability": "Builds RAG, agent workflows, structured outputs, tool calling, and document retrieval pipelines.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when retrieval, data prep, tokenization, documents, or knowledge capture is central."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Prepared data, retrieval plan, document artifact, or knowledge record with source provenance."
+        ],
+        "input_contract": [
+          "Data sources, schema, access constraints, freshness requirements, and output format."
+        ],
+        "risk_flags": [
+          "Stale data, lossy conversion, missing provenance, or private data leakage."
+        ],
+        "verification_focus": [
+          "Source freshness, schema validity, and downstream consumption are checked."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -831,6 +1543,26 @@
         "sentence-transformers"
       ],
       "capability": "Designs vector stores, embedding, retrieval, semantic search, indexing, and production retrieval choices.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when retrieval, data prep, tokenization, documents, or knowledge capture is central."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Prepared data, retrieval plan, document artifact, or knowledge record with source provenance."
+        ],
+        "input_contract": [
+          "Data sources, schema, access constraints, freshness requirements, and output format."
+        ],
+        "risk_flags": [
+          "Stale data, lossy conversion, missing provenance, or private data leakage."
+        ],
+        "verification_focus": [
+          "Source freshness, schema validity, and downstream consumption are checked."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -862,6 +1594,26 @@
         "spreadsheet"
       ],
       "capability": "Designs tokenization, dataset curation, distributed data processing, and structured data preparation.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when retrieval, data prep, tokenization, documents, or knowledge capture is central."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Prepared data, retrieval plan, document artifact, or knowledge record with source provenance."
+        ],
+        "input_contract": [
+          "Data sources, schema, access constraints, freshness requirements, and output format."
+        ],
+        "risk_flags": [
+          "Stale data, lossy conversion, missing provenance, or private data leakage."
+        ],
+        "verification_focus": [
+          "Source freshness, schema validity, and downstream consumption are checked."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -894,6 +1646,26 @@
         "stable-diffusion"
       ],
       "capability": "Works on image, vision-language, segmentation, diffusion, and visual asset tasks.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -925,6 +1697,26 @@
         "openvla-oft"
       ],
       "capability": "Handles robotics idea discovery, OpenPI/OpenVLA policy tuning, embodied benchmarks, and sim-to-real constraints.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -952,6 +1744,26 @@
         "whisper"
       ],
       "capability": "Handles transcription, speech generation, audio generation, and video/audio prompt workflows.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when model training, fine-tuning, inference, compression, architecture, or evaluation is central."
+        ],
+        "collaboration": [
+          "Coordinate with Experiment / Metrics Expert and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Model workflow plan, code change, run config, or evaluation report with provenance."
+        ],
+        "input_contract": [
+          "Model, data, hardware, environment, config, checkpoint, metric, and budget constraints."
+        ],
+        "risk_flags": [
+          "Wrong environment, incompatible checkpoint semantics, or comparing non-equivalent model states."
+        ],
+        "verification_focus": [
+          "Runtime provenance, model semantics, and metric interpretation are explicit and reproducible."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -980,6 +1792,26 @@
         "security-threat-model"
       ],
       "capability": "Designs moderation, prompt-injection detection, policy enforcement, and AI guardrails.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1015,6 +1847,26 @@
         "playwright-interactive"
       ],
       "capability": "Builds frontend UI, Figma integration, design systems, responsive states, and browser verification.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1046,6 +1898,26 @@
         "software-engineer"
       ],
       "capability": "Designs backend services, APIs, ChatGPT Apps, CLIs, OpenAI product integration, and server behavior.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1077,6 +1949,26 @@
         "winui-app"
       ],
       "capability": "Builds web games, desktop apps, and browser-verified interactive experiences.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1102,6 +1994,26 @@
         "sentry"
       ],
       "capability": "Handles threat models, best practices, ownership maps, production errors, and incident evidence.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1123,12 +2035,34 @@
     },
     {
       "allowed_skills": [
+        "embodiment-description",
         "gh-address-comments",
         "gh-fix-ci",
         "git-pr-workflow",
+        "overleaf-sync",
         "yeet"
       ],
       "capability": "Handles Git/PR discipline, review comments, GitHub CI, and PR-ready delivery.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when code, APIs, UI, deployment, CI, security, or repository structure must change."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator before edits and Verifier / Evidence Auditor before closeout."
+        ],
+        "deliverables": [
+          "A scoped implementation or review artifact with changed files, tests, and residual risk."
+        ],
+        "input_contract": [
+          "Repo instructions, current status, relevant files, expected behavior, tests, and rollback constraints."
+        ],
+        "risk_flags": [
+          "Unrelated refactor, hidden fallback, destructive git operation, or unverified UI/deploy state."
+        ],
+        "verification_focus": [
+          "Behavior changes are documented, tested, and aligned with existing project conventions."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1157,6 +2091,26 @@
         "vercel-deploy"
       ],
       "capability": "Handles Vercel, Netlify, Cloudflare, Render, preview, production deploy, and rollback.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when operations, notification, deployment, project reporting, or runtime reliability is central."
+        ],
+        "collaboration": [
+          "Coordinate with Professor Orchestrator for approval boundaries and Verifier for final state checks."
+        ],
+        "deliverables": [
+          "Operational action plan, deployment summary, notification, or project report with status and risk."
+        ],
+        "input_contract": [
+          "Target service or workflow, credentials/connectors available, status, rollback plan, and audience."
+        ],
+        "risk_flags": [
+          "Assuming remote state from local output alone, or performing irreversible operations without explicit scope."
+        ],
+        "verification_focus": [
+          "External actions are confirmed through their authoritative system when available."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1186,6 +2140,26 @@
         "spreadsheet"
       ],
       "capability": "Creates and edits documents, PDFs, spreadsheets, slides, grant materials, and progress reports.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when retrieval, data prep, tokenization, documents, or knowledge capture is central."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Prepared data, retrieval plan, document artifact, or knowledge record with source provenance."
+        ],
+        "input_contract": [
+          "Data sources, schema, access constraints, freshness requirements, and output format."
+        ],
+        "risk_flags": [
+          "Stale data, lossy conversion, missing provenance, or private data leakage."
+        ],
+        "verification_focus": [
+          "Source freshness, schema validity, and downstream consumption are checked."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1214,6 +2188,26 @@
         "notion-spec-to-implementation"
       ],
       "capability": "Captures knowledge, researches Notion, prepares meetings, and turns Notion specs into implementation plans.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when retrieval, data prep, tokenization, documents, or knowledge capture is central."
+        ],
+        "collaboration": [
+          "Coordinate with Context Curator and Verifier / Evidence Auditor."
+        ],
+        "deliverables": [
+          "Prepared data, retrieval plan, document artifact, or knowledge record with source provenance."
+        ],
+        "input_contract": [
+          "Data sources, schema, access constraints, freshness requirements, and output format."
+        ],
+        "risk_flags": [
+          "Stale data, lossy conversion, missing provenance, or private data leakage."
+        ],
+        "verification_focus": [
+          "Source freshness, schema validity, and downstream consumption are checked."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1240,6 +2234,26 @@
         "waterfall-delivery"
       ],
       "capability": "Creates phase plans, waterfall delivery records, client-facing reports, and milestone acceptance.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when operations, notification, deployment, project reporting, or runtime reliability is central."
+        ],
+        "collaboration": [
+          "Coordinate with Professor Orchestrator for approval boundaries and Verifier for final state checks."
+        ],
+        "deliverables": [
+          "Operational action plan, deployment summary, notification, or project report with status and risk."
+        ],
+        "input_contract": [
+          "Target service or workflow, credentials/connectors available, status, rollback plan, and audience."
+        ],
+        "risk_flags": [
+          "Assuming remote state from local output alone, or performing irreversible operations without explicit scope."
+        ],
+        "verification_focus": [
+          "External actions are confirmed through their authoritative system when available."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1261,12 +2275,33 @@
     },
     {
       "allowed_skills": [
+        "claude-to-im",
         "feishu-notify",
         "linear",
         "project-phase-report",
         "sentry"
       ],
       "capability": "Handles Feishu notifications, Linear issue workflows, Sentry summaries, and operational reporting.",
+      "capability_profile": {
+        "activation_criteria": [
+          "Use when operations, notification, deployment, project reporting, or runtime reliability is central."
+        ],
+        "collaboration": [
+          "Coordinate with Professor Orchestrator for approval boundaries and Verifier for final state checks."
+        ],
+        "deliverables": [
+          "Operational action plan, deployment summary, notification, or project report with status and risk."
+        ],
+        "input_contract": [
+          "Target service or workflow, credentials/connectors available, status, rollback plan, and audience."
+        ],
+        "risk_flags": [
+          "Assuming remote state from local output alone, or performing irreversible operations without explicit scope."
+        ],
+        "verification_focus": [
+          "External actions are confirmed through their authoritative system when available."
+        ]
+      },
       "forbidden_skills": [
         "codex-autoresearch",
         "multi-agent",
@@ -1279,7 +2314,16 @@
       "selection_keywords": [
         "notify",
         "notification",
+        "message",
+        "messaging",
+        "bridge",
+        "telegram",
+        "discord",
         "feishu",
+        "lark",
+        "qq",
+        "wechat",
+        "weixin",
         "linear",
         "ops",
         "sentry"
@@ -1287,7 +2331,7 @@
       "type": "domain_specialist"
     }
   ],
-  "source_inventory_hash": "b7ab03c3d0eb065383691bacc789d450c48651c6782883e49ad321f67eab58be",
+  "source_inventory_hash": "be4019d2c142b83d07b00c522aa87eb642c7892e47170f8a4109ddba163ce075",
   "source_inventory_version": 2,
-  "version": 3
+  "version": 4
 }

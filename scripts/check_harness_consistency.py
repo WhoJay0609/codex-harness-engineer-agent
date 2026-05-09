@@ -54,6 +54,15 @@ EXPECTED_SCRIPTS = [
     "update_expert_library.py",
 ]
 
+EXPERT_LIBRARY_VERSION = "harness-experts.v4"
+REQUIRED_CAPABILITY_PROFILE_FIELDS = [
+    "activation_criteria",
+    "input_contract",
+    "deliverables",
+    "verification_focus",
+    "risk_flags",
+    "collaboration",
+]
 RESERVED_ORCHESTRATION_SKILLS = {"codex-autoresearch", "multi-agent", "expert-debate"}
 
 
@@ -128,8 +137,10 @@ def check_expert_library(root: Path, inventory: dict[str, Any], errors: list[str
 
     if library.get("source_inventory_hash") != inventory.get("inventory_hash"):
         errors.append("expert-capability-library.json: source inventory hash is stale; run scripts/update_expert_library.py")
-    if library.get("expert_library_version") != "harness-experts.v3":
-        errors.append("expert-capability-library.json: expert_library_version must be harness-experts.v3")
+    if library.get("expert_library_version") != EXPERT_LIBRARY_VERSION:
+        errors.append(f"expert-capability-library.json: expert_library_version must be {EXPERT_LIBRARY_VERSION}")
+    if library.get("capability_schema_version") != 1:
+        errors.append("expert-capability-library.json: capability_schema_version must be 1")
 
     labels = installed_skill_labels(inventory)
     reserved = set(RESERVED_ORCHESTRATION_SKILLS)
@@ -163,6 +174,16 @@ def check_expert_library(root: Path, inventory: dict[str, Any], errors: list[str
             continue
         if not role.get("role"):
             errors.append(f"expert-capability-library.json: roles[{index}] missing role")
+        profile = role.get("capability_profile")
+        if not isinstance(profile, dict):
+            errors.append(f"expert-capability-library.json: role {role.get('role')} missing capability_profile")
+        else:
+            for field in REQUIRED_CAPABILITY_PROFILE_FIELDS:
+                values = profile.get(field)
+                if not isinstance(values, list) or not values or not all(isinstance(value, str) and value for value in values):
+                    errors.append(
+                        f"expert-capability-library.json: role {role.get('role')} capability_profile.{field} must be a non-empty string list"
+                    )
         allowed_skills = role.get("allowed_skills")
         if not isinstance(allowed_skills, list):
             errors.append(f"expert-capability-library.json: role {role.get('role')} allowed_skills must be a list")
@@ -193,8 +214,11 @@ def check_expert_library(root: Path, inventory: dict[str, Any], errors: list[str
     source_hash = inventory.get("inventory_hash")
     if isinstance(source_hash, str) and source_hash not in md_text:
         errors.append("expert-capability-library.md: source inventory hash is stale; run scripts/update_expert_library.py")
-    if "harness-experts.v3" not in md_text:
-        errors.append("expert-capability-library.md: must mention harness-experts.v3")
+    if EXPERT_LIBRARY_VERSION not in md_text:
+        errors.append(f"expert-capability-library.md: must mention {EXPERT_LIBRARY_VERSION}")
+    for required_text in ["Activation:", "Inputs:", "Deliverables:", "Verification focus:", "Risk flags:", "Collaboration:"]:
+        if required_text not in md_text:
+            errors.append(f"expert-capability-library.md: must render capability profile field {required_text}")
 
 
 def check_skill_dir(root: Path) -> list[str]:

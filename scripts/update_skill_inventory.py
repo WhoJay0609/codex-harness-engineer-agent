@@ -11,6 +11,11 @@ import re
 from pathlib import Path
 from typing import Any
 
+try:
+    import yaml
+except ImportError:  # pragma: no cover - fallback keeps the script usable in minimal envs.
+    yaml = None
+
 
 RESERVED_ORCHESTRATION_SKILLS = {"codex-autoresearch", "multi-agent", "expert-debate"}
 CORE_HARNESS_SKILLS = {"harness-engineer"}
@@ -24,14 +29,40 @@ def parse_frontmatter(path: Path) -> dict[str, str]:
         return {}
     if not lines or lines[0].strip() != "---":
         return {}
-    meta: dict[str, str] = {}
+    frontmatter: list[str] = []
     for line in lines[1:]:
         if line.strip() == "---":
             break
+        frontmatter.append(line)
+    if yaml is not None:
+        try:
+            loaded = yaml.safe_load("\n".join(frontmatter)) or {}
+        except yaml.YAMLError:
+            loaded = {}
+        if isinstance(loaded, dict):
+            return {
+                str(key): " ".join(str(value).split())
+                for key, value in loaded.items()
+                if isinstance(key, str) and isinstance(value, (str, int, float, bool))
+            }
+    meta: dict[str, str] = {}
+    index = 0
+    while index < len(frontmatter):
+        line = frontmatter[index]
         match = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
         if match:
-            value = match.group(2).strip().strip('"').strip("'")
-            meta[match.group(1)] = value
+            key = match.group(1)
+            value = match.group(2).strip()
+            if value in {"|", ">"}:
+                block_lines: list[str] = []
+                index += 1
+                while index < len(frontmatter) and (frontmatter[index].startswith(" ") or not frontmatter[index].strip()):
+                    block_lines.append(frontmatter[index].strip())
+                    index += 1
+                meta[key] = " ".join(" ".join(block_lines).split())
+                continue
+            meta[key] = value.strip().strip('"').strip("'")
+        index += 1
     return meta
 
 

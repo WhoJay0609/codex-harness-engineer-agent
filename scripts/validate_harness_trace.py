@@ -87,8 +87,8 @@ TRACE_V2_SOURCES = {
     "system",
 }
 TRACE_V2_TOOL_OBSERVATION_TYPES = {"tool_observation", "observation"}
-EXPERT_LIBRARY_VERSION = "harness-experts.v3"
-ALLOWED_EXPERT_LIBRARY_VERSIONS = {"harness-experts.v1", "harness-experts.v2", "harness-experts.v3"}
+EXPERT_LIBRARY_VERSION = "harness-experts.v4"
+ALLOWED_EXPERT_LIBRARY_VERSIONS = {"harness-experts.v1", "harness-experts.v2", "harness-experts.v3", "harness-experts.v4"}
 RESERVED_ORCHESTRATION_SKILLS = {"codex-autoresearch", "multi-agent", "expert-debate"}
 EXPERT_ROLES = {
     "Professor Orchestrator",
