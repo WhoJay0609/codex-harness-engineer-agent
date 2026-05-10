@@ -12,6 +12,23 @@ mechanical gates, trace artifacts, and evidence-backed termination.
 The goal is not "more agents". The goal is reliable execution with inspectable
 evidence.
 
+## 中文速览 / Chinese Quick Reference
+
+这个 skill 用来把 Codex 工作组织成可复现、可验证、可回放的 harness。核心目标
+不是“多开智能体”，而是让目标、上下文、子智能体、工具、指标、失败和终止状态
+都有可审计证据。
+
+- 非平凡任务默认优先创建多个真实 runtime 子智能体，并在 `subagents.jsonl`
+  记录 `runtime_agent_id`。
+- 如果 runtime 子智能体被平台、策略或环境限制阻塞，才使用
+  `inline_expert_memos`，并记录 blocked category、reason 和 fallback event。
+- `auto_harness` 默认在当前 Codex 前台窗口迭代；只有显式 `--run-mode background`
+  才允许 detached 后台 runtime。
+- 每轮迭代都要先测 baseline，再做一个聚焦修改，运行 guard，记录 keep/discard，
+  最后用 `scripts/validate_harness_trace.py <run_dir>` 验证 artifacts。
+- `$codex-autoresearch`、`$multi-agent`、`$expert-debate` 仍是显式请求技能；
+  不要在用户没要求时主动调用它们。
+
 ## Mental Model
 
 Harness engineering has seven layers:
