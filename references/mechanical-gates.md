@@ -10,7 +10,7 @@ changing validators.
 - Schema gates: JSON and JSONL records contain required keys; Trace v2 events follow `references/schemas/harness-event.schema.json`.
 - Trace gates: event IDs are unique, `parent_id` points backward, tool calls have observations, failures have `error_kind`, and termination is explicit.
 - Lifecycle gates: every created subagent terminates with a stop reason.
-- Runtime-subagent gates: non-trivial `runtime_subagents` runs create multiple runtime handles; `inline_expert_memos` is accepted only with a blocked category, blocked reason, per-subagent fallback fields, and an observable fallback event.
+- Runtime-subagent gates: non-trivial `runtime_subagents` runs record multiple concrete `spawn_agent` return handles, reject placeholders, and terminally close every created subagent; `inline_expert_memos` is accepted only with a blocked category, blocked reason, per-subagent fallback fields, and an observable fallback event.
 - Startup cleanup gates: `manifest.json` includes `startup_cleanup`; any startup cleanup action that closed, skipped, or could not inspect a handle has a corresponding `runtime_cleanup.jsonl` record.
 - Skill gates: subagents with `required_skill_check` have skill invocation records, used skills are installed, and used skills are inside the subagent allowlist.
 - Escalation gates: internal expert additions/stops/replacements are recorded; reserved `$codex-autoresearch`, `$multi-agent`, or `$expert-debate` use requires `user_explicit_request=true`; external domain skills are allowed by task-card allowlist.

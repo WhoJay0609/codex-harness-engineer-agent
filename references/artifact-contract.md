@@ -93,8 +93,10 @@ Terminal status must be one of:
 ## Subagent Execution Fields
 
 When `team_policy.subagent_execution_mode` is `runtime_subagents`, every created
-subagent record must include `runtime_agent_id`, `thread_id`, or an equivalent
-runtime handle.
+subagent record must include the concrete `runtime_agent_id`, `thread_id`, or an
+equivalent runtime handle returned by the main Codex orchestrator's
+`spawn_agent` call. Placeholder handles such as `<runtime_agent_id>`, `TODO`, or
+`agent-abc123` are invalid.
 
 When the mode is `inline_expert_memos`, the manifest must include
 `team_policy.subagent_runtime_blocked_category` and
@@ -102,8 +104,8 @@ When the mode is `inline_expert_memos`, the manifest must include
 include matching `runtime_blocked_category` and `runtime_blocked_reason`; and
 `events.jsonl` must include an observable runtime-subagent fallback escalation.
 Allowed blocked categories are `platform_unavailable`,
-`platform_policy_blocked`, `user_blocked_delegation`,
-`thread_limit_after_cleanup`, and `runtime_creation_failed`.
+`platform_policy_blocked`, `thread_limit_after_cleanup`, and
+`runtime_creation_failed`.
 
 When the mode is `single_agent_exception`, `team_policy.mode` should be
 `single_agent`, `initial_roles` should be empty, and the reason should explain
@@ -139,9 +141,10 @@ python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --ite
 python scripts/harness_runtime_ctl.py launch --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
 
-After creating real runtime subagents, initialize with one or more
-`--runtime-subagent "Role=runtime_agent_id"` arguments. The helper then records
-`team_policy.subagent_execution_mode=runtime_subagents` and validates the run
-against runtime handle requirements.
+After calling `spawn_agent` for real runtime subagents, initialize with one or
+more `--runtime-subagent "Role=<spawn_agent runtime_agent_id>"` arguments. The
+helper records `team_policy.subagent_execution_mode=runtime_subagents` and
+created handles only. Use `scripts/record_subagent_lifecycle.py` after
+`wait_agent`/`close_agent` to record terminal lifecycle events.
 
 Background runs add `launch.json`, `runtime.json`, and `runtime.log`.

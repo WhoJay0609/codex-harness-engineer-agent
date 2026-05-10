@@ -1,0 +1,3 @@
+{"agent_id": "context-curator", "allowed": true, "blocked_reason": null, "output_artifact": "subagents.jsonl", "reason": "eval required skill check", "skill": "harness-engineer", "used": true}
+{"agent_id": "verifier-old", "allowed": true, "blocked_reason": null, "output_artifact": "subagents.jsonl", "reason": "eval required skill check", "skill": "harness-engineer", "used": true}
+{"agent_id": "verifier-replacement", "allowed": true, "blocked_reason": null, "output_artifact": "subagents.jsonl", "reason": "eval required skill check", "skill": "harness-engineer", "used": true}

@@ -30,7 +30,6 @@ SUBAGENT_EXECUTION_MODES = ["auto", "runtime_subagents", "inline_expert_memos"]
 RUNTIME_BLOCKED_CATEGORIES = [
     "platform_unavailable",
     "platform_policy_blocked",
-    "user_blocked_delegation",
     "thread_limit_after_cleanup",
     "runtime_creation_failed",
 ]
@@ -110,10 +109,37 @@ def parse_runtime_subagents(values: list[str]) -> dict[str, str]:
         role, runtime_agent_id = (part.strip() for part in value.split("=", 1))
         if not role or not runtime_agent_id:
             raise SystemExit("--runtime-subagent requires non-empty ROLE and RUNTIME_ID")
+        if is_placeholder_runtime_handle(runtime_agent_id):
+            raise SystemExit(
+                "--runtime-subagent must be the concrete runtime_agent_id/thread_id returned by spawn_agent, "
+                "not a placeholder"
+            )
         if role in specs:
             raise SystemExit(f"duplicate --runtime-subagent role: {role}")
         specs[role] = runtime_agent_id
     return specs
+
+
+def is_placeholder_runtime_handle(value: str | None) -> bool:
+    if value is None:
+        return False
+    stripped = value.strip()
+    lowered = stripped.lower()
+    if not stripped:
+        return True
+    if "<" in stripped or ">" in stripped:
+        return True
+    return lowered in {
+        "todo",
+        "tbd",
+        "none",
+        "null",
+        "placeholder",
+        "runtime_agent_id",
+        "thread_id",
+        "agent-abc123",
+        "rt-placeholder",
+    } or lowered.startswith(("placeholder-", "todo-", "fake-"))
 
 
 def choose_subagent_execution_mode(args: argparse.Namespace, runtime_specs: dict[str, str]) -> str:
@@ -121,7 +147,7 @@ def choose_subagent_execution_mode(args: argparse.Namespace, runtime_specs: dict
         if runtime_specs:
             return "runtime_subagents"
         raise SystemExit(
-            "auto_harness defaults to runtime_subagents. Create Codex runtime subagents first and pass "
+            "auto_harness defaults to runtime_subagents. The main Codex orchestrator must call spawn_agent first and pass "
             "--runtime-subagent for at least Context Curator and Verifier / Evidence Auditor, or explicitly pass "
             "--subagent-execution-mode inline_expert_memos with --runtime-blocked-category and --runtime-blocked-reason."
         )
@@ -131,7 +157,7 @@ def choose_subagent_execution_mode(args: argparse.Namespace, runtime_specs: dict
         missing_roles = sorted(MINIMUM_RUNTIME_ROLES - set(runtime_specs))
         if missing_roles:
             raise SystemExit(
-                "--subagent-execution-mode runtime_subagents requires runtime handles for: "
+                "--subagent-execution-mode runtime_subagents requires spawn_agent return IDs for: "
                 + ", ".join(missing_roles)
             )
     if args.subagent_execution_mode == "inline_expert_memos" and runtime_specs:
@@ -163,6 +189,7 @@ def subagent_records(
             "allowed_skills": ["harness-engineer"],
             "forbidden_skills": FORBIDDEN_SKILLS,
             "required_skill_check": True,
+            "creation_api": "spawn_agent" if execution_mode == "runtime_subagents" else None,
             "runtime_agent_id": runtime_specs.get(role),
             "thread_id": None,
             "runtime_blocked_reason": None if execution_mode == "runtime_subagents" else blocked_reason,
@@ -171,19 +198,16 @@ def subagent_records(
         if execution_mode == "runtime_subagents":
             created["status"] = "active"
         records.append(created)
-        records.append(
-            {
-                "agent_id": agent_id,
-                "event": "stopped",
-                "status": "completed" if execution_mode == "runtime_subagents" else "stopped",
-                "role": role,
-                "stop_reason": (
-                    "runtime subagent completed assigned verification scope"
-                    if execution_mode == "runtime_subagents"
-                    else "initial helper records inline expert fallback; live execution stays in current session"
-                ),
-            }
-        )
+        if execution_mode == "inline_expert_memos":
+            records.append(
+                {
+                    "agent_id": agent_id,
+                    "event": "stopped",
+                    "status": "stopped",
+                    "role": role,
+                    "stop_reason": "initial helper records inline expert fallback; live execution stays in current session",
+                }
+            )
     return records
 
 

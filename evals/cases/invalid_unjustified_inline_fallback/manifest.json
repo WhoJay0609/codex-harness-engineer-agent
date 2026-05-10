@@ -1,0 +1,36 @@
+{
+  "experiment_id": "harness-eval",
+  "goal": "reject inline fallback without observable escalation",
+  "mode": "standard_harness",
+  "run_id": "invalid_unjustified_inline_fallback",
+  "schema_version": 2,
+  "startup_cleanup": {
+    "closed_count": 0,
+    "skipped_count": 0,
+    "summary": "no cleanup needed in eval fixture",
+    "unavailable_count": 0
+  },
+  "success_criteria": [
+    "eval artifact validates as expected"
+  ],
+  "team_policy": {
+    "expert_library_version": "harness-experts.v4",
+    "initial_roles": [
+      "Context Curator",
+      "Verifier / Evidence Auditor"
+    ],
+    "mode": "internal_team",
+    "reason": "reject inline fallback without observable escalation",
+    "reserved_orchestration_policy": "explicit_user_request_only",
+    "single_agent_exception": false,
+    "skill_policy": "external_domain_allowed_by_allowlist",
+    "subagent_execution_mode": "inline_expert_memos",
+    "subagent_runtime_blocked_category": "platform_unavailable",
+    "subagent_runtime_blocked_reason": "Codex runtime subagent API unavailable in eval environment",
+    "task_class": "standard_harness"
+  },
+  "termination": {
+    "reason": "eval fixture complete",
+    "status": "goal_met"
+  }
+}

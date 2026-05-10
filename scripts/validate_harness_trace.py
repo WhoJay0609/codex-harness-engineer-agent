@@ -58,7 +58,6 @@ SUBAGENT_EXECUTION_MODES = {"runtime_subagents", "inline_expert_memos", "single_
 RUNTIME_BLOCKED_CATEGORIES = {
     "platform_unavailable",
     "platform_policy_blocked",
-    "user_blocked_delegation",
     "thread_limit_after_cleanup",
     "runtime_creation_failed",
 }
@@ -223,6 +222,30 @@ def is_trace_v2_row(row: dict[str, Any]) -> bool:
             "command_hash",
         ]
     )
+
+
+def is_placeholder_runtime_handle(value: Any) -> bool:
+    if value is None:
+        return False
+    if not isinstance(value, str):
+        return False
+    stripped = value.strip()
+    lowered = stripped.lower()
+    if not stripped:
+        return True
+    if "<" in stripped or ">" in stripped:
+        return True
+    return lowered in {
+        "todo",
+        "tbd",
+        "none",
+        "null",
+        "placeholder",
+        "runtime_agent_id",
+        "thread_id",
+        "agent-abc123",
+        "rt-placeholder",
+    } or lowered.startswith(("placeholder-", "todo-", "fake-"))
 
 
 def check_typed_event_log(
@@ -503,6 +526,7 @@ def check_subagents(
 ) -> None:
     created: dict[str, dict[str, Any]] = {}
     terminal: dict[str, dict[str, Any]] = {}
+    replacement_targets: list[tuple[int | None, str, str]] = []
 
     for row in subagents:
         agent_id = row.get("agent_id")
@@ -548,9 +572,20 @@ def check_subagents(
             if "required_skill_check" not in row:
                 errors.append(f"subagents.jsonl:{row.get('_line')}: created subagent {agent_id} must include required_skill_check")
             if subagent_execution_mode == "runtime_subagents":
-                if not row.get("runtime_agent_id") and not row.get("thread_id"):
+                runtime_agent_id = row.get("runtime_agent_id")
+                thread_id = row.get("thread_id")
+                if not runtime_agent_id and not thread_id:
                     errors.append(
                         f"subagents.jsonl:{row.get('_line')}: runtime_subagents mode requires runtime_agent_id or thread_id for {agent_id}"
+                    )
+                if is_placeholder_runtime_handle(runtime_agent_id) or is_placeholder_runtime_handle(thread_id):
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: runtime_subagents mode requires a concrete runtime_agent_id or thread_id for {agent_id}, not a placeholder"
+                    )
+                creation_api = row.get("creation_api")
+                if creation_api is not None and creation_api != "spawn_agent":
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: runtime_subagents creation_api must be spawn_agent when present"
                     )
             if subagent_execution_mode == "inline_expert_memos":
                 if not row.get("runtime_blocked_reason"):
@@ -568,6 +603,23 @@ def check_subagents(
             terminal[agent_id] = row
             if not row.get("stop_reason"):
                 errors.append(f"subagents.jsonl:{row.get('_line')}: terminal subagent {agent_id} is missing stop_reason")
+            if event == "replaced" or status == "replaced":
+                replacement_agent_id = row.get("replacement_agent_id")
+                replacement_runtime_agent_id = row.get("replacement_runtime_agent_id")
+                replacement_thread_id = row.get("replacement_thread_id")
+                if not replacement_agent_id and not replacement_runtime_agent_id and not replacement_thread_id:
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: replaced subagent {agent_id} must identify a replacement agent or runtime handle"
+                    )
+                if isinstance(replacement_agent_id, str) and replacement_agent_id:
+                    replacement_targets.append((row.get("_line"), agent_id, replacement_agent_id))
+                if (
+                    is_placeholder_runtime_handle(replacement_runtime_agent_id)
+                    or is_placeholder_runtime_handle(replacement_thread_id)
+                ):
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: replacement runtime handle for {agent_id} must not be a placeholder"
+                    )
 
         needed_role = row.get("needed_internal_expert")
         if needed_role:
@@ -625,6 +677,12 @@ def check_subagents(
             has_skill_record = any(skill.get("agent_id") == agent_id for skill in skills)
             if not has_skill_record:
                 errors.append(f"skill_invocations.jsonl: missing required skill check for subagent {agent_id}")
+
+    for line, old_agent_id, replacement_agent_id in replacement_targets:
+        if replacement_agent_id not in created:
+            errors.append(
+                f"subagents.jsonl:{line}: replaced subagent {old_agent_id} references missing replacement_agent_id {replacement_agent_id}"
+            )
 
 
 def check_team_policy(manifest: Any, subagents: list[dict[str, Any]], errors: list[str]) -> None:

@@ -1,0 +1,2 @@
+{"agent_id": "orchestrator", "event_id": "evt-0001", "event_type": "plan", "event_version": 2, "parent_id": null, "role": "Professor Orchestrator", "source": "orchestrator", "status": "completed", "summary": "eval fixture initialized", "ts": "2026-05-10T00:00:00Z"}
+{"agent_id": "orchestrator", "event_id": "evt-0002", "event_type": "termination", "event_version": 2, "parent_id": "evt-0001", "role": "Professor Orchestrator", "source": "orchestrator", "status": "goal_met", "summary": "eval fixture completed", "ts": "2026-05-10T00:00:00Z"}

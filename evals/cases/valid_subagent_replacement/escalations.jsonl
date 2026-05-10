@@ -1,0 +1,1 @@
+{"agent_id": "verifier-old", "decision": "replace verifier-old with verifier-replacement", "event": "internal_expert_decision", "internal_expert_action": "replace", "reason": "old verifier was blocked on stale evidence path", "role": "Verifier / Evidence Auditor"}

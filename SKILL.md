@@ -18,9 +18,10 @@ evidence.
 不是“多开智能体”，而是让目标、上下文、子智能体、工具、指标、失败和终止状态
 都有可审计证据。
 
-- 非平凡任务默认优先创建多个真实 runtime 子智能体，并在 `subagents.jsonl`
-  记录 `runtime_agent_id`。
-- 如果 runtime 子智能体被平台、策略或环境限制阻塞，才使用
+- 调用 `$harness-engineer` 即表示允许主 Codex orchestrator 为非平凡任务直接
+  调用 `spawn_agent` 创建 runtime 子智能体；把返回的 `runtime_agent_id` 或
+  `thread_id` 写入 `subagents.jsonl`。
+- 如果 `spawn_agent` 被平台、策略、线程上限或创建失败阻塞，才使用
   `inline_expert_memos`，并记录 blocked category、reason 和 fallback event。
 - `auto_harness` 默认在当前 Codex 前台窗口迭代；只有显式 `--run-mode background`
   才允许 detached 后台 runtime。
@@ -65,11 +66,13 @@ and `references/auto-harness-mode.md`.
    condition, and expected artifacts.
 2. Inspect first: read the repo or skill package map before designing or
    editing the harness.
-3. Choose the mode and team policy: classify the task, then proactively create
-   multiple real runtime subagents for non-trivial work when the current request
-   and platform policy permit delegation. Use inline expert memos only when
-   runtime creation is blocked, and record the blocked category, reason, and
-   observable fallback event.
+3. Choose the mode and team policy: classify the task, then the main Codex
+   orchestrator directly calls `spawn_agent` for the selected roles on
+   non-trivial work. Treat `$harness-engineer` invocation as delegation consent
+   for this harness task. Use inline expert memos only when `spawn_agent` is
+   unavailable, platform/policy blocked, over thread limits after cleanup, or
+   creation fails; record the blocked category, reason, and observable fallback
+   event.
 4. Route skills deliberately: before loading or invoking any skill, send a
    concise user-visible note naming the skill(s) and why they apply; use
    generated expert allowlists for domain work; keep `$codex-autoresearch`,
@@ -119,6 +122,22 @@ Team and runtime:
 - `references/subagent-runtime.md`: startup cleanup, runtime subagents, fallback
   modes, stop/replace rules, and trace fields.
 
+Direct runtime team protocol:
+
+1. Select the smallest task-class preset with
+   `scripts/select_subagent_team.py --task-class <class> --goal <goal>`.
+2. Call `spawn_agent` once per selected task card before implementation.
+3. Record each returned `agent_id` with
+   `scripts/record_subagent_lifecycle.py --event created --runtime-agent-id <id>`.
+4. Keep decomposition, context trimming, integration, final verification, and
+   artifact integrity in the main thread.
+5. Use subagents only for parallel branches: reconnaissance, local
+   implementation, independent verification, failure analysis, and risk review.
+6. After `wait_agent`/result review, call `close_agent`, then record
+   `completed`, `blocked`, `stopped`, or `replaced`. If a subagent is blocked,
+   stale, out of scope, or unverifiable, create a replacement with `spawn_agent`
+   and record the replacement lifecycle.
+
 Skill routing and escalation:
 
 - `references/skill-routing-policy.md` and `references/skill-inventory.json`:
@@ -142,11 +161,16 @@ Evidence and maintenance:
 
 ## Script Map
 
+- Select a runtime team and task cards:
+  `scripts/select_subagent_team.py --task-class execution --goal "..."`
 - Initialize auto runs: `scripts/init_auto_harness.py --run-dir <run_dir> ...`
-  Create multiple real runtime subagents first and pass repeated
-  `--runtime-subagent "Role=runtime_agent_id"` arguments. Auto runs reject
-  missing runtime handles unless `inline_expert_memos` is explicitly selected
-  with a blocked category and reason.
+  Before running it, the main Codex orchestrator calls `spawn_agent` once per
+  required role, then passes repeated
+  `--runtime-subagent "Role=<spawn_agent runtime_agent_id>"` arguments. The
+  helper records created handles only; terminal lifecycle is recorded after the
+  actual subagents finish.
+- Record runtime subagent lifecycle:
+  `scripts/record_subagent_lifecycle.py --run-dir <run_dir> --event created|completed|blocked|replaced ...`
 - Record auto iterations: `scripts/record_auto_iteration.py --run-dir <run_dir> ...`
 - Run foreground auto loops:
   `scripts/run_auto_harness.py --run-dir <run_dir> --iteration-command <cmd>`

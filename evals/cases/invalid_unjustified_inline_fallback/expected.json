@@ -1,0 +1,4 @@
+{
+  "contains": "observable runtime subagent fallback escalation event",
+  "expect": "fail"
+}

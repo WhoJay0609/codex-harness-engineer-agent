@@ -1,0 +1,2 @@
+{"agent_id": "context-curator", "allowed": true, "blocked_reason": null, "output_artifact": "subagents.jsonl", "reason": "eval required skill check", "skill": "harness-engineer", "used": true}
+{"agent_id": "verifier-evidence-auditor", "allowed": true, "blocked_reason": null, "output_artifact": "subagents.jsonl", "reason": "eval required skill check", "skill": "harness-engineer", "used": true}

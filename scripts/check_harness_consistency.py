@@ -35,7 +35,9 @@ EXPECTED_REFERENCES = [
 ]
 
 EXPECTED_SCRIPTS = [
+    "select_subagent_team.py",
     "init_auto_harness.py",
+    "record_subagent_lifecycle.py",
     "record_auto_iteration.py",
     "run_auto_harness.py",
     "harness_runtime_ctl.py",

@@ -48,10 +48,10 @@ python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> 
 python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
 
-When the task is non-trivial, create runtime subagents first and pass their
-handles into initialization. Auto harness initialization expects multiple
-runtime handles; at minimum pass `Context Curator` and
-`Verifier / Evidence Auditor`, and add `Runner Coordinator` for execution work:
+When the task is non-trivial, the main Codex orchestrator must call
+`spawn_agent` for `Context Curator` and `Verifier / Evidence Auditor` before
+`init_auto_harness.py`, then pass the returned runtime IDs into initialization.
+Add `Runner Coordinator` for execution work:
 
 ```bash
 python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ... \
@@ -60,8 +60,8 @@ python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ... 
 ```
 
 `init_auto_harness.py` selects `runtime_subagents` automatically when runtime
-handles are supplied. Without runtime handles, auto mode fails fast and tells
-the orchestrator to create Codex runtime subagents first. Use
+IDs are supplied. Without runtime handles, auto mode fails fast and tells
+the orchestrator to call `spawn_agent` first. Use
 `--subagent-execution-mode inline_expert_memos` only when runtime creation is
 blocked, and include both `--runtime-blocked-category` and
 `--runtime-blocked-reason`.
@@ -72,6 +72,9 @@ atomically appends one `results.tsv` row and synchronizes state, metrics,
 manifest termination, events, summary, and replay. `run_auto_harness.py` drives a
 foreground command loop: iteration command, verify command, optional guard,
 keep/discard decision, optional rollback command, and iteration recording.
+Runtime subagent terminal states are recorded separately with
+`scripts/record_subagent_lifecycle.py` after results are collected and
+`close_agent` has been called.
 
 For detached background loops, initialize with `--run-mode background`, then use:
 

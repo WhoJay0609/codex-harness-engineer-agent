@@ -1,0 +1,5 @@
+{
+  "best": 1,
+  "current": 1,
+  "metric": "eval_pass"
+}

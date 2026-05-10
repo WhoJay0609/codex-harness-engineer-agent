@@ -48,11 +48,13 @@ skill path:
   创建并验证可追踪的运行 artifacts。
 - Routes work through generated internal experts from installed skills.
   基于已安装 skills 生成内部专家库，并按任务路由工作。
-- Prefers real runtime subagents for non-trivial work when the current runtime
-  and platform policy permit delegation, and records explicit inline fallback
-  reasons when they do not.
-  对非平凡任务默认优先创建真实 runtime 子智能体；如果运行时或策略阻塞，
-  必须记录明确的 inline fallback 原因。
+- For non-trivial work, the main Codex orchestrator directly calls
+  `spawn_agent` to create the runtime team and records the returned runtime IDs.
+  Inline fallback is only valid when `spawn_agent` is unavailable, blocked, over
+  thread limits after cleanup, or fails.
+  对非平凡任务，主 Codex orchestrator 直接调用 `spawn_agent` 创建 runtime
+  团队，并记录返回的 runtime ID。只有 `spawn_agent` 不可用、被阻塞、清理后仍达
+  线程上限或创建失败时，才允许 inline fallback。
 - Keeps `$codex-autoresearch`, `$multi-agent`, and `$expert-debate` reserved
   unless the user explicitly requests them.
   除非用户明确要求，否则保留 `$codex-autoresearch`、`$multi-agent` 和
@@ -120,6 +122,17 @@ python3 scripts/query_harness_trace.py runs/<experiment_id>/<run_id> --event-typ
 python3 scripts/export_trace_table.py runs/<experiment_id>/<run_id> --format csv
 ```
 
+Select a direct runtime subagent team:
+
+选择直接 runtime 子智能体团队：
+
+```bash
+python3 scripts/select_subagent_team.py \
+  --task-class execution \
+  --goal "improve the measured score" \
+  --scope src/
+```
+
 Run a foreground Code Auto Research style loop:
 
 运行默认的前台 Code Auto Research 风格循环：
@@ -133,7 +146,9 @@ python3 scripts/init_auto_harness.py \
   --direction higher \
   --verify "python3 scripts/score.py" \
   --guard "pytest -q" \
-  --baseline-metric 0
+  --baseline-metric 0 \
+  --runtime-subagent "Context Curator=<runtime_agent_id>" \
+  --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
 
 python3 scripts/run_auto_harness.py \
   --run-dir runs/demo/001 \
@@ -147,11 +162,20 @@ performs the edit/verify step and only needs to append a keep/discard/crash row.
 当 Codex 或自定义 runner 已经完成编辑和验证，只需要追加 keep/discard/crash
 记录时，可以直接使用 `scripts/record_auto_iteration.py`。
 
-For non-trivial harness tasks, create runtime subagents first and pass their
-handles into initialization so the artifacts show real parallel execution:
+For non-trivial harness tasks, call `spawn_agent` from the main Codex session
+for each required role, then pass the returned `runtime_agent_id` or `thread_id`
+into initialization so artifacts show real parallel execution:
 
-对于非平凡 harness 任务，先创建 runtime 子智能体，再把它们的 handle 传给
-初始化脚本，这样 artifacts 会记录真实并行执行：
+对于非平凡 harness 任务，先由主 Codex 会话为每个必需角色调用 `spawn_agent`，
+再把返回的 `runtime_agent_id` 或 `thread_id` 传给初始化脚本，这样 artifacts
+会记录真实并行执行：
+
+Replace every `<runtime_agent_id>` below with a concrete ID returned by
+`spawn_agent`; placeholders are intentionally rejected by the helpers and
+validator.
+
+下面的每个 `<runtime_agent_id>` 都必须替换为 `spawn_agent` 返回的真实 ID；
+helper 和 validator 会故意拒绝占位符。
 
 ```bash
 python3 scripts/init_auto_harness.py \
@@ -162,7 +186,21 @@ python3 scripts/init_auto_harness.py \
   --direction higher \
   --verify "python3 scripts/score.py" \
   --baseline-metric 0 \
+  --runtime-subagent "Context Curator=<runtime_agent_id>" \
   --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
+```
+
+After each runtime subagent completes or is closed, record the terminal event:
+
+每个 runtime 子智能体完成或被关闭后，记录 terminal lifecycle：
+
+```bash
+python3 scripts/record_subagent_lifecycle.py \
+  --run-dir runs/demo/001 \
+  --event completed \
+  --role "Verifier / Evidence Auditor" \
+  --agent-id verifier-evidence-auditor \
+  --stop-reason "verification completed with evidence"
 ```
 
 Foreground is the default. No detached process is created unless the run is
@@ -186,7 +224,9 @@ python3 scripts/init_auto_harness.py \
   --verify "python3 scripts/score.py" \
   --guard "pytest -q" \
   --run-mode background \
-  --baseline-metric 0
+  --baseline-metric 0 \
+  --runtime-subagent "Context Curator=<runtime_agent_id>" \
+  --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
 
 python3 scripts/harness_runtime_ctl.py launch \
   --run-dir runs/demo/bg-001 \
