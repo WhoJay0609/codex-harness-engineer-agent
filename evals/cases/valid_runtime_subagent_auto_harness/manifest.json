@@ -16,6 +16,7 @@
   "team_policy": {
     "expert_library_version": "harness-experts.v4",
     "initial_roles": [
+      "Context Curator",
       "Verifier / Evidence Auditor"
     ],
     "mode": "internal_team",
@@ -24,6 +25,7 @@
     "single_agent_exception": false,
     "skill_policy": "external_domain_allowed_by_allowlist",
     "subagent_execution_mode": "runtime_subagents",
+    "subagent_runtime_blocked_category": null,
     "subagent_runtime_blocked_reason": null,
     "task_class": "execution"
   },

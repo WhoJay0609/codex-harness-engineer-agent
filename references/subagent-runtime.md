@@ -34,16 +34,16 @@ Allowed `action` values are `kept`, `closed`, `skipped_uncertain`, `skipped_user
 
 The main agent is the orchestrator. It owns final judgment, context selection, artifact integrity, and escalation decisions.
 
-For non-trivial harness work, proactively form a small internal team at the start. Use internal subagents for context isolation, parallel evidence, independent verification, or specialized failure analysis. Do not create subagents just to make simple work look sophisticated, but do not wait until failure to add basic context and verification roles.
+For non-trivial harness work, proactively form a small internal team at the start. Use multiple real runtime subagents by default for context isolation, parallel evidence, independent verification, or specialized failure analysis. Do not create subagents just to make simple work look sophisticated, but do not wait until failure to add basic context and verification roles.
 
-The usual minimum team is `Context Curator` plus `Verifier / Evidence Auditor`. Add `Harness Architect`, `Runner Coordinator`, `Failure Analyst`, or `Mechanical Gatekeeper` as soon as the task involves design, execution, repair, or enforceable rules. Expert roles must come from the generated `references/expert-capability-library.json`, with the readable view in `references/expert-capability-library.md`.
+The usual minimum runtime team is `Context Curator` plus `Verifier / Evidence Auditor`. Add `Harness Architect`, `Runner Coordinator`, `Failure Analyst`, or `Mechanical Gatekeeper` as soon as the task involves design, execution, repair, or enforceable rules. Expert roles must come from the generated `references/expert-capability-library.json`, with the readable view in `references/expert-capability-library.md`.
 
 ## Runtime Execution Modes
 
 Internal experts should be real runtime subagents when possible. Before work begins, set `team_policy.subagent_execution_mode`:
 
-- `runtime_subagents`: runtime agent/thread creation is available and permitted. Each created subagent record must include `runtime_agent_id`, `thread_id`, or an equivalent handle.
-- `inline_expert_memos`: runtime agent/thread creation is unavailable, blocked by platform policy, blocked by the current user request, or still impossible after startup cleanup. Each created subagent record must include `runtime_blocked_reason`, and the run should log the fallback in `events.jsonl`.
+- `runtime_subagents`: runtime agent/thread creation is available and permitted. This is the default for non-trivial work. Each created subagent record must include `runtime_agent_id`, `thread_id`, or an equivalent handle.
+- `inline_expert_memos`: runtime agent/thread creation is unavailable, blocked by platform policy, blocked by the current user request, or still impossible after startup cleanup. Each created subagent record must include `runtime_blocked_category` and `runtime_blocked_reason`, and the run must log the fallback as an `events.jsonl` escalation.
 - `single_agent_exception`: task is trivial enough that a team would be process overhead. Use only with `team_policy.single_agent_exception: true`.
 
 Inline expert memos can preserve role discipline, but they are not a substitute for real subagent execution. Treat repeated `inline_expert_memos` on non-trivial work as a harness gap unless the user or platform policy blocks delegation.
@@ -78,6 +78,7 @@ Every subagent gets a task card:
   "runtime_agent_id": "agent-abc123",
   "thread_id": null,
   "runtime_blocked_reason": null,
+  "runtime_blocked_category": null,
   "needed_skill": null,
   "skill_route_decision": null,
   "allowlist_expanded_by": null,
@@ -135,6 +136,7 @@ Record lifecycle events in `subagents.jsonl`:
   "runtime_agent_id": "agent-failure-1",
   "thread_id": null,
   "runtime_blocked_reason": null,
+  "runtime_blocked_category": null,
   "status": "active",
   "reason": "candidate run failed with unclear root cause"
 }

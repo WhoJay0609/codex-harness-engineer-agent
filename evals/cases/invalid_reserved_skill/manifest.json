@@ -13,7 +13,8 @@
     "initial_roles": ["Verifier / Evidence Auditor"],
     "single_agent_exception": false,
     "subagent_execution_mode": "inline_expert_memos",
-    "subagent_runtime_blocked_reason": "eval fixture uses inline records without live runtime subagent handles",
+    "subagent_runtime_blocked_category": "platform_unavailable",
+    "subagent_runtime_blocked_reason": "Codex runtime subagent API unavailable in eval environment",
     "skill_policy": "external_domain_allowed_by_allowlist",
     "reserved_orchestration_policy": "explicit_user_request_only"
   },

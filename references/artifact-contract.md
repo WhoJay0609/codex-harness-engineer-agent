@@ -97,8 +97,13 @@ subagent record must include `runtime_agent_id`, `thread_id`, or an equivalent
 runtime handle.
 
 When the mode is `inline_expert_memos`, the manifest must include
-`team_policy.subagent_runtime_blocked_reason`, and each created subagent record
-must include `runtime_blocked_reason`.
+`team_policy.subagent_runtime_blocked_category` and
+`team_policy.subagent_runtime_blocked_reason`; each created subagent record must
+include matching `runtime_blocked_category` and `runtime_blocked_reason`; and
+`events.jsonl` must include an observable runtime-subagent fallback escalation.
+Allowed blocked categories are `platform_unavailable`,
+`platform_policy_blocked`, `user_blocked_delegation`,
+`thread_limit_after_cleanup`, and `runtime_creation_failed`.
 
 When the mode is `single_agent_exception`, `team_policy.mode` should be
 `single_agent`, `initial_roles` should be empty, and the reason should explain

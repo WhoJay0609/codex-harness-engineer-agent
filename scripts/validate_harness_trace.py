@@ -55,6 +55,14 @@ RUN_TERMINAL_STATUSES = {
 TERMINAL_STATUSES = {"completed", "stopped", "replaced", "failed", "blocked"}
 TERMINAL_EVENTS = {"completed", "stopped", "replaced", "failed", "blocked"}
 SUBAGENT_EXECUTION_MODES = {"runtime_subagents", "inline_expert_memos", "single_agent_exception"}
+RUNTIME_BLOCKED_CATEGORIES = {
+    "platform_unavailable",
+    "platform_policy_blocked",
+    "user_blocked_delegation",
+    "thread_limit_after_cleanup",
+    "runtime_creation_failed",
+}
+MINIMUM_AUTO_RUNTIME_ROLES = {"Context Curator", "Verifier / Evidence Auditor"}
 TRACE_V2_EVENT_TYPES = {
     "message",
     "thought",
@@ -430,6 +438,20 @@ def check_manifest(manifest: Any, expert_roles: set[str], errors: list[str]) -> 
             errors.append(
                 "manifest.json: inline_expert_memos requires team_policy.subagent_runtime_blocked_reason"
             )
+        if subagent_execution_mode == "inline_expert_memos":
+            category = team_policy.get("subagent_runtime_blocked_category")
+            if category not in RUNTIME_BLOCKED_CATEGORIES:
+                allowed_categories = ", ".join(sorted(RUNTIME_BLOCKED_CATEGORIES))
+                errors.append(
+                    "manifest.json: inline_expert_memos requires "
+                    f"team_policy.subagent_runtime_blocked_category to be one of: {allowed_categories}"
+                )
+            reason = str(team_policy.get("subagent_runtime_blocked_reason") or "").lower()
+            if "without live runtime subagent handles" in reason or "no runtime subagent handles" in reason:
+                errors.append(
+                    "manifest.json: inline_expert_memos requires an external runtime-blocked reason, "
+                    "not a missing-handle default"
+                )
     elif team_policy.get("external_skills_policy") != "explicit_user_request_only":
         errors.append("manifest.json: team_policy.external_skills_policy must be explicit_user_request_only for harness-experts.v1")
     if mode == "single_agent" and team_policy.get("single_agent_exception") is not True:
@@ -535,6 +557,12 @@ def check_subagents(
                     errors.append(
                         f"subagents.jsonl:{row.get('_line')}: inline_expert_memos mode requires runtime_blocked_reason for {agent_id}"
                     )
+                if row.get("runtime_blocked_category") not in RUNTIME_BLOCKED_CATEGORIES:
+                    allowed_categories = ", ".join(sorted(RUNTIME_BLOCKED_CATEGORIES))
+                    errors.append(
+                        f"subagents.jsonl:{row.get('_line')}: inline_expert_memos mode requires "
+                        f"runtime_blocked_category to be one of: {allowed_categories}"
+                    )
 
         if status in TERMINAL_STATUSES or event in TERMINAL_EVENTS:
             terminal[agent_id] = row
@@ -617,6 +645,42 @@ def check_team_policy(manifest: Any, subagents: list[dict[str, Any]], errors: li
     for role in team_policy.get("initial_roles", []):
         if role not in created_roles:
             errors.append(f"subagents.jsonl: initial role '{role}' was not created")
+    subagent_execution_mode = team_policy.get("subagent_execution_mode")
+    if subagent_execution_mode == "runtime_subagents" and team_policy.get("task_class") != "trivial":
+        if len(created_roles) < 2:
+            errors.append("subagents.jsonl: non-trivial runtime_subagents mode requires at least two created subagents")
+        if manifest.get("mode") == "auto_harness":
+            missing_roles = sorted(MINIMUM_AUTO_RUNTIME_ROLES - created_roles)
+            if missing_roles:
+                errors.append(
+                    "subagents.jsonl: auto_harness runtime_subagents mode requires created roles: "
+                    + ", ".join(missing_roles)
+                )
+
+
+def check_inline_fallback_observable(manifest: Any, events: list[dict[str, Any]], errors: list[str]) -> None:
+    if not isinstance(manifest, dict):
+        return
+    team_policy = manifest.get("team_policy")
+    if not isinstance(team_policy, dict):
+        return
+    if team_policy.get("expert_library_version") != EXPERT_LIBRARY_VERSION:
+        return
+    if team_policy.get("mode") != "internal_team":
+        return
+    if team_policy.get("subagent_execution_mode") != "inline_expert_memos":
+        return
+    found = False
+    for row in events:
+        if row.get("event_type") != "escalation":
+            continue
+        summary = str(row.get("summary") or "").lower()
+        reason = str(row.get("reason") or "").lower()
+        if "runtime" in summary or "runtime" in reason:
+            found = True
+            break
+    if not found:
+        errors.append("events.jsonl: inline_expert_memos requires an observable runtime subagent fallback escalation event")
 
 
 def get_subagent_execution_mode(manifest: Any) -> str | None:
@@ -950,6 +1014,7 @@ def validate(run_dir: Path) -> list[str]:
     subagent_execution_mode = get_subagent_execution_mode(manifest)
     check_subagents(subagents, skills, escalations, installed_skills, reserved_skills, expert_roles, subagent_execution_mode, errors)
     check_team_policy(manifest, subagents, errors)
+    check_inline_fallback_observable(manifest, events, errors)
     check_auto_harness(run_dir, manifest, errors)
     check_typed_event_log(events, tool_calls, failures, errors)
 

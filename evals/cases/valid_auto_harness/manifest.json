@@ -16,7 +16,7 @@
   "team_policy": {
     "expert_library_version": "harness-experts.v4",
     "initial_roles": [
-      "Professor Orchestrator",
+      "Context Curator",
       "Runner Coordinator",
       "Verifier / Evidence Auditor"
     ],
@@ -25,8 +25,9 @@
     "reserved_orchestration_policy": "explicit_user_request_only",
     "single_agent_exception": false,
     "skill_policy": "external_domain_allowed_by_allowlist",
-    "subagent_execution_mode": "inline_expert_memos",
-    "subagent_runtime_blocked_reason": "auto_harness helper initialized without live runtime subagent handles",
+    "subagent_execution_mode": "runtime_subagents",
+    "subagent_runtime_blocked_category": null,
+    "subagent_runtime_blocked_reason": null,
     "task_class": "execution"
   },
   "termination": {

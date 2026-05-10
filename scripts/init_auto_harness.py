@@ -20,12 +20,20 @@ from auto_harness_common import (
 
 
 DEFAULT_ROLES = [
-    "Professor Orchestrator",
+    "Context Curator",
     "Runner Coordinator",
     "Verifier / Evidence Auditor",
 ]
+MINIMUM_RUNTIME_ROLES = {"Context Curator", "Verifier / Evidence Auditor"}
 FORBIDDEN_SKILLS = ["codex-autoresearch", "multi-agent", "expert-debate"]
 SUBAGENT_EXECUTION_MODES = ["auto", "runtime_subagents", "inline_expert_memos"]
+RUNTIME_BLOCKED_CATEGORIES = [
+    "platform_unavailable",
+    "platform_policy_blocked",
+    "user_blocked_delegation",
+    "thread_limit_after_cleanup",
+    "runtime_creation_failed",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -53,7 +61,7 @@ def parse_args() -> argparse.Namespace:
         "--subagent-execution-mode",
         choices=SUBAGENT_EXECUTION_MODES,
         default="auto",
-        help="auto chooses runtime_subagents when --runtime-subagent is present; otherwise inline_expert_memos",
+        help="auto requires runtime_subagents; inline_expert_memos must be explicitly selected with a blocked category and reason",
     )
     parser.add_argument(
         "--runtime-subagent",
@@ -61,6 +69,17 @@ def parse_args() -> argparse.Namespace:
         default=[],
         metavar="ROLE=RUNTIME_ID",
         help="record a real runtime subagent handle, e.g. 'Verifier / Evidence Auditor=019...' (repeatable)",
+    )
+    parser.add_argument(
+        "--runtime-blocked-category",
+        choices=RUNTIME_BLOCKED_CATEGORIES,
+        default=None,
+        help="required only when explicitly using inline_expert_memos",
+    )
+    parser.add_argument(
+        "--runtime-blocked-reason",
+        default=None,
+        help="human-readable reason runtime subagent creation is blocked; required with inline_expert_memos",
     )
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
@@ -99,11 +118,30 @@ def parse_runtime_subagents(values: list[str]) -> dict[str, str]:
 
 def choose_subagent_execution_mode(args: argparse.Namespace, runtime_specs: dict[str, str]) -> str:
     if args.subagent_execution_mode == "auto":
-        return "runtime_subagents" if runtime_specs else "inline_expert_memos"
-    if args.subagent_execution_mode == "runtime_subagents" and not runtime_specs:
-        raise SystemExit("--subagent-execution-mode runtime_subagents requires at least one --runtime-subagent")
+        if runtime_specs:
+            return "runtime_subagents"
+        raise SystemExit(
+            "auto_harness defaults to runtime_subagents. Create Codex runtime subagents first and pass "
+            "--runtime-subagent for at least Context Curator and Verifier / Evidence Auditor, or explicitly pass "
+            "--subagent-execution-mode inline_expert_memos with --runtime-blocked-category and --runtime-blocked-reason."
+        )
+    if args.subagent_execution_mode == "runtime_subagents":
+        if not runtime_specs:
+            raise SystemExit("--subagent-execution-mode runtime_subagents requires at least one --runtime-subagent")
+        missing_roles = sorted(MINIMUM_RUNTIME_ROLES - set(runtime_specs))
+        if missing_roles:
+            raise SystemExit(
+                "--subagent-execution-mode runtime_subagents requires runtime handles for: "
+                + ", ".join(missing_roles)
+            )
     if args.subagent_execution_mode == "inline_expert_memos" and runtime_specs:
         raise SystemExit("--runtime-subagent requires --subagent-execution-mode runtime_subagents or auto")
+    if args.subagent_execution_mode == "inline_expert_memos":
+        if not args.runtime_blocked_category or not args.runtime_blocked_reason:
+            raise SystemExit(
+                "--subagent-execution-mode inline_expert_memos requires "
+                "--runtime-blocked-category and --runtime-blocked-reason"
+            )
     return str(args.subagent_execution_mode)
 
 
@@ -112,6 +150,7 @@ def subagent_records(
     execution_mode: str,
     runtime_specs: dict[str, str],
     blocked_reason: str | None,
+    blocked_category: str | None,
 ) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for role in roles:
@@ -127,6 +166,7 @@ def subagent_records(
             "runtime_agent_id": runtime_specs.get(role),
             "thread_id": None,
             "runtime_blocked_reason": None if execution_mode == "runtime_subagents" else blocked_reason,
+            "runtime_blocked_category": None if execution_mode == "runtime_subagents" else blocked_category,
         }
         if execution_mode == "runtime_subagents":
             created["status"] = "active"
@@ -168,9 +208,10 @@ def main() -> int:
 
     run_id = args.run_id or run_dir.name
     baseline_commit = args.baseline_commit or git_commit(primary_repo)
-    blocked_reason = "auto_harness helper initialized without live runtime subagent handles"
     runtime_specs = parse_runtime_subagents(args.runtime_subagent)
     subagent_execution_mode = choose_subagent_execution_mode(args, runtime_specs)
+    blocked_reason = args.runtime_blocked_reason if subagent_execution_mode == "inline_expert_memos" else None
+    blocked_category = args.runtime_blocked_category if subagent_execution_mode == "inline_expert_memos" else None
     initial_roles = list(runtime_specs.keys()) if subagent_execution_mode == "runtime_subagents" else DEFAULT_ROLES
 
     manifest = {
@@ -188,7 +229,8 @@ def main() -> int:
             "initial_roles": initial_roles,
             "single_agent_exception": False,
             "subagent_execution_mode": subagent_execution_mode,
-            "subagent_runtime_blocked_reason": None if subagent_execution_mode == "runtime_subagents" else blocked_reason,
+            "subagent_runtime_blocked_reason": blocked_reason,
+            "subagent_runtime_blocked_category": blocked_category,
             "skill_policy": "external_domain_allowed_by_allowlist",
             "reserved_orchestration_policy": "explicit_user_request_only",
         },
@@ -250,7 +292,7 @@ def main() -> int:
     write_json(run_dir / "metrics.json", metrics)
     write_empty_files(run_dir)
 
-    for record in subagent_records(initial_roles, subagent_execution_mode, runtime_specs, blocked_reason):
+    for record in subagent_records(initial_roles, subagent_execution_mode, runtime_specs, blocked_reason, blocked_category):
         append_jsonl(run_dir / "subagents.jsonl", record)
     for role in initial_roles:
         agent_id = role_to_agent_id(role)
@@ -315,12 +357,29 @@ def main() -> int:
             "value": args.baseline_metric,
         },
     )
+    if subagent_execution_mode == "inline_expert_memos":
+        append_jsonl(
+            run_dir / "events.jsonl",
+            {
+                "event_version": 2,
+                "event_id": "evt-0003",
+                "parent_id": "evt-0001",
+                "ts": ts,
+                "source": "orchestrator",
+                "agent_id": "orchestrator",
+                "role": "Professor Orchestrator",
+                "event_type": "escalation",
+                "status": "blocked",
+                "summary": f"runtime subagent creation blocked: {blocked_category}",
+                "reason": blocked_reason,
+            },
+        )
     append_jsonl(
         run_dir / "events.jsonl",
         {
             "event_version": 2,
-            "event_id": "evt-0003",
-            "parent_id": "evt-0002",
+            "event_id": "evt-0004" if subagent_execution_mode == "inline_expert_memos" else "evt-0003",
+            "parent_id": "evt-0003" if subagent_execution_mode == "inline_expert_memos" else "evt-0002",
             "ts": ts,
             "source": "orchestrator",
             "agent_id": "orchestrator",

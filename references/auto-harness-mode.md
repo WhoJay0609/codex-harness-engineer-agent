@@ -13,6 +13,7 @@ Default run mode is `foreground`: keep the loop in the current Codex session. Us
 For codebase work, treat each iteration as a measured experiment packet:
 
 - one safe edit scope;
+- one stated hypothesis and decision the result will support;
 - one primary metric and direction;
 - one verify command;
 - one guard command when regression risk exists;
@@ -20,6 +21,12 @@ For codebase work, treat each iteration as a measured experiment packet:
 
 This mirrors the useful parts of Code Auto Research projects while keeping the
 run inside the `harness-engineer` artifact and trace contract.
+
+Do not use auto loops to exhaustively fill comparison tables or ablation grids.
+When a direction has low marginal information gain and is unlikely to improve
+the target metric, change the decision, or inform the next implementation step,
+stop that branch and record the stop rationale instead of repeatedly confirming
+"infeasible" or "no effect".
 
 ## Launch Wizard
 
@@ -41,17 +48,23 @@ python scripts/record_auto_iteration.py --run-dir runs/<experiment_id>/<run_id> 
 python scripts/run_auto_harness.py --run-dir runs/<experiment_id>/<run_id> --iteration-command '<cmd>'
 ```
 
-When the task is non-trivial and runtime subagents are permitted, create the
-subagents first and pass their handles into initialization:
+When the task is non-trivial, create runtime subagents first and pass their
+handles into initialization. Auto harness initialization expects multiple
+runtime handles; at minimum pass `Context Curator` and
+`Verifier / Evidence Auditor`, and add `Runner Coordinator` for execution work:
 
 ```bash
 python scripts/init_auto_harness.py --run-dir runs/<experiment_id>/<run_id> ... \
+  --runtime-subagent "Context Curator=<runtime_agent_id>" \
   --runtime-subagent "Verifier / Evidence Auditor=<runtime_agent_id>"
 ```
 
-`init_auto_harness.py` selects `runtime_subagents` automatically when at least
-one `--runtime-subagent` is supplied. Without runtime handles, it records
-`inline_expert_memos` as an explicit fallback.
+`init_auto_harness.py` selects `runtime_subagents` automatically when runtime
+handles are supplied. Without runtime handles, auto mode fails fast and tells
+the orchestrator to create Codex runtime subagents first. Use
+`--subagent-execution-mode inline_expert_memos` only when runtime creation is
+blocked, and include both `--runtime-blocked-category` and
+`--runtime-blocked-reason`.
 
 `init_auto_harness.py` creates the run directory, baseline row, `auto_state.json`,
 `context.json`, and normal harness trace files. `record_auto_iteration.py`
@@ -163,6 +176,9 @@ Status values are `baseline`, `keep`, `discard`, `crash`, `no-op`, `blocked`, `r
 
 ## Internal Experts And Parallel Experiments
 
-Use the `harness-experts.v4` internal team for auto work. Typical roles are `Professor Orchestrator`, `Context Curator`, `Runner Coordinator`, `Verifier / Evidence Auditor`, `Failure Analyst`, and `Mechanical Gatekeeper`.
+Use the `harness-experts.v4` internal team for auto work. The main agent is the
+orchestrator; typical runtime subagents are `Context Curator`, `Runner
+Coordinator`, `Verifier / Evidence Auditor`, `Failure Analyst`, and
+`Mechanical Gatekeeper`.
 
 Parallel experiments are optional and must be approved during launch. Each worker gets an isolated worktree, one hypothesis, the same verify/guard contract, and a bounded device/resource assignment. The orchestrator selects the best mechanically verified result and records worker rows plus one authoritative main row in `results.tsv`.

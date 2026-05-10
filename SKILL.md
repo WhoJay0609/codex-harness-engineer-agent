@@ -18,9 +18,9 @@ Harness engineering has seven layers:
 
 1. Intent: goal, scope, budget, stop conditions, and success criteria.
 2. Context: repo map, prior runs, constraints, local instructions, and risks.
-3. Team: role capability profiles, single-agent exception, inline expert
-   fallback, or real runtime subagents when the request and platform permit
-   delegation.
+3. Team: role capability profiles, real runtime subagents by default for
+   non-trivial work, explicit blocked fallback, or single-agent exception for
+   trivial work.
 4. Tools: skill allowlists, shell/browser/runtime access, and guard commands.
 5. Artifacts: manifests, traces, logs, metrics, replay, and summaries.
 6. Loop: baseline, change, verify, keep/discard, recover, and terminate.
@@ -49,9 +49,10 @@ and `references/auto-harness-mode.md`.
 2. Inspect first: read the repo or skill package map before designing or
    editing the harness.
 3. Choose the mode and team policy: classify the task, then proactively create
-   real runtime subagents for parallelizable non-trivial work when the current
-   request and platform policy permit delegation. Use inline expert memos only
-   when runtime creation is blocked, and record the fallback reason.
+   multiple real runtime subagents for non-trivial work when the current request
+   and platform policy permit delegation. Use inline expert memos only when
+   runtime creation is blocked, and record the blocked category, reason, and
+   observable fallback event.
 4. Route skills deliberately: before loading or invoking any skill, send a
    concise user-visible note naming the skill(s) and why they apply; use
    generated expert allowlists for domain work; keep `$codex-autoresearch`,
@@ -125,8 +126,10 @@ Evidence and maintenance:
 ## Script Map
 
 - Initialize auto runs: `scripts/init_auto_harness.py --run-dir <run_dir> ...`
-  Add `--runtime-subagent "Role=runtime_agent_id"` after creating real runtime
-  subagents so artifacts use `team_policy.subagent_execution_mode=runtime_subagents`.
+  Create multiple real runtime subagents first and pass repeated
+  `--runtime-subagent "Role=runtime_agent_id"` arguments. Auto runs reject
+  missing runtime handles unless `inline_expert_memos` is explicitly selected
+  with a blocked category and reason.
 - Record auto iterations: `scripts/record_auto_iteration.py --run-dir <run_dir> ...`
 - Run foreground auto loops:
   `scripts/run_auto_harness.py --run-dir <run_dir> --iteration-command <cmd>`
