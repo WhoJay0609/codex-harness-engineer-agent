@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Skill Package
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.11", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Package consistency
+        run: python3 scripts/check_harness_consistency.py . --skip-environment-freshness
+
+      - name: Harness evals
+        run: python3 scripts/run_harness_evals.py
+
+      - name: Python syntax
+        run: python3 -m py_compile scripts/*.py

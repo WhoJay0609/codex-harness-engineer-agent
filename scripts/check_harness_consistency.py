@@ -223,7 +223,7 @@ def check_expert_library(root: Path, inventory: dict[str, Any], errors: list[str
             errors.append(f"expert-capability-library.md: must render capability profile field {required_text}")
 
 
-def check_skill_dir(root: Path) -> list[str]:
+def check_skill_dir(root: Path, skip_environment_freshness: bool = False) -> list[str]:
     errors: list[str] = []
     skill_md = root / "SKILL.md"
     if not skill_md.exists():
@@ -270,7 +270,8 @@ def check_skill_dir(root: Path) -> list[str]:
             errors.append("skill-inventory.json: version must be 2")
         if not inventory.get("inventory_hash"):
             errors.append("skill-inventory.json: missing inventory_hash")
-        check_inventory_freshness(root, inventory, errors)
+        if not skip_environment_freshness:
+            check_inventory_freshness(root, inventory, errors)
         check_expert_library(root, inventory, errors)
 
     evals_root = root / "evals" / "cases"
@@ -290,9 +291,14 @@ def check_skill_dir(root: Path) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check harness-engineer skill consistency")
     parser.add_argument("path", type=Path)
+    parser.add_argument(
+        "--skip-environment-freshness",
+        action="store_true",
+        help="skip regeneration checks that depend on local installed skill roots; useful for portable CI",
+    )
     args = parser.parse_args()
 
-    errors = check_skill_dir(args.path)
+    errors = check_skill_dir(args.path, skip_environment_freshness=args.skip_environment_freshness)
     if errors:
         print("FAIL: harness consistency check failed")
         for error in errors:

@@ -1,0 +1,35 @@
+name: Feature Request
+description: Suggest a new harness capability, script, eval, or doc.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What workflow is hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should Harness Engineer do?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Runtime subagents
+        - Auto harness loop
+        - Trace validation
+        - Docs/examples
+        - Skill inventory/expert library
+        - CI/release
+  - type: textarea
+    id: validation
+    attributes:
+      label: Suggested Validation
+      description: What command, eval, or fixture would prove this works?

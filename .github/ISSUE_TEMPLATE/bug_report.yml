@@ -1,0 +1,38 @@
+name: Bug Report
+description: Report broken behavior in scripts, docs, or skill packaging.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What broke?
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Paste the exact command or Codex action.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the relevant output or validator error.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python Version
+      placeholder: "python3 --version"
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Repo state, OS, installed skill path, or run directory shape.
